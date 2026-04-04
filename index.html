@@ -1,20 +1,18 @@
 <!DOCTYPE html>
-<html lang="es">
+<html lang="pt-BR">
 <head>
 <meta charset="UTF-8">
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
-<title>TuAbogaBot — Información Jurídica IA · España y 10 países latinoamericanos</title>
-<meta name="description" content="El primer asistente jurídico con IA que cubre España, México, Colombia, Argentina, Chile, Perú, Venezuela, Ecuador, Bolivia, Uruguay y Brasil. Información legal orientativa 24/7, gratis.">
-<meta name="keywords" content="asistente legal IA, consulta jurídica gratis, derechos laborales, despido, código penal, abogado online España, asesoría legal latinoamerica, chatbot legal español">
-<meta property="og:title" content="TuAbogaBot — Tu asistente jurídico con IA">
-<meta property="og:description" content="Información jurídica orientativa para más de 500 millones de hispanohablantes. España + 10 países latinoamericanos. Gratis, 24/7.">
+<title>TuAbogaBot 🇧🇷 — Informação Jurídica com IA · Brasil e América Latina</title>
+<meta name="description" content="O primeiro assistente jurídico com IA que cobre Brasil e 10 países da América Latina. Informação jurídica orientativa gratuita, disponível 24/7. Baseado em legislação oficial.">
+<meta name="keywords" content="assistente juridico IA, consulta juridica gratis brasil, direitos trabalhistas CLT, codigo penal brasil, advogado online, chatbot juridico portugues">
+<meta property="og:title" content="TuAbogaBot 🇧🇷 — Seu assistente jurídico com IA">
+<meta property="og:description" content="Informação jurídica orientativa para Brasil e América Latina. Baseado em legislação oficial. Gratuito, 24/7.">
 <meta property="og:type" content="website">
-<meta property="og:url" content="https://tuabogabot.io">
-<meta property="og:image" content="https://tuabogabot.io/og-image.png">
-<meta name="twitter:card" content="summary_large_image">
-<link rel="canonical" href="https://tuabogabot.io">
+<meta property="og:url" content="https://tuabogabot.io/pt/">
+<link rel="canonical" href="https://tuabogabot.io/pt/">
 <script type="application/ld+json">
-{"@context":"https://schema.org","@type":"WebSite","name":"TuAbogaBot","url":"https://tuabogabot.io","description":"Asistente jurídico con IA para España y Latinoamérica","potentialAction":{"@type":"SearchAction","target":"https://tuabogabot.io/#consulta","query-input":"required name=search_term_string"}}
+{"@context":"https://schema.org","@type":"WebSite","name":"TuAbogaBot Brasil","url":"https://tuabogabot.io/pt/","description":"Assistente jurídico com IA para o Brasil e América Latina","inLanguage":"pt-BR"}
 </script>
 <link rel="preconnect" href="https://fonts.googleapis.com">
 <link rel="preload" href="https://fonts.googleapis.com/css2?family=Fraunces:ital,opsz,wght@0,9..144,300;0,9..144,400;0,9..144,600;1,9..144,300;1,9..144,400&family=DM+Sans:wght@300;400;500&family=JetBrains+Mono:wght@300;400&display=swap" as="style" onload="this.onload=null;this.rel='stylesheet'">
@@ -23,6 +21,7 @@
 :root{
   --azul:#0f1f3d;--azul2:#1a3260;--azul3:#243d75;
   --oro:#c9a84c;--oro2:#e8c97a;--oro3:rgba(201,168,76,0.12);
+  --verde-br:#009c3b;--amarelo-br:#ffdf00;--azul-br:#002776;
   --crema:#f5f0e8;--crema2:#ede7d8;
   --texto:#1a1a2e;--muted:#6b7080;--blanco:#ffffff;
   --verde:#1a7a4a;--rojo:#8b1a1a;
@@ -35,101 +34,87 @@ html{scroll-behavior:smooth}
 body{font-family:'DM Sans',system-ui,sans-serif;background:var(--blanco);color:var(--texto);line-height:1.6;overflow-x:hidden}
 @media(prefers-reduced-motion:reduce){*{animation-duration:0.01ms!important;transition-duration:0.01ms!important}}
 
-/* ── PROGRESS BAR ── */
-#pgbar{position:fixed;top:0;left:0;height:2px;background:linear-gradient(90deg,var(--oro),var(--oro2));z-index:9999;width:0;transition:width 0.1s;pointer-events:none}
+#pgbar{position:fixed;top:0;left:0;height:2px;background:linear-gradient(90deg,var(--verde-br),var(--amarelo-br),var(--azul-br));z-index:9999;width:0;transition:width 0.1s;pointer-events:none}
 
 /* ── NAV ── */
 nav{position:fixed;top:0;width:100%;z-index:1000;background:rgba(15,31,61,0.97);backdrop-filter:blur(16px);padding:0 2rem;height:64px;display:flex;align-items:center;justify-content:space-between;border-bottom:1px solid rgba(201,168,76,0.15)}
 .nav-logo{font-family:'Fraunces',serif;font-size:1.25rem;font-weight:400;color:var(--blanco);text-decoration:none;display:flex;align-items:center;gap:0.5rem}
 .nav-logo .accent{color:var(--oro)}
+.nav-br-badge{background:var(--verde-br);color:var(--blanco);font-family:'JetBrains Mono',monospace;font-size:0.55rem;padding:0.15rem 0.5rem;letter-spacing:0.1em;vertical-align:super}
 .nav-links{display:flex;gap:1.8rem;align-items:center;list-style:none}
 .nav-links a{color:rgba(255,255,255,0.65);text-decoration:none;font-size:0.83rem;transition:color 0.2s}
 .nav-links a:hover{color:var(--oro)}
-.nav-links a.active{color:var(--blanco)}
 .nav-right{display:flex;align-items:center;gap:1rem}
 .nav-lang{display:flex;align-items:center;gap:0.4rem;font-family:'JetBrains Mono',monospace;font-size:0.62rem;letter-spacing:0.1em;color:rgba(255,255,255,0.5);text-decoration:none;transition:color 0.2s}
 .nav-lang:hover{color:var(--oro)}
-.nav-cta{background:var(--oro);color:var(--azul);padding:0.45rem 1.1rem;font-size:0.82rem;font-weight:500;text-decoration:none;transition:all 0.2s}
-.nav-cta:hover{background:var(--oro2);transform:translateY(-1px)}
+.nav-cta{background:var(--verde-br);color:var(--blanco);padding:0.45rem 1.1rem;font-size:0.82rem;font-weight:500;text-decoration:none;transition:all 0.2s}
+.nav-cta:hover{background:#007a2e;transform:translateY(-1px)}
 .hamburger{display:none;flex-direction:column;gap:5px;cursor:pointer;padding:8px;border:none;background:transparent}
 .hamburger span{width:22px;height:2px;background:rgba(255,255,255,0.7);border-radius:2px;transition:all 0.3s;display:block}
 .mobile-menu{display:none;position:fixed;top:64px;left:0;right:0;background:rgba(15,31,61,0.99);backdrop-filter:blur(20px);border-bottom:1px solid rgba(201,168,76,0.15);z-index:999;padding:1.5rem 2rem;flex-direction:column;gap:0.3rem}
 .mobile-menu.open{display:flex}
 .mobile-menu a{color:rgba(255,255,255,0.7);text-decoration:none;font-size:0.9rem;padding:0.8rem 0;border-bottom:1px solid rgba(255,255,255,0.06);transition:color 0.2s}
 .mobile-menu a:hover{color:var(--oro)}
-.mobile-menu .m-cta{background:var(--oro);color:var(--azul);text-align:center;padding:0.8rem;margin-top:0.5rem;font-weight:500;border:none}
+.mobile-menu .m-cta{background:var(--verde-br);color:var(--blanco);text-align:center;padding:0.8rem;margin-top:0.5rem;font-weight:500;border:none}
 
-/* ── HERO ── */
+/* ── HERO BRASIL ── */
 .hero{min-height:100vh;background:var(--azul);display:flex;flex-direction:column;justify-content:center;align-items:center;text-align:center;padding:7rem 2rem 5rem;position:relative;overflow:hidden}
-.hero::before{content:'';position:absolute;inset:0;background:radial-gradient(ellipse 80% 60% at 50% -10%,rgba(201,168,76,0.12) 0%,transparent 60%),radial-gradient(ellipse 50% 50% at 90% 90%,rgba(36,61,117,0.6) 0%,transparent 60%);pointer-events:none}
-.hero-pattern{position:absolute;inset:0;background-image:url("data:image/svg+xml,%3Csvg width='60' height='60' viewBox='0 0 60 60' xmlns='http://www.w3.org/2000/svg'%3E%3Cg fill='none'%3E%3Cg fill='%23c9a84c' fill-opacity='0.04'%3E%3Cpath d='M36 34v-4h-2v4h-4v2h4v4h2v-4h4v-2h-4zm0-30V0h-2v4h-4v2h4v4h2V6h4V4h-4zM6 34v-4H4v4H0v2h4v4h2v-4h4v-2H6zM6 4V0H4v4H0v2h4v4h2V6h4V4H6z'/%3E%3C/g%3E%3C/g%3E%3C/svg%3E");pointer-events:none}
-.hero-badge{display:inline-flex;align-items:center;gap:0.5rem;background:rgba(201,168,76,0.1);border:1px solid rgba(201,168,76,0.25);color:var(--oro);font-family:'JetBrains Mono',monospace;font-size:0.62rem;letter-spacing:0.22em;text-transform:uppercase;padding:0.4rem 1rem;margin-bottom:2rem;opacity:0;animation:fadeUp 0.8s ease forwards 0.2s}
-.hero-badge::before{content:'';width:6px;height:6px;border-radius:50%;background:var(--verde);box-shadow:0 0 0 2px rgba(26,122,74,0.3);animation:blink 2s infinite}
+.hero::before{content:'';position:absolute;inset:0;background:radial-gradient(ellipse 80% 60% at 50% -10%,rgba(0,156,59,0.08) 0%,transparent 50%),radial-gradient(ellipse 40% 40% at 80% 80%,rgba(0,39,118,0.5) 0%,transparent 60%);pointer-events:none}
+.hero-pattern{position:absolute;inset:0;background-image:url("data:image/svg+xml,%3Csvg width='60' height='60' viewBox='0 0 60 60' xmlns='http://www.w3.org/2000/svg'%3E%3Cg fill='none'%3E%3Cg fill='%2300cc44' fill-opacity='0.04'%3E%3Cpath d='M36 34v-4h-2v4h-4v2h4v4h2v-4h4v-2h-4zm0-30V0h-2v4h-4v2h4v4h2V6h4V4h-4zM6 34v-4H4v4H0v2h4v4h2v-4h4v-2H6zM6 4V0H4v4H0v2h4v4h2V6h4V4H6z'/%3E%3C/g%3E%3C/g%3E%3C/svg%3E");pointer-events:none}
+.hero-badge{display:inline-flex;align-items:center;gap:0.5rem;background:rgba(0,156,59,0.12);border:1px solid rgba(0,156,59,0.3);color:#4ade80;font-family:'JetBrains Mono',monospace;font-size:0.62rem;letter-spacing:0.22em;text-transform:uppercase;padding:0.4rem 1rem;margin-bottom:2rem;opacity:0;animation:fadeUp 0.8s ease forwards 0.2s}
+.hero-badge::before{content:'';width:6px;height:6px;border-radius:50%;background:var(--verde);animation:blink 2s infinite}
 @keyframes blink{0%,100%{opacity:1}50%{opacity:0.4}}
+.hero-flag{font-size:3rem;margin-bottom:1rem;opacity:0;animation:fadeUp 0.6s ease forwards 0.1s;filter:drop-shadow(0 4px 12px rgba(0,0,0,0.3))}
 .hero h1{font-family:'Fraunces',serif;font-size:clamp(2.8rem,7vw,5.8rem);font-weight:300;line-height:1.04;color:var(--blanco);max-width:820px;margin-bottom:1.5rem;opacity:0;animation:fadeUp 0.8s ease forwards 0.4s;letter-spacing:-0.01em}
-.hero h1 em{font-style:italic;color:var(--oro)}
-.hero-sub{font-size:1.05rem;color:rgba(255,255,255,0.6);max-width:580px;margin-bottom:2.5rem;font-weight:300;line-height:1.75;opacity:0;animation:fadeUp 0.8s ease forwards 0.6s}
+.hero h1 em{font-style:italic;color:#4ade80}
+.hero-sub{font-size:1.05rem;color:rgba(255,255,255,0.6);max-width:580px;margin-bottom:2rem;font-weight:300;line-height:1.75;opacity:0;animation:fadeUp 0.8s ease forwards 0.6s}
 .hero-warn{background:rgba(212,131,10,0.1);border:1px solid rgba(212,131,10,0.3);color:rgba(255,255,255,0.7);font-family:'JetBrains Mono',monospace;font-size:0.62rem;letter-spacing:0.05em;padding:0.5rem 1.2rem;margin-bottom:2rem;max-width:600px;line-height:1.5;opacity:0;animation:fadeUp 0.8s ease forwards 0.65s}
 .hero-ctas{display:flex;gap:1rem;flex-wrap:wrap;justify-content:center;margin-bottom:3.5rem;opacity:0;animation:fadeUp 0.8s ease forwards 0.8s}
-.btn-primary{background:var(--oro);color:var(--azul);padding:0.9rem 2rem;font-weight:500;font-size:0.95rem;border:none;cursor:pointer;text-decoration:none;display:inline-block;transition:all 0.2s;font-family:'DM Sans',sans-serif}
-.btn-primary:hover{background:var(--oro2);transform:translateY(-2px);box-shadow:0 8px 30px rgba(201,168,76,0.3)}
+.btn-primary{background:var(--verde-br);color:var(--blanco);padding:0.9rem 2rem;font-weight:500;font-size:0.95rem;border:none;cursor:pointer;text-decoration:none;display:inline-block;transition:all 0.2s;font-family:'DM Sans',sans-serif}
+.btn-primary:hover{background:#007a2e;transform:translateY(-2px);box-shadow:0 8px 30px rgba(0,156,59,0.3)}
 .btn-secondary{background:transparent;color:rgba(255,255,255,0.75);padding:0.9rem 2rem;font-weight:400;font-size:0.95rem;border:1px solid rgba(255,255,255,0.2);cursor:pointer;text-decoration:none;display:inline-block;transition:all 0.2s;font-family:'DM Sans',sans-serif}
 .btn-secondary:hover{border-color:rgba(255,255,255,0.5);color:var(--blanco)}
 .hero-stats{display:flex;gap:3rem;flex-wrap:wrap;justify-content:center;opacity:0;animation:fadeUp 0.8s ease forwards 1s}
-.hero-stat .n{font-family:'Fraunces',serif;font-size:2.2rem;font-weight:300;color:var(--oro);display:block;line-height:1}
+.hero-stat .n{font-family:'Fraunces',serif;font-size:2.2rem;font-weight:300;color:#4ade80;display:block;line-height:1}
 .hero-stat .l{font-size:0.68rem;color:rgba(255,255,255,0.35);font-family:'JetBrains Mono',monospace;letter-spacing:0.1em}
 @keyframes fadeUp{from{opacity:0;transform:translateY(22px)}to{opacity:1;transform:translateY(0)}}
 
-/* ── DISCLAIMER BANNER (siempre visible bajo hero) ── */
+/* ── DISCLAIMER BANNER ── */
 .disclaimer-banner{background:var(--warn-bg);border-top:3px solid var(--warn-border);border-bottom:1px solid #f0d090;padding:0.9rem 2rem;text-align:center}
 .disclaimer-banner p{font-size:0.78rem;color:#5a3800;max-width:950px;margin:0 auto;line-height:1.55}
 .disclaimer-banner strong{color:var(--rojo)}
 
-/* ── SECTIONS ── */
+/* ── SHARED ── */
 section{padding:6rem 2rem}
 .container{max-width:1100px;margin:0 auto}
-.section-tag{font-family:'JetBrains Mono',monospace;font-size:0.6rem;letter-spacing:0.3em;color:var(--oro);text-transform:uppercase;margin-bottom:0.8rem;display:block}
+.section-tag{font-family:'JetBrains Mono',monospace;font-size:0.6rem;letter-spacing:0.3em;color:var(--verde-br);text-transform:uppercase;margin-bottom:0.8rem;display:block}
 .section-title{font-family:'Fraunces',serif;font-size:clamp(2rem,5vw,3.5rem);font-weight:300;line-height:1.1;margin-bottom:1rem;color:var(--azul)}
 .section-title em{font-style:italic;color:var(--azul3)}
 .section-sub{font-size:0.98rem;color:var(--muted);max-width:600px;line-height:1.75;margin-bottom:3rem}
-
-/* ── PROBLEMA ── */
-.problem-section{background:var(--azul);color:var(--blanco)}
-.problem-grid{display:grid;grid-template-columns:repeat(auto-fit,minmax(220px,1fr));gap:1px;background:rgba(201,168,76,0.08);border:1px solid rgba(201,168,76,0.08);margin-top:3rem}
-.problem-card{background:var(--azul);padding:2rem;transition:background 0.2s}
-.problem-card:hover{background:var(--azul2)}
-.problem-card .num{font-family:'Fraunces',serif;font-size:3rem;font-weight:300;color:var(--oro);display:block;line-height:1;margin-bottom:0.5rem}
-.problem-card h3{font-size:0.88rem;font-weight:500;margin-bottom:0.5rem;color:rgba(255,255,255,0.9)}
-.problem-card p{font-size:0.8rem;color:rgba(255,255,255,0.45);line-height:1.6}
 
 /* ── CHATBOT ── */
 .chatbot-section{background:var(--crema);padding:6rem 2rem}
 .chat-wrap{max-width:740px;margin:0 auto}
 .chat-demo{background:var(--blanco);border:1px solid var(--crema2);box-shadow:var(--sombra-lg);overflow:hidden}
-.chat-header{background:var(--azul);padding:1rem 1.5rem;display:flex;align-items:center;gap:0.8rem}
-.chat-avatar-icon{width:38px;height:38px;background:var(--oro);display:flex;align-items:center;justify-content:center;font-family:'Fraunces',serif;font-size:1rem;color:var(--azul);font-weight:600;flex-shrink:0}
+.chat-header{background:var(--azul-br);padding:1rem 1.5rem;display:flex;align-items:center;gap:0.8rem}
+.chat-avatar-icon{width:38px;height:38px;background:var(--verde-br);display:flex;align-items:center;justify-content:center;font-family:'Fraunces',serif;font-size:1rem;color:var(--blanco);font-weight:600;flex-shrink:0}
 .chat-header-info h4{color:var(--blanco);font-size:0.9rem;font-weight:500}
 .chat-header-info p{color:rgba(255,255,255,0.45);font-size:0.68rem;font-family:'JetBrains Mono',monospace}
 .chat-status{width:8px;height:8px;background:#2ecc71;border-radius:50%;margin-left:auto;box-shadow:0 0 0 3px rgba(46,204,113,0.2);animation:blink 2s infinite}
 .chat-disclaimer-top{background:var(--warn-bg);border-bottom:1px solid #f0d090;padding:0.6rem 1.2rem}
 .chat-disclaimer-top p{font-size:0.68rem;color:#7a4800;font-family:'JetBrains Mono',monospace;line-height:1.4}
-.chat-selector{padding:0.7rem 1.2rem;border-bottom:1px solid var(--crema2);display:flex;gap:0.4rem;flex-wrap:wrap;align-items:center}
-.chat-selector-label{font-family:'JetBrains Mono',monospace;font-size:0.6rem;color:var(--muted);letter-spacing:0.1em;margin-right:0.3rem}
-.country-btn{font-family:'JetBrains Mono',monospace;font-size:0.58rem;letter-spacing:0.08em;padding:0.28rem 0.65rem;border:1px solid var(--crema2);background:transparent;color:var(--muted);cursor:pointer;transition:all 0.2s;text-transform:uppercase}
-.country-btn.active,.country-btn:hover{background:var(--azul);color:var(--oro);border-color:var(--azul)}
 .chat-body{padding:1.2rem 1.5rem;display:flex;flex-direction:column;gap:1rem;min-height:300px;max-height:400px;overflow-y:auto}
 .chat-body::-webkit-scrollbar{width:3px}
 .chat-body::-webkit-scrollbar-thumb{background:var(--crema2);border-radius:2px}
 .chat-msg{display:flex;gap:0.7rem;align-items:flex-start}
 .chat-msg.user{flex-direction:row-reverse}
 .msg-av{width:28px;height:28px;border-radius:50%;flex-shrink:0;display:flex;align-items:center;justify-content:center;font-size:0.65rem;font-weight:600}
-.chat-msg.bot .msg-av{background:var(--azul);color:var(--oro)}
+.chat-msg.bot .msg-av{background:var(--azul-br);color:#4ade80}
 .chat-msg.user .msg-av{background:var(--crema2);color:var(--azul)}
 .msg-bubble{max-width:78%;padding:0.75rem 1rem;font-size:0.84rem;line-height:1.55}
 .chat-msg.bot .msg-bubble{background:var(--crema);color:var(--texto);border-top-left-radius:0}
-.chat-msg.user .msg-bubble{background:var(--azul);color:rgba(255,255,255,0.9);border-top-right-radius:0}
+.chat-msg.user .msg-bubble{background:var(--azul-br);color:rgba(255,255,255,0.9);border-top-right-radius:0}
 .msg-bubble strong{color:var(--azul2)}
-.chat-msg.user .msg-bubble strong{color:var(--oro)}
 .msg-disclaimer{font-family:'JetBrains Mono',monospace;font-size:0.62rem;color:var(--rojo);background:var(--warn-bg);border-left:2px solid var(--warn-border);padding:0.35rem 0.6rem;margin-top:0.5rem;line-height:1.4}
 .typing-dots{display:flex;gap:4px;padding:0.7rem 1rem}
 .typing-dots span{width:7px;height:7px;border-radius:50%;background:var(--muted);animation:dot 1.2s infinite}
@@ -138,127 +123,61 @@ section{padding:6rem 2rem}
 @keyframes dot{0%,60%,100%{opacity:0.3;transform:translateY(0)}30%{opacity:1;transform:translateY(-4px)}}
 .chat-quick{padding:0.7rem 1.2rem;border-top:1px solid var(--crema2);display:flex;gap:0.4rem;flex-wrap:wrap}
 .quick-btn{font-size:0.72rem;padding:0.3rem 0.8rem;border:1px solid var(--crema2);background:transparent;color:var(--muted);cursor:pointer;transition:all 0.2s;font-family:'DM Sans',sans-serif}
-.quick-btn:hover{border-color:var(--azul3);color:var(--azul);background:var(--crema)}
+.quick-btn:hover{border-color:var(--verde-br);color:var(--verde-br);background:rgba(0,156,59,0.04)}
 .chat-input-area{border-top:1px solid var(--crema2);padding:1rem 1.2rem;display:flex;gap:0.7rem;align-items:center}
 .chat-input{flex:1;background:var(--crema);border:1px solid var(--crema2);padding:0.65rem 1rem;font-family:'DM Sans',sans-serif;font-size:0.84rem;color:var(--texto);outline:none;transition:border-color 0.2s;resize:none}
-.chat-input:focus{border-color:var(--azul3)}
+.chat-input:focus{border-color:var(--verde-br)}
 .chat-input::placeholder{color:var(--muted)}
-.chat-send{background:var(--azul);border:none;color:var(--oro);padding:0.65rem 1.2rem;cursor:pointer;font-size:0.84rem;font-family:'DM Sans',sans-serif;font-weight:500;transition:background 0.2s;flex-shrink:0}
-.chat-send:hover{background:var(--azul2)}
+.chat-send{background:var(--verde-br);border:none;color:var(--blanco);padding:0.65rem 1.2rem;cursor:pointer;font-size:0.84rem;font-family:'DM Sans',sans-serif;font-weight:500;transition:background 0.2s;flex-shrink:0}
+.chat-send:hover{background:#007a2e}
 .chat-footer-note{padding:0.5rem 1.2rem 0.8rem;font-family:'JetBrains Mono',monospace;font-size:0.6rem;color:var(--muted);text-align:center;border-top:1px solid var(--crema2)}
-.chat-counter{display:flex;align-items:center;justify-content:center;gap:0.8rem;margin-top:1rem;font-family:'JetBrains Mono',monospace;font-size:0.65rem;color:var(--muted)}
-.counter-bar{width:120px;height:4px;background:var(--crema2);border-radius:2px;overflow:hidden}
-.counter-fill{height:100%;background:var(--oro);border-radius:2px;transition:width 0.4s ease}
+.counter-bar{width:120px;height:4px;background:var(--crema2);border-radius:2px;overflow:hidden;display:inline-block;vertical-align:middle;margin-left:0.5rem}
+.counter-fill{height:100%;background:var(--verde-br);border-radius:2px;transition:width 0.4s ease}
 
 /* ── ÁREAS ── */
-.areas-section{background:var(--blanco)}
 .areas-grid{display:grid;grid-template-columns:repeat(auto-fit,minmax(195px,1fr));gap:1px;background:var(--crema2);border:1px solid var(--crema2);margin-top:3rem}
-.area-card{background:var(--blanco);padding:1.5rem;transition:background 0.2s;cursor:default;position:relative}
+.area-card{background:var(--blanco);padding:1.5rem;transition:background 0.2s}
 .area-card:hover{background:var(--crema)}
-.area-card:hover .area-cta{opacity:1;transform:translateY(0)}
 .area-icon{font-size:1.6rem;margin-bottom:0.8rem;display:block}
 .area-card h3{font-family:'Fraunces',serif;font-size:1.05rem;font-weight:400;color:var(--azul);margin-bottom:0.35rem}
-.area-card p{font-size:0.76rem;color:var(--muted);line-height:1.5;margin-bottom:0.5rem}
-.area-keywords{display:flex;flex-wrap:wrap;gap:0.3rem;margin-top:0.5rem}
-.area-kw{font-family:'JetBrains Mono',monospace;font-size:0.58rem;color:var(--oro);background:var(--oro3);padding:0.15rem 0.5rem;letter-spacing:0.05em}
-.area-cta{font-family:'JetBrains Mono',monospace;font-size:0.6rem;color:var(--azul3);letter-spacing:0.1em;margin-top:0.7rem;opacity:0;transform:translateY(4px);transition:all 0.2s;display:block}
-
-/* ── HERRAMIENTAS (tools) ── */
-.tools-section{background:var(--crema);padding:6rem 2rem}
-.tools-grid{display:grid;grid-template-columns:repeat(auto-fit,minmax(300px,1fr));gap:1rem;margin-top:3rem}
-.tool-card{background:var(--blanco);border:1px solid var(--crema2);padding:0;overflow:hidden;transition:all 0.25s;position:relative}
-.tool-card:hover{border-color:var(--azul3);box-shadow:var(--sombra);transform:translateY(-3px)}
-.tool-top{height:3px;width:100%}
-.tc-azul{background:linear-gradient(90deg,var(--azul),transparent)}
-.tc-oro{background:linear-gradient(90deg,var(--oro),transparent)}
-.tc-verde{background:linear-gradient(90deg,var(--verde),transparent)}
-.tc-rojo{background:linear-gradient(90deg,#8b1a1a,transparent)}
-.tool-body{padding:1.4rem}
-.tool-icon{font-size:1.5rem;margin-bottom:0.7rem;display:block}
-.tool-name{font-size:0.95rem;font-weight:600;color:var(--azul);margin-bottom:0.3rem}
-.tool-desc{font-size:0.78rem;color:var(--muted);line-height:1.55;margin-bottom:0.8rem}
-.tool-tag{font-family:'JetBrains Mono',monospace;font-size:0.58rem;letter-spacing:0.08em;padding:0.2rem 0.6rem;border:1px solid var(--crema2);color:var(--muted);display:inline-block}
-.tool-btn{margin-top:1rem;width:100%;padding:0.65rem;background:var(--crema);border:1px solid var(--crema2);color:var(--azul);font-size:0.8rem;font-family:'DM Sans',sans-serif;cursor:pointer;transition:all 0.2s;text-align:center;text-decoration:none;display:block;font-weight:500}
-.tool-btn:hover{background:var(--azul);color:var(--blanco)}
+.area-card p{font-size:0.76rem;color:var(--muted);line-height:1.5}
+.area-kw{font-family:'JetBrains Mono',monospace;font-size:0.58rem;color:var(--verde-br);background:rgba(0,156,59,0.06);padding:0.15rem 0.5rem;margin:0.15rem;display:inline-block;border:1px solid rgba(0,156,59,0.15)}
 
 /* ── CALCULADORAS ── */
-.calc-section{background:var(--blanco);padding:6rem 2rem}
+.calc-section{background:var(--crema);padding:6rem 2rem}
 .calc-grid{display:grid;grid-template-columns:repeat(auto-fit,minmax(340px,1fr));gap:1.5rem;margin-top:3rem}
-.calc-card{background:var(--crema);border:1px solid var(--crema2);padding:1.8rem;position:relative;overflow:hidden}
-.calc-card::before{content:'';position:absolute;top:0;left:0;right:0;height:2px;background:linear-gradient(90deg,var(--azul),var(--azul3),transparent)}
+.calc-card{background:var(--blanco);border:1px solid var(--crema2);padding:1.8rem;position:relative;overflow:hidden}
+.calc-card::before{content:'';position:absolute;top:0;left:0;right:0;height:2px;background:linear-gradient(90deg,var(--verde-br),var(--azul-br),transparent)}
 .calc-title{font-family:'Fraunces',serif;font-size:1.1rem;font-weight:400;color:var(--azul);margin-bottom:0.3rem}
-.calc-sub{font-size:0.75rem;color:var(--muted);margin-bottom:1.2rem;font-family:'JetBrains Mono',monospace;letter-spacing:0.05em}
+.calc-sub{font-size:0.72rem;color:var(--muted);margin-bottom:1.2rem;font-family:'JetBrains Mono',monospace}
 .calc-row{margin-bottom:0.8rem}
-.calc-label{font-size:0.72rem;font-weight:500;color:var(--azul);display:block;margin-bottom:0.3rem;font-family:'JetBrains Mono',monospace;letter-spacing:0.08em;text-transform:uppercase}
-.calc-input{width:100%;padding:0.55rem 0.8rem;background:var(--blanco);border:1px solid var(--crema2);color:var(--texto);font-family:'DM Sans',sans-serif;font-size:0.85rem;outline:none;transition:border-color 0.2s}
-.calc-input:focus{border-color:var(--azul3)}
-.calc-select{width:100%;padding:0.55rem 0.8rem;background:var(--blanco);border:1px solid var(--crema2);color:var(--texto);font-family:'DM Sans',sans-serif;font-size:0.85rem;outline:none;cursor:pointer}
-.calc-btn{width:100%;padding:0.75rem;background:var(--azul);color:var(--blanco);border:none;font-family:'DM Sans',sans-serif;font-size:0.88rem;font-weight:500;cursor:pointer;transition:background 0.2s;margin-top:0.5rem}
-.calc-btn:hover{background:var(--azul2)}
-.calc-result{display:none;margin-top:1rem;background:var(--blanco);border:1px solid var(--crema2);padding:1rem;border-left:3px solid var(--azul)}
+.calc-label{font-size:0.68rem;font-weight:500;color:var(--azul);display:block;margin-bottom:0.3rem;font-family:'JetBrains Mono',monospace;letter-spacing:0.08em;text-transform:uppercase}
+.calc-input,.calc-select{width:100%;padding:0.55rem 0.8rem;background:var(--crema);border:1px solid var(--crema2);color:var(--texto);font-family:'DM Sans',sans-serif;font-size:0.85rem;outline:none;transition:border-color 0.2s}
+.calc-input:focus,.calc-select:focus{border-color:var(--verde-br)}
+.calc-btn{width:100%;padding:0.75rem;background:var(--verde-br);color:var(--blanco);border:none;font-family:'DM Sans',sans-serif;font-size:0.88rem;font-weight:500;cursor:pointer;transition:background 0.2s;margin-top:0.5rem}
+.calc-btn:hover{background:#007a2e}
+.calc-result{display:none;margin-top:1rem;background:var(--crema);border:1px solid var(--crema2);padding:1rem;border-left:3px solid var(--verde-br)}
 .calc-result.show{display:block}
 .calc-result-num{font-family:'Fraunces',serif;font-size:1.8rem;font-weight:300;color:var(--azul);line-height:1}
 .calc-result-label{font-size:0.72rem;color:var(--muted);margin-top:0.2rem}
 .calc-result-detail{font-size:0.78rem;color:var(--texto);line-height:1.55;margin-top:0.8rem;border-top:1px solid var(--crema2);padding-top:0.8rem}
 .calc-warn{font-family:'JetBrains Mono',monospace;font-size:0.6rem;color:var(--rojo);background:var(--warn-bg);border-left:2px solid var(--warn-border);padding:0.4rem 0.7rem;margin-top:0.7rem;line-height:1.4}
 
-/* ── PAÍSES ── */
-.paises-section{background:var(--crema);padding:6rem 2rem}
-.paises-grid{display:grid;grid-template-columns:repeat(auto-fit,minmax(150px,1fr));gap:1rem;margin-top:3rem}
-.pais-card{background:var(--blanco);border:1px solid var(--crema2);padding:1.2rem;transition:all 0.22s;cursor:default;text-align:center}
-.pais-card:hover{border-color:var(--azul3);transform:translateY(-3px);box-shadow:var(--sombra)}
-.pais-flag{font-size:2rem;margin-bottom:0.5rem;display:block}
-.pais-nombre{font-weight:500;font-size:0.88rem;color:var(--azul);display:block;margin-bottom:0.2rem}
-.pais-docs{font-size:0.65rem;color:var(--muted);font-family:'JetBrains Mono',monospace}
-.pais-new{display:inline-block;font-family:'JetBrains Mono',monospace;font-size:0.55rem;letter-spacing:0.1em;background:var(--azul);color:var(--oro);padding:0.15rem 0.5rem;margin-top:0.3rem}
+/* ── LEGISLAÇÃO ── */
+.leg-grid{display:grid;grid-template-columns:repeat(auto-fit,minmax(200px,1fr));gap:1rem;margin-top:2rem}
+.leg-card{background:var(--crema);border:1px solid var(--crema2);padding:1.2rem;transition:all 0.2s}
+.leg-card:hover{border-color:var(--verde-br);transform:translateY(-2px);box-shadow:var(--sombra)}
+.leg-card h4{font-size:0.9rem;font-weight:600;color:var(--azul);margin-bottom:0.3rem}
+.leg-card p{font-size:0.75rem;color:var(--muted)}
+.leg-source{font-family:'JetBrains Mono',monospace;font-size:0.6rem;color:var(--verde-br);margin-top:0.3rem;display:block}
 
-/* ── CÓMO FUNCIONA ── */
-.how-section{background:var(--blanco);padding:6rem 2rem}
-.pipeline-steps{display:grid;grid-template-columns:repeat(auto-fit,minmax(140px,1fr));gap:0;border:1px solid var(--crema2);margin-top:3rem;background:var(--crema2)}
-.pipe-step{background:var(--blanco);padding:1.5rem 1.2rem;text-align:center;transition:background 0.2s;position:relative}
-.pipe-step:not(:last-child)::after{content:'→';position:absolute;right:-8px;top:50%;transform:translateY(-50%);color:var(--oro);font-size:0.8rem;z-index:2;background:var(--crema2);padding:0 2px}
-.pipe-step:hover{background:var(--crema)}
-.pipe-num{font-family:'JetBrains Mono',monospace;font-size:0.6rem;color:var(--oro);letter-spacing:0.2em;display:block;margin-bottom:0.5rem}
-.pipe-icon{font-size:1.8rem;margin-bottom:0.5rem;display:block}
-.pipe-step h4{font-size:0.8rem;font-weight:500;color:var(--azul);margin-bottom:0.3rem}
-.pipe-step p{font-size:0.7rem;color:var(--muted);line-height:1.4}
-
-/* ── PLANES ── */
-.planes-section{background:var(--crema);padding:6rem 2rem}
-.planes-grid{display:grid;grid-template-columns:repeat(auto-fit,minmax(240px,1fr));gap:1.5rem;margin-top:3rem}
-.plan-card{border:1px solid var(--crema2);background:var(--blanco);overflow:hidden;transition:all 0.25s}
-.plan-card:hover{border-color:var(--azul3);box-shadow:var(--sombra-lg);transform:translateY(-4px)}
-.plan-card.featured{border-color:var(--azul);border-width:2px}
-.plan-badge{background:var(--azul);color:var(--oro);font-family:'JetBrains Mono',monospace;font-size:0.58rem;letter-spacing:0.15em;text-transform:uppercase;padding:0.3rem 1rem;text-align:center}
-.plan-header{padding:1.8rem 1.5rem 1.2rem;border-bottom:1px solid var(--crema2)}
-.plan-name{font-family:'Fraunces',serif;font-size:1.4rem;font-weight:400;color:var(--azul);margin-bottom:0.3rem}
-.plan-price{font-family:'Fraunces',serif;font-size:2.8rem;font-weight:300;color:var(--azul);line-height:1}
-.plan-price sup{font-size:1rem;vertical-align:super}
-.plan-price span{font-size:0.9rem;color:var(--muted);font-family:'DM Sans',sans-serif}
-.plan-desc{font-size:0.75rem;color:var(--muted);margin-top:0.4rem}
-.plan-features{padding:1.2rem 1.5rem;list-style:none}
-.plan-features li{font-size:0.8rem;padding:0.38rem 0;border-bottom:1px solid rgba(0,0,0,0.04);color:var(--texto);display:flex;gap:0.6rem;align-items:flex-start}
-.plan-features li:last-child{border-bottom:none}
-.check{color:var(--verde);flex-shrink:0;font-size:0.85rem}
-.cross{color:#ccc;flex-shrink:0;font-size:0.85rem}
-.plan-cta{padding:1rem 1.5rem 1.5rem}
-.plan-btn{width:100%;padding:0.82rem;font-family:'DM Sans',sans-serif;font-size:0.88rem;font-weight:500;cursor:pointer;border:none;transition:all 0.2s;text-decoration:none;display:block;text-align:center}
-.plan-btn.primary{background:var(--azul);color:var(--blanco)}
-.plan-btn.primary:hover{background:var(--azul2)}
-.plan-btn.secondary{background:var(--crema);color:var(--azul);border:1px solid var(--crema2)}
-.plan-btn.secondary:hover{background:var(--crema2)}
-.plan-btn.gold{background:var(--oro);color:var(--azul)}
-.plan-btn.gold:hover{background:var(--oro2)}
-
-/* ── DISCLAIMER COMPLETO ── */
+/* ── DISCLAIMER ── */
 .disclaimer-section{background:var(--warn-bg);border-top:1px solid #f0d090;border-bottom:1px solid #f0d090;padding:6rem 2rem}
 .disclaimer-cards{display:grid;grid-template-columns:repeat(auto-fit,minmax(280px,1fr));gap:1rem;margin-top:2.5rem}
-.disclaimer-card{background:var(--blanco);border-left:3px solid var(--warn-border);padding:1.2rem 1.5rem;transition:box-shadow 0.2s}
-.disclaimer-card:hover{box-shadow:var(--sombra)}
+.disclaimer-card{background:var(--blanco);border-left:3px solid var(--warn-border);padding:1.2rem 1.5rem}
 .disclaimer-card h4{font-family:'JetBrains Mono',monospace;font-size:0.62rem;font-weight:700;color:var(--rojo);margin-bottom:0.5rem;text-transform:uppercase;letter-spacing:0.08em}
 .disclaimer-card p{font-size:0.8rem;color:#5a3800;line-height:1.55}
 .disclaimer-urgente{background:var(--rojo);color:var(--blanco);padding:1.5rem;margin-top:2rem;display:flex;align-items:flex-start;gap:1rem}
-.disclaimer-urgente .icon{font-size:1.5rem;flex-shrink:0}
 .disclaimer-urgente h4{font-size:0.88rem;font-weight:600;margin-bottom:0.3rem}
 .disclaimer-urgente p{font-size:0.78rem;opacity:0.85;line-height:1.5}
 
@@ -267,65 +186,49 @@ section{padding:6rem 2rem}
 .faq-list{margin-top:2.5rem;max-width:760px}
 .faq-item{border-bottom:1px solid var(--crema2)}
 .faq-q{font-weight:500;font-size:0.93rem;color:var(--azul);cursor:pointer;display:flex;justify-content:space-between;align-items:center;gap:1rem;list-style:none;padding:1.2rem 0;user-select:none}
-.faq-q::after{content:'+';font-size:1.3rem;color:var(--oro);flex-shrink:0;transition:transform 0.2s}
+.faq-q::after{content:'+';font-size:1.3rem;color:var(--verde-br);flex-shrink:0;transition:transform 0.2s}
 details[open] .faq-q::after{transform:rotate(45deg)}
-.faq-a{font-size:0.84rem;color:var(--muted);line-height:1.7;padding:0 0 1.2rem;max-width:680px}
+.faq-a{font-size:0.84rem;color:var(--muted);line-height:1.7;padding:0 0 1.2rem}
 
-/* ── CTA FINAL ── */
-.cta-section{background:var(--azul);text-align:center;padding:7rem 2rem;position:relative;overflow:hidden}
-.cta-section::before{content:'';position:absolute;inset:0;background:radial-gradient(ellipse 60% 60% at 50% 50%,rgba(201,168,76,0.07) 0%,transparent 70%);pointer-events:none}
+/* ── CTA ── */
+.cta-section{background:var(--azul-br);text-align:center;padding:7rem 2rem;position:relative;overflow:hidden}
+.cta-section::before{content:'';position:absolute;inset:0;background:radial-gradient(ellipse 60% 60% at 50% 50%,rgba(0,156,59,0.08) 0%,transparent 70%);pointer-events:none}
 .cta-section h2{font-family:'Fraunces',serif;font-size:clamp(2.2rem,5vw,4.2rem);font-weight:300;color:var(--blanco);margin-bottom:1rem;line-height:1.1}
-.cta-section h2 em{color:var(--oro);font-style:italic}
+.cta-section h2 em{color:#4ade80;font-style:italic}
 .cta-section p{color:rgba(255,255,255,0.5);font-size:0.95rem;margin:0 auto 2.5rem;max-width:480px;line-height:1.75}
-.cta-disclaimer{margin-top:2rem;font-family:'JetBrains Mono',monospace;font-size:0.6rem;color:rgba(255,255,255,0.2);max-width:600px;margin-left:auto;margin-right:auto;line-height:1.5}
 
 /* ── FOOTER ── */
 footer{background:#060e1c;color:rgba(255,255,255,0.38);padding:3.5rem 2rem}
 .footer-inner{max-width:1100px;margin:0 auto;display:grid;grid-template-columns:2fr 1fr 1fr 1fr;gap:2.5rem;margin-bottom:2.5rem}
 .footer-logo{font-family:'Fraunces',serif;font-size:1.25rem;color:var(--blanco);display:block;margin-bottom:0.8rem}
-.footer-logo span{color:var(--oro)}
+.footer-logo span{color:#4ade80}
 .footer-brand p{font-size:0.76rem;line-height:1.6;max-width:260px;margin-bottom:1rem}
 .footer-lang{display:flex;gap:0.5rem;margin-top:0.8rem}
-.footer-lang a{display:flex;align-items:center;gap:0.3rem;font-family:'JetBrains Mono',monospace;font-size:0.6rem;color:rgba(255,255,255,0.4);text-decoration:none;padding:0.3rem 0.6rem;border:1px solid rgba(255,255,255,0.1);transition:all 0.2s;letter-spacing:0.08em}
-.footer-lang a:hover{border-color:rgba(201,168,76,0.4);color:var(--oro)}
-.footer-lang a.active-lang{border-color:rgba(201,168,76,0.3);color:var(--oro)}
+.footer-lang a{display:flex;align-items:center;gap:0.3rem;font-family:'JetBrains Mono',monospace;font-size:0.6rem;color:rgba(255,255,255,0.4);text-decoration:none;padding:0.3rem 0.6rem;border:1px solid rgba(255,255,255,0.1);transition:all 0.2s}
+.footer-lang a:hover,.footer-lang a.active-lang{border-color:rgba(0,156,59,0.5);color:#4ade80}
 .footer-col h4{color:rgba(255,255,255,0.6);font-size:0.62rem;font-weight:500;letter-spacing:0.12em;text-transform:uppercase;margin-bottom:1rem;font-family:'JetBrains Mono',monospace}
 .footer-col ul{list-style:none}
 .footer-col ul li{margin-bottom:0.5rem}
 .footer-col ul li a{color:rgba(255,255,255,0.38);text-decoration:none;font-size:0.78rem;transition:color 0.2s}
-.footer-col ul li a:hover{color:var(--oro)}
+.footer-col ul li a:hover{color:#4ade80}
 .footer-bottom{max-width:1100px;margin:0 auto;padding-top:2rem;border-top:1px solid rgba(255,255,255,0.06)}
-.footer-bottom-top{display:flex;justify-content:space-between;align-items:center;flex-wrap:wrap;gap:1rem;margin-bottom:1rem}
 .footer-copy{font-family:'JetBrains Mono',monospace;font-size:0.62rem;color:rgba(255,255,255,0.25);letter-spacing:0.05em}
-.footer-disclaimer-mini{font-family:'JetBrains Mono',monospace;font-size:0.6rem;color:rgba(255,255,255,0.18);line-height:1.5;max-width:100%}
+.footer-disclaimer-mini{font-family:'JetBrains Mono',monospace;font-size:0.6rem;color:rgba(255,255,255,0.18);line-height:1.5;margin-top:1rem}
 
-/* ── BACK TO TOP ── */
-#btt{position:fixed;bottom:24px;right:24px;z-index:900;width:44px;height:44px;background:var(--azul);border:1px solid rgba(201,168,76,0.3);color:var(--oro);font-size:16px;cursor:pointer;opacity:0;transition:opacity 0.3s,transform 0.3s;display:flex;align-items:center;justify-content:center}
+#btt{position:fixed;bottom:24px;right:24px;z-index:900;width:44px;height:44px;background:var(--azul-br);border:1px solid rgba(0,156,59,0.4);color:#4ade80;font-size:16px;cursor:pointer;opacity:0;transition:opacity 0.3s;display:flex;align-items:center;justify-content:center}
 #btt.show{opacity:1}
-
-/* ── REVEAL ── */
 .reveal{opacity:0;transform:translateY(16px);transition:opacity 0.6s ease,transform 0.6s ease}
 .reveal.visible{opacity:1;transform:translateY(0)}
 
-/* ── RESPONSIVE ── */
-@media(max-width:1024px){
-  .footer-inner{grid-template-columns:1fr 1fr;gap:2rem}
-}
 @media(max-width:768px){
   nav{padding:0 1.2rem}
   .nav-links,.nav-right{display:none}
   .hamburger{display:flex}
-  .hero h1{font-size:clamp(2.2rem,8vw,3.5rem)}
-  .hero-stats{gap:1.8rem}
-  .pipeline-steps{grid-template-columns:repeat(2,1fr)}
-  .pipe-step::after{display:none}
   .footer-inner{grid-template-columns:1fr}
-  .calc-grid{grid-template-columns:1fr}
 }
 @media(max-width:480px){
   section{padding:4rem 1.2rem}
-  .planes-grid{grid-template-columns:1fr}
-  .disclaimer-cards{grid-template-columns:1fr}
+  .calc-grid{grid-template-columns:1fr}
 }
 </style>
 </head>
@@ -333,606 +236,321 @@ footer{background:#060e1c;color:rgba(255,255,255,0.38);padding:3.5rem 2rem}
 
 <div id="pgbar"></div>
 
-<!-- POPUP DISCLAIMER INICIAL (obligatorio antes de usar) -->
+<!-- POPUP AVISO LEGAL -->
 <div id="disclaimerModal" style="position:fixed;inset:0;background:rgba(6,14,28,0.96);z-index:9999;display:flex;align-items:center;justify-content:center;padding:1.5rem;backdrop-filter:blur(4px)">
   <div style="background:var(--blanco);max-width:560px;width:100%;overflow:hidden;box-shadow:0 20px 80px rgba(0,0,0,0.4)">
     <div style="background:var(--rojo);padding:1rem 1.5rem;display:flex;align-items:center;gap:0.8rem">
       <span style="font-size:1.3rem">⚠️</span>
       <div>
-        <div style="font-family:'JetBrains Mono',monospace;font-size:0.65rem;letter-spacing:0.15em;color:rgba(255,255,255,0.7);margin-bottom:0.1rem">AVISO LEGAL OBLIGATORIO</div>
-        <div style="font-family:'Fraunces',serif;font-size:1.1rem;color:var(--blanco);font-weight:400">Lee esto antes de continuar</div>
+        <div style="font-family:'JetBrains Mono',monospace;font-size:0.65rem;letter-spacing:0.15em;color:rgba(255,255,255,0.7);margin-bottom:0.1rem">AVISO LEGAL OBRIGATÓRIO</div>
+        <div style="font-family:'Fraunces',serif;font-size:1.1rem;color:var(--blanco);font-weight:400">Leia antes de continuar</div>
       </div>
     </div>
     <div style="padding:1.5rem">
-      <p style="font-size:0.85rem;color:var(--texto);line-height:1.65;margin-bottom:1rem"><strong>TuAbogaBot proporciona INFORMACIÓN JURÍDICA ORIENTATIVA.</strong> NO constituye asesoramiento legal profesional, NO crea relación abogado-cliente y NO debe usarse como sustituto de consulta con abogado colegiado.</p>
-      <p style="font-size:0.82rem;color:var(--muted);line-height:1.6;margin-bottom:1rem">La información puede estar desactualizada. El operador no asume responsabilidad por decisiones tomadas basándose en la información proporcionada.</p>
+      <p style="font-size:0.85rem;color:var(--texto);line-height:1.65;margin-bottom:1rem"><strong>TuAbogaBot fornece INFORMAÇÃO JURÍDICA ORIENTATIVA.</strong> NÃO constitui aconselhamento jurídico profissional, NÃO cria relação advogado-cliente e NÃO deve ser usado como substituto de consulta com advogado habilitado na OAB.</p>
+      <p style="font-size:0.82rem;color:var(--muted);line-height:1.6;margin-bottom:1rem">A informação pode estar desatualizada. O operador não assume responsabilidade por decisões tomadas com base nas informações fornecidas.</p>
       <div style="background:var(--warn-bg);border-left:3px solid var(--warn-border);padding:0.8rem 1rem;margin-bottom:1.2rem">
-        <p style="font-size:0.78rem;color:#5a3800;line-height:1.5"><strong>Si estás detenido, imputado o en situación de urgencia legal,</strong> contacta INMEDIATAMENTE a un abogado de guardia o al Colegio de Abogados de tu ciudad. TuAbogaBot NO es un servicio de urgencias.</p>
+        <p style="font-size:0.78rem;color:#5a3800;line-height:1.5"><strong>Se você está preso, indiciado ou em situação de urgência jurídica,</strong> contate IMEDIATAMENTE a OAB da sua cidade para solicitar um advogado de plantão.</p>
       </div>
-      <button onclick="acceptDisclaimer()" style="width:100%;padding:0.9rem;background:var(--azul);color:var(--blanco);border:none;font-family:'DM Sans',sans-serif;font-size:0.92rem;font-weight:500;cursor:pointer;transition:background 0.2s">He leído y entendido el aviso legal. Continuar →</button>
-      <p style="text-align:center;font-family:'JetBrains Mono',monospace;font-size:0.6rem;color:var(--muted);margin-top:0.8rem;line-height:1.4">Al continuar aceptas los Términos de Uso y la Política de Privacidad de TuAbogaBot</p>
+      <button onclick="acceptDisclaimer()" style="width:100%;padding:0.9rem;background:var(--verde-br);color:var(--blanco);border:none;font-family:'DM Sans',sans-serif;font-size:0.92rem;font-weight:500;cursor:pointer">Li e entendi o aviso legal. Continuar →</button>
+      <p style="text-align:center;font-family:'JetBrains Mono',monospace;font-size:0.6rem;color:var(--muted);margin-top:0.8rem">Ao continuar, você aceita os Termos de Uso e a Política de Privacidade</p>
     </div>
   </div>
 </div>
 
 <!-- NAV -->
 <nav>
-  <a class="nav-logo" href="index.html">Tu<span class="accent">Aboga</span>Bot</a>
+  <a class="nav-logo" href="index.html">Tu<span class="accent">Aboga</span>Bot <span class="nav-br-badge">🇧🇷 BR</span></a>
   <ul class="nav-links">
-    <li><a href="#consulta" class="active">Consultar</a></li>
-    <li><a href="#herramientas">Herramientas</a></li>
-    <li><a href="#areas">Áreas legales</a></li>
-    <li><a href="#paises">Países</a></li>
-    <li><a href="#planes">Planes</a></li>
-    <li><a href="#disclaimer">Aviso legal</a></li>
+    <li><a href="#consulta">Consultar</a></li>
+    <li><a href="#areas">Áreas jurídicas</a></li>
+    <li><a href="#legislacao">Legislação</a></li>
+    <li><a href="#calculadoras">Calculadoras</a></li>
+    <li><a href="#aviso">Aviso legal</a></li>
   </ul>
   <div class="nav-right">
-    <a href="pt/index.html" class="nav-lang" title="Versão em Português">🇧🇷 PT-BR</a>
-    <a href="#consulta" class="nav-cta">Consultar gratis →</a>
+    <a href="../index.html" class="nav-lang">🇪🇸 Español</a>
+    <a href="#consulta" class="nav-cta">Consultar grátis →</a>
   </div>
-  <button class="hamburger" id="hamburger" onclick="toggleMenu()" aria-label="Abrir menú" aria-expanded="false">
+  <button class="hamburger" id="hamburger" onclick="toggleMenu()" aria-label="Abrir menu" aria-expanded="false">
     <span></span><span></span><span></span>
   </button>
 </nav>
 <div class="mobile-menu" id="mobileMenu">
   <a href="#consulta">Consultar</a>
-  <a href="#herramientas">Herramientas</a>
-  <a href="#areas">Áreas legales</a>
-  <a href="#paises">Países</a>
-  <a href="#planes">Planes</a>
-  <a href="#disclaimer">Aviso legal</a>
-  <a href="pt/index.html">🇧🇷 Versão em Português</a>
-  <a href="#consulta" class="m-cta">Consultar gratis →</a>
+  <a href="#areas">Áreas jurídicas</a>
+  <a href="#legislacao">Legislação</a>
+  <a href="#calculadoras">Calculadoras</a>
+  <a href="#aviso">Aviso legal</a>
+  <a href="../index.html">🇪🇸 Versión en Español</a>
+  <a href="#consulta" class="m-cta">Consultar grátis →</a>
 </div>
 
 <!-- HERO -->
 <div class="hero">
   <div class="hero-pattern"></div>
-  <div class="hero-badge">⚖ Información jurídica orientativa · No asesoramiento legal</div>
-  <h1>Tu duda legal,<br><em>respondida</em> en segundos</h1>
-  <p class="hero-sub">El primer asistente jurídico con IA que unifica la legislación de España y 10 países latinoamericanos. Información orientativa anclada en códigos oficiales, disponible 24/7.</p>
-  <div class="hero-warn">⚠ AVISO: Esta herramienta proporciona información orientativa, no asesoramiento legal. Consulta siempre a un abogado colegiado para decisiones con consecuencias jurídicas.</div>
+  <div class="hero-flag">🇧🇷</div>
+  <div class="hero-badge">⚖ Informação jurídica orientativa · Não aconselhamento legal</div>
+  <h1>Sua dúvida jurídica,<br><em>respondida</em> em segundos</h1>
+  <p class="hero-sub">O primeiro assistente jurídico com IA baseado em legislação federal brasileira. Código Penal, Código Civil, CLT e Constituição Federal. Informação orientativa gratuita, 24/7.</p>
+  <div class="hero-warn">⚠ AVISO: Esta ferramenta fornece informação orientativa, não aconselhamento jurídico. Consulte sempre um advogado inscrito na OAB para decisões com consequências jurídicas.</div>
   <div class="hero-ctas">
-    <a href="#consulta" class="btn-primary">Hacer mi primera consulta →</a>
-    <a href="#herramientas" class="btn-secondary">Ver herramientas legales</a>
+    <a href="#consulta" class="btn-primary">Fazer minha primeira consulta →</a>
+    <a href="#legislacao" class="btn-secondary">Ver legislação indexada</a>
   </div>
   <div class="hero-stats">
-    <div class="hero-stat"><span class="n">11</span><span class="l">Países cubiertos</span></div>
-    <div class="hero-stat"><span class="n">8</span><span class="l">Áreas del derecho</span></div>
-    <div class="hero-stat"><span class="n">500M+</span><span class="l">Hispanohablantes</span></div>
-    <div class="hero-stat"><span class="n">24/7</span><span class="l">Disponibilidad</span></div>
-    <div class="hero-stat"><span class="n">0€</span><span class="l">Para empezar</span></div>
+    <div class="hero-stat"><span class="n">4</span><span class="l">Leis federais indexadas</span></div>
+    <div class="hero-stat"><span class="n">8</span><span class="l">Áreas do direito</span></div>
+    <div class="hero-stat"><span class="n">24/7</span><span class="l">Disponibilidade</span></div>
+    <div class="hero-stat"><span class="n">0 R$</span><span class="l">Para começar</span></div>
   </div>
 </div>
 
-<!-- DISCLAIMER BANNER PERMANENTE -->
+<!-- DISCLAIMER BANNER -->
 <div class="disclaimer-banner">
-  <p>⚠ <strong>AVISO LEGAL IMPORTANTE:</strong> TuAbogaBot proporciona <strong>información jurídica orientativa de carácter general</strong>, NO asesoramiento legal profesional. Las respuestas <strong>NO crean relación abogado-cliente</strong> y <strong>NO sustituyen</strong> la consulta con un abogado colegiado habilitado en tu jurisdicción. La información puede estar desactualizada. Para decisiones con consecuencias legales, consulta siempre a un profesional. <a href="#disclaimer" style="color:var(--rojo);font-weight:600">Leer aviso legal completo →</a></p>
-</div>
-
-<!-- PROBLEMA -->
-<div class="problem-section">
-  <section class="container">
-    <span class="section-tag">// el problema</span>
-    <h2 class="section-title" style="color:var(--blanco)">El derecho existe.<br><em style="color:var(--oro)">El acceso, no.</em></h2>
-    <p class="section-sub" style="color:rgba(255,255,255,0.5)">Más de 500 millones de personas en español no tienen acceso fácil a la información jurídica que les afecta cada día.</p>
-    <div class="problem-grid reveal">
-      <div class="problem-card">
-        <span class="num">150€</span>
-        <h3>Coste mínimo de una consulta</h3>
-        <p>Una hora con abogado en España cuesta entre 150–300€. En LATAM es aún más prohibitivo para la clase media-baja.</p>
-      </div>
-      <div class="problem-card">
-        <span class="num">70%</span>
-        <h3>Consultas que no requieren abogado</h3>
-        <p>El 60–70% de las dudas legales son preguntas de información general: derechos, plazos, procedimientos. No necesitan representación.</p>
-      </div>
-      <div class="problem-card">
-        <span class="num">11</span>
-        <h3>Países sin plataforma unificada</h3>
-        <p>No existe ninguna plataforma en español que unifique el derecho de España y 10 países latinoamericanos con IA conversacional.</p>
-      </div>
-      <div class="problem-card">
-        <span class="num">20d</span>
-        <h3>Plazo para reclamar un despido</h3>
-        <p>En España tienes solo 20 días hábiles para impugnar un despido. Muchos ciudadanos no saben que ese plazo existe hasta que es tarde.</p>
-      </div>
-    </div>
-  </section>
+  <p>⚠ <strong>AVISO LEGAL IMPORTANTE:</strong> TuAbogaBot fornece <strong>informação jurídica orientativa de caráter geral</strong>, NÃO aconselhamento jurídico profissional. As respostas <strong>NÃO criam relação advogado-cliente</strong> e <strong>NÃO substituem</strong> a consulta com advogado inscrito na OAB. Para decisões com consequências jurídicas, consulte sempre um profissional. <a href="#aviso" style="color:var(--rojo);font-weight:600">Ver aviso legal completo →</a></p>
 </div>
 
 <!-- CHATBOT -->
 <div class="chatbot-section" id="consulta">
   <div class="chat-wrap">
-    <span class="section-tag">// consulta en tiempo real</span>
-    <h2 class="section-title">Pregunta lo que<br><em>necesitas saber</em></h2>
-    <p class="section-sub">Selecciona tu país, escribe tu duda jurídica y recibe información orientativa basada en legislación oficial. <strong>5 consultas gratis al día, sin registro.</strong></p>
-
+    <span class="section-tag">// consulta em tempo real</span>
+    <h2 class="section-title">Pergunte o que<br><em>você precisa saber</em></h2>
+    <p class="section-sub">Escreva sua dúvida jurídica e receba informação orientativa baseada na legislação federal brasileira. <strong>5 consultas gratuitas por dia, sem cadastro.</strong></p>
     <div class="chat-demo">
       <div class="chat-header">
         <div class="chat-avatar-icon">TB</div>
         <div class="chat-header-info">
-          <h4>TuAbogaBot — Asistente Jurídico</h4>
-          <p>Información orientativa · No asesoramiento legal · Legislación oficial</p>
+          <h4>TuAbogaBot 🇧🇷 — Assistente Jurídico</h4>
+          <p>Informação orientativa · Não aconselhamento jurídico · Legislação oficial</p>
         </div>
         <div class="chat-status"></div>
       </div>
       <div class="chat-disclaimer-top">
-        <p>⚠ AVISO: Las respuestas son información orientativa, NO asesoramiento legal. Consulte a un abogado colegiado para decisiones con consecuencias jurídicas.</p>
-      </div>
-      <div class="chat-selector">
-        <span class="chat-selector-label">País:</span>
-        <button class="country-btn active" onclick="setCountry(this,'ES')">🇪🇸 ES</button>
-        <button class="country-btn" onclick="setCountry(this,'MX')">🇲🇽 MX</button>
-        <button class="country-btn" onclick="setCountry(this,'CO')">🇨🇴 CO</button>
-        <button class="country-btn" onclick="setCountry(this,'AR')">🇦🇷 AR</button>
-        <button class="country-btn" onclick="setCountry(this,'CL')">🇨🇱 CL</button>
-        <button class="country-btn" onclick="setCountry(this,'PE')">🇵🇪 PE</button>
-        <button class="country-btn" onclick="setCountry(this,'VE')">🇻🇪 VE</button>
-        <button class="country-btn" onclick="setCountry(this,'EC')">🇪🇨 EC</button>
-        <button class="country-btn" onclick="setCountry(this,'BO')">🇧🇴 BO</button>
-        <button class="country-btn" onclick="setCountry(this,'UY')">🇺🇾 UY</button>
-        <button class="country-btn" onclick="setCountry(this,'BR')">🇧🇷 BR</button>
+        <p>⚠ AVISO: As respostas são informação orientativa, NÃO aconselhamento jurídico. Consulte um advogado da OAB para decisões com consequências jurídicas.</p>
       </div>
       <div class="chat-body" id="chatBody">
         <div class="chat-msg bot">
           <div class="msg-av">TB</div>
           <div>
             <div class="msg-bubble">
-              Hola. Soy TuAbogaBot, tu asistente de información jurídica. Puedo orientarte sobre derecho penal, laboral, civil, familia, inmobiliario, consumo, administrativo y mercantil en <strong>España y 10 países latinoamericanos</strong>.
-              <div class="msg-disclaimer">⚠ Información orientativa · No asesoramiento legal · No relación abogado-cliente</div>
+              Olá! Sou o TuAbogaBot, seu assistente de informação jurídica para o Brasil. Posso orientar sobre <strong>direito penal, trabalhista (CLT), civil, família, imobiliário, consumidor, administrativo e empresarial</strong> com base na legislação federal brasileira.
+              <div class="msg-disclaimer">⚠ Informação orientativa · Não aconselhamento jurídico · Não relação advogado-cliente</div>
             </div>
           </div>
         </div>
       </div>
       <div class="chat-quick" id="quickBtns">
-        <button class="quick-btn" onclick="sendQuick('¿Cuánto cobro si me despiden con 3 años de antigüedad?')">Indemnización por despido</button>
-        <button class="quick-btn" onclick="sendQuick('¿Cómo puedo reclamar la fianza del alquiler?')">Reclamar fianza alquiler</button>
-        <button class="quick-btn" onclick="sendQuick('¿Cuáles son mis derechos si me detienen?')">Derechos al ser detenido</button>
-        <button class="quick-btn" onclick="sendQuick('¿Cuándo prescribe una deuda?')">Prescripción de deudas</button>
+        <button class="quick-btn" onclick="sendQuick('Fui demitido sem justa causa, quais são meus direitos pela CLT?')">Direitos na demissão</button>
+        <button class="quick-btn" onclick="sendQuick('Quanto tempo tenho para cobrar uma dívida?')">Prazo para cobrar dívida</button>
+        <button class="quick-btn" onclick="sendQuick('Quais são meus direitos se eu for preso?')">Direitos ao ser preso</button>
+        <button class="quick-btn" onclick="sendQuick('Como funciona a pensão alimentícia no Brasil?')">Pensão alimentícia</button>
       </div>
       <div class="chat-input-area">
-        <textarea class="chat-input" id="chatInput" rows="1" placeholder="Escribe tu consulta jurídica..." onkeydown="if(event.key==='Enter'&&!event.shiftKey){event.preventDefault();sendMsg()}"></textarea>
+        <textarea class="chat-input" id="chatInput" rows="1" placeholder="Digite sua consulta jurídica..." onkeydown="if(event.key==='Enter'&&!event.shiftKey){event.preventDefault();sendMsg()}"></textarea>
         <button class="chat-send" onclick="sendMsg()">Enviar →</button>
       </div>
       <div class="chat-footer-note">
-        <div class="chat-counter">
-          <span id="counterText">5 consultas gratuitas disponibles hoy</span>
-          <div class="counter-bar"><div class="counter-fill" id="counterFill" style="width:100%"></div></div>
-        </div>
+        <span id="counterText">5 consultas gratuitas disponíveis hoje</span>
+        <div class="counter-bar"><div class="counter-fill" id="counterFill" style="width:100%"></div></div>
       </div>
-    </div>
-  </div>
-</div>
-
-<!-- HERRAMIENTAS -->
-<div class="tools-section" id="herramientas">
-  <div class="container">
-    <span class="section-tag">// herramientas jurídicas</span>
-    <h2 class="section-title">Más que un chatbot.<br><em>Herramientas que actúan.</em></h2>
-    <p class="section-sub">Calculadoras y analizadores que convierten información legal compleja en respuestas concretas para tu situación.</p>
-    <div class="tools-grid">
-      <div class="tool-card reveal">
-        <div class="tool-top tc-azul"></div>
-        <div class="tool-body">
-          <span class="tool-icon">⚖️</span>
-          <div class="tool-name">Calculadora de Indemnización por Despido</div>
-          <div class="tool-desc">Introduce tus datos y obtén una estimación de la indemnización según la legislación de tu país. Incluye despido procedente, improcedente y objetivo.</div>
-          <span class="tool-tag">Laboral</span>
-          <a href="#calc-despido" class="tool-btn">Calcular indemnización →</a>
-        </div>
-      </div>
-      <div class="tool-card reveal">
-        <div class="tool-top tc-oro"></div>
-        <div class="tool-body">
-          <span class="tool-icon">📋</span>
-          <div class="tool-name">Generador de Carta de Reclamación</div>
-          <div class="tool-desc">Rellena los datos y genera una carta de reclamación formal lista para enviar: a aerolínea, banco, arrendador, empresa de servicios o administración.</div>
-          <span class="tool-tag">Consumo · Civil</span>
-          <a href="#consulta" class="tool-btn">Generar carta →</a>
-        </div>
-      </div>
-      <div class="tool-card reveal">
-        <div class="tool-top tc-verde"></div>
-        <div class="tool-body">
-          <span class="tool-icon">⏱️</span>
-          <div class="tool-name">Calculadora de Prescripción</div>
-          <div class="tool-desc">Introduce la fecha del hecho y el tipo de acción legal. Te dice si el plazo ha vencido o cuántos días te quedan. Por país y tipo de derecho.</div>
-          <span class="tool-tag">Civil · Penal · Laboral</span>
-          <a href="#calc-prescripcion" class="tool-btn">Calcular plazo →</a>
-        </div>
-      </div>
-      <div class="tool-card reveal">
-        <div class="tool-top tc-rojo"></div>
-        <div class="tool-body">
-          <span class="tool-icon">🔍</span>
-          <div class="tool-name">Analizador de Cláusulas de Contrato</div>
-          <div class="tool-desc">Pega el texto de una cláusula contractual y el asistente detecta posibles cláusulas abusivas según la normativa de consumidores de tu país.</div>
-          <span class="tool-tag">Consumo · Inmobiliario</span>
-          <a href="#consulta" class="tool-btn">Analizar cláusula →</a>
-        </div>
-      </div>
-      <div class="tool-card reveal">
-        <div class="tool-top tc-azul"></div>
-        <div class="tool-body">
-          <span class="tool-icon">👮</span>
-          <div class="tool-name">Guía de Derechos al Ser Detenido</div>
-          <div class="tool-desc">Checklist interactivo de tus derechos en caso de detención policial. Por país, claro, en lenguaje sencillo. Ideal para guardar en el móvil.</div>
-          <span class="tool-tag">Penal</span>
-          <a href="#consulta" class="tool-btn">Ver mis derechos →</a>
-        </div>
-      </div>
-      <div class="tool-card reveal">
-        <div class="tool-top tc-oro"></div>
-        <div class="tool-body">
-          <span class="tool-icon">🏠</span>
-          <div class="tool-name">Guía de Desahucio — Paso a Paso</div>
-          <div class="tool-desc">¿Eres inquilino o propietario en un proceso de desahucio? Guía interactiva con plazos, derechos y recursos según el país y tipo de arrendamiento.</div>
-          <span class="tool-tag">Inmobiliario</span>
-          <a href="#consulta" class="tool-btn">Ver guía →</a>
-        </div>
-      </div>
-    </div>
-  </div>
-</div>
-
-<!-- CALCULADORAS -->
-<div class="calc-section" id="calc-despido">
-  <div class="container">
-    <span class="section-tag">// calculadoras legales</span>
-    <h2 class="section-title">Números concretos<br><em>para tu situación.</em></h2>
-    <p class="section-sub">Estimaciones orientativas basadas en legislación oficial. Siempre verifica con un profesional antes de tomar decisiones.</p>
-    <div class="calc-grid">
-
-      <!-- CALC DESPIDO -->
-      <div class="calc-card reveal">
-        <div class="calc-title">⚖️ Indemnización por Despido</div>
-        <div class="calc-sub">// orientativo · no vinculante · verificar con abogado</div>
-        <div class="calc-row">
-          <label class="calc-label">País</label>
-          <select class="calc-select" id="dep-pais">
-            <option value="ES">España</option><option value="MX">México</option>
-            <option value="AR">Argentina</option><option value="CO">Colombia</option>
-            <option value="CL">Chile</option><option value="PE">Perú</option>
-          </select>
-        </div>
-        <div class="calc-row">
-          <label class="calc-label">Tipo de despido</label>
-          <select class="calc-select" id="dep-tipo">
-            <option value="improcedente">Improcedente</option>
-            <option value="objetivo">Objetivo / Colectivo</option>
-            <option value="procedente">Procedente</option>
-          </select>
-        </div>
-        <div class="calc-row">
-          <label class="calc-label">Años trabajados</label>
-          <input class="calc-input" id="dep-años" type="number" min="0" max="40" placeholder="ej: 5">
-        </div>
-        <div class="calc-row">
-          <label class="calc-label">Salario bruto mensual (€)</label>
-          <input class="calc-input" id="dep-salario" type="number" min="0" placeholder="ej: 2000">
-        </div>
-        <button class="calc-btn" onclick="calcDespido()">Calcular indemnización</button>
-        <div class="calc-result" id="dep-result">
-          <div class="calc-result-num" id="dep-total">—</div>
-          <div class="calc-result-label">Indemnización estimada (bruta)</div>
-          <div class="calc-result-detail" id="dep-detail"></div>
-          <div class="calc-warn">⚠ Estimación orientativa basada en legislación general. La indemnización real depende del convenio colectivo, antigüedad exacta, complementos salariales y circunstancias del despido. Consulte a un abogado laboralista.</div>
-        </div>
-      </div>
-
-      <!-- CALC PRESCRIPCIÓN -->
-      <div class="calc-card reveal" id="calc-prescripcion">
-        <div class="calc-title">⏱️ Plazo de Prescripción</div>
-        <div class="calc-sub">// ¿cuánto tiempo te queda para reclamar?</div>
-        <div class="calc-row">
-          <label class="calc-label">País</label>
-          <select class="calc-select" id="pres-pais">
-            <option value="ES">España</option><option value="MX">México</option>
-            <option value="AR">Argentina</option><option value="CO">Colombia</option>
-          </select>
-        </div>
-        <div class="calc-row">
-          <label class="calc-label">Tipo de acción</label>
-          <select class="calc-select" id="pres-tipo">
-            <option value="deuda_civil">Deuda civil / contractual</option>
-            <option value="laboral">Reclamación laboral</option>
-            <option value="consumo">Reclamación de consumo</option>
-            <option value="daños">Daños y perjuicios</option>
-            <option value="penal">Acción penal (delito leve)</option>
-          </select>
-        </div>
-        <div class="calc-row">
-          <label class="calc-label">Fecha del hecho o vencimiento</label>
-          <input class="calc-input" id="pres-fecha" type="date">
-        </div>
-        <button class="calc-btn" onclick="calcPrescripcion()">Calcular plazo</button>
-        <div class="calc-result" id="pres-result">
-          <div class="calc-result-num" id="pres-dias" style="font-size:1.4rem"></div>
-          <div class="calc-result-label" id="pres-label"></div>
-          <div class="calc-result-detail" id="pres-detail"></div>
-          <div class="calc-warn">⚠ Los plazos varían según la normativa específica, interrupciones y otros factores. Consulte a un abogado antes de que venza cualquier plazo.</div>
-        </div>
-      </div>
-
     </div>
   </div>
 </div>
 
 <!-- ÁREAS -->
-<div class="areas-section" id="areas">
-  <section class="container">
+<section id="areas">
+  <div class="container">
     <span class="section-tag">// cobertura jurídica</span>
-    <h2 class="section-title">8 áreas del derecho.<br><em>Todas cubiertas.</em></h2>
-    <p class="section-sub">Desde un despido hasta una cláusula abusiva, desde una herencia hasta una detención. TuAbogaBot orientado en las áreas que más afectan a ciudadanos.</p>
+    <h2 class="section-title">8 áreas do direito.<br><em>Todas cobertas.</em></h2>
+    <p class="section-sub">Do Código Penal à CLT, do Código Civil ao CDC. TuAbogaBot orientado nas áreas que mais afetam cidadãos brasileiros.</p>
     <div class="areas-grid">
       <div class="area-card reveal">
         <span class="area-icon">⚖️</span>
-        <h3>Derecho Penal</h3>
-        <p>Delitos, penas, detenciones, denuncias, plazos procesales, derechos del detenido e imputado.</p>
-        <div class="area-keywords">
-          <span class="area-kw">delito</span><span class="area-kw">detención</span><span class="area-kw">denuncia</span><span class="area-kw">pena</span>
-        </div>
-        <span class="area-cta">Consultar →</span>
+        <h3>Direito Penal</h3>
+        <p>Crimes, penas, prisão, boletim de ocorrência, flagrante e direitos do preso.</p>
+        <div><span class="area-kw">crime</span><span class="area-kw">prisão</span><span class="area-kw">flagrante</span></div>
       </div>
       <div class="area-card reveal">
         <span class="area-icon">💼</span>
-        <h3>Derecho Laboral</h3>
-        <p>Despidos, finiquitos, indemnizaciones, contratos, nóminas, bajas, acoso y seguridad social.</p>
-        <div class="area-keywords">
-          <span class="area-kw">despido</span><span class="area-kw">finiquito</span><span class="area-kw">baja</span><span class="area-kw">ERTE</span>
-        </div>
-        <span class="area-cta">Consultar →</span>
+        <h3>Direito Trabalhista</h3>
+        <p>Demissão, FGTS, férias, horas extras, assédio moral, aviso prévio e CLT.</p>
+        <div><span class="area-kw">demissão</span><span class="area-kw">FGTS</span><span class="area-kw">CLT</span><span class="area-kw">férias</span></div>
       </div>
       <div class="area-card reveal">
         <span class="area-icon">📜</span>
-        <h3>Derecho Civil</h3>
-        <p>Contratos, herencias, testamentos, deudas, prescripciones, daños y reclamaciones civiles.</p>
-        <div class="area-keywords">
-          <span class="area-kw">herencia</span><span class="area-kw">contrato</span><span class="area-kw">deuda</span><span class="area-kw">daños</span>
-        </div>
-        <span class="area-cta">Consultar →</span>
+        <h3>Direito Civil</h3>
+        <p>Contratos, herança, testamento, dívidas, prescrição e danos morais.</p>
+        <div><span class="area-kw">herança</span><span class="area-kw">contrato</span><span class="area-kw">dívida</span></div>
       </div>
       <div class="area-card reveal">
         <span class="area-icon">👨‍👩‍👧</span>
-        <h3>Derecho de Familia</h3>
-        <p>Divorcio, separación, custodia, pensión alimenticia, régimen de visitas y adopción.</p>
-        <div class="area-keywords">
-          <span class="area-kw">divorcio</span><span class="area-kw">custodia</span><span class="area-kw">pensión</span><span class="area-kw">visitas</span>
-        </div>
-        <span class="area-cta">Consultar →</span>
+        <h3>Direito de Família</h3>
+        <p>Divórcio, guarda, alimentos, regime de bens e adoção.</p>
+        <div><span class="area-kw">divórcio</span><span class="area-kw">guarda</span><span class="area-kw">alimentos</span></div>
       </div>
       <div class="area-card reveal">
         <span class="area-icon">🏠</span>
-        <h3>Derecho Inmobiliario</h3>
-        <p>Alquiler, arrendamiento, desahucio, compraventa, comunidad de propietarios y vicios ocultos.</p>
-        <div class="area-keywords">
-          <span class="area-kw">alquiler</span><span class="area-kw">desahucio</span><span class="area-kw">hipoteca</span><span class="area-kw">fianza</span>
-        </div>
-        <span class="area-cta">Consultar →</span>
+        <h3>Direito Imobiliário</h3>
+        <p>Aluguel, despejo, compra e venda, condomínio e usucapião.</p>
+        <div><span class="area-kw">aluguel</span><span class="area-kw">despejo</span><span class="area-kw">condomínio</span></div>
       </div>
       <div class="area-card reveal">
         <span class="area-icon">🛒</span>
-        <h3>Derecho de Consumo</h3>
-        <p>Garantías, devoluciones, reclamaciones a aerolíneas, viajes y cláusulas abusivas.</p>
-        <div class="area-keywords">
-          <span class="area-kw">garantía</span><span class="area-kw">aerolínea</span><span class="area-kw">reclamación</span><span class="area-kw">OMIC</span>
-        </div>
-        <span class="area-cta">Consultar →</span>
+        <h3>Direito do Consumidor</h3>
+        <p>CDC, garantias, devoluções, cobranças abusivas e Procon.</p>
+        <div><span class="area-kw">CDC</span><span class="area-kw">garantia</span><span class="area-kw">Procon</span></div>
       </div>
       <div class="area-card reveal">
         <span class="area-icon">🏛️</span>
-        <h3>Derecho Administrativo</h3>
-        <p>Multas, recursos administrativos, sanciones, licencias, permisos y silencio administrativo.</p>
-        <div class="area-keywords">
-          <span class="area-kw">multa</span><span class="area-kw">recurso</span><span class="area-kw">sanción</span><span class="area-kw">licencia</span>
-        </div>
-        <span class="area-cta">Consultar →</span>
+        <h3>Direito Administrativo</h3>
+        <p>Multas, recursos, licitações, servidores públicos e improbidade.</p>
+        <div><span class="area-kw">multa</span><span class="area-kw">recurso</span><span class="area-kw">servidor</span></div>
       </div>
       <div class="area-card reveal">
         <span class="area-icon">📊</span>
-        <h3>Derecho Mercantil</h3>
-        <p>Sociedades, autónomos, concurso de acreedores, contratos mercantiles, marcas y patentes.</p>
-        <div class="area-keywords">
-          <span class="area-kw">autónomo</span><span class="area-kw">SL</span><span class="area-kw">concurso</span><span class="area-kw">marca</span>
-        </div>
-        <span class="area-cta">Consultar →</span>
+        <h3>Direito Empresarial</h3>
+        <p>MEI, LTDA, falência, contratos comerciais, marcas e CNPJ.</p>
+        <div><span class="area-kw">MEI</span><span class="area-kw">LTDA</span><span class="area-kw">falência</span></div>
       </div>
     </div>
-  </section>
-</div>
+  </div>
+</section>
 
-<!-- PAÍSES -->
-<div class="paises-section" id="paises">
-  <section class="container">
-    <span class="section-tag">// cobertura geográfica</span>
-    <h2 class="section-title">España y 10 países<br><em>latinoamericanos.</em></h2>
-    <p class="section-sub">Legislación oficial indexada país por país. Cada consulta filtra automáticamente por la jurisdicción que seleccionas.</p>
-    <div class="paises-grid">
-      <div class="pais-card reveal"><span class="pais-flag">🇪🇸</span><span class="pais-nombre">España</span><span class="pais-docs">5 documentos · BOE</span></div>
-      <div class="pais-card reveal"><span class="pais-flag">🇲🇽</span><span class="pais-nombre">México</span><span class="pais-docs">4 documentos · DOF</span></div>
-      <div class="pais-card reveal"><span class="pais-flag">🇨🇴</span><span class="pais-nombre">Colombia</span><span class="pais-docs">3 documentos</span></div>
-      <div class="pais-card reveal"><span class="pais-flag">🇦🇷</span><span class="pais-nombre">Argentina</span><span class="pais-docs">3 documentos · Infoleg</span></div>
-      <div class="pais-card reveal"><span class="pais-flag">🇨🇱</span><span class="pais-nombre">Chile</span><span class="pais-docs">3 documentos · BCN</span></div>
-      <div class="pais-card reveal"><span class="pais-flag">🇵🇪</span><span class="pais-nombre">Perú</span><span class="pais-docs">3 documentos · SPIJ</span></div>
-      <div class="pais-card reveal"><span class="pais-flag">🇻🇪</span><span class="pais-nombre">Venezuela</span><span class="pais-docs">2 documentos</span></div>
-      <div class="pais-card reveal"><span class="pais-flag">🇪🇨</span><span class="pais-nombre">Ecuador</span><span class="pais-docs">3 documentos</span></div>
-      <div class="pais-card reveal"><span class="pais-flag">🇧🇴</span><span class="pais-nombre">Bolivia</span><span class="pais-docs">2 documentos</span></div>
-      <div class="pais-card reveal"><span class="pais-flag">🇺🇾</span><span class="pais-nombre">Uruguay</span><span class="pais-docs">3 documentos</span></div>
-      <div class="pais-card reveal" style="border-color:rgba(0,156,59,0.3)">
-        <span class="pais-flag">🇧🇷</span>
-        <span class="pais-nombre">Brasil</span>
-        <span class="pais-docs">4 documentos · Senado</span>
-        <span class="pais-new">NOVO</span>
+<!-- LEGISLAÇÃO INDEXADA -->
+<section style="background:var(--crema)" id="legislacao">
+  <div class="container">
+    <span class="section-tag">// legislação federal indexada</span>
+    <h2 class="section-title">Baseado em<br><em>fontes oficiais.</em></h2>
+    <p class="section-sub">TuAbogaBot indexa os textos legais consolidados diretamente do Senado Federal. Informação ancorada em lei, não em suposições.</p>
+    <div class="leg-grid reveal">
+      <div class="leg-card">
+        <h4>⚖️ Código Penal</h4>
+        <p>Decreto-Lei nº 2.848/1940 — atualizado até 2023</p>
+        <span class="leg-source">Fonte: Senado Federal · 6ª edição</span>
+      </div>
+      <div class="leg-card">
+        <h4>📜 Código Civil</h4>
+        <p>Lei nº 10.406/2002 com normas correlatas — atualizado 2024</p>
+        <span class="leg-source">Fonte: Senado Federal · 15ª edição</span>
+      </div>
+      <div class="leg-card">
+        <h4>🇧🇷 Constituição Federal</h4>
+        <p>Texto promulgado em 1988 — compilado até EC nº 134/2024</p>
+        <span class="leg-source">Fonte: Senado Federal</span>
+      </div>
+      <div class="leg-card">
+        <h4>💼 CLT</h4>
+        <p>Consolidação das Leis do Trabalho — Decreto-Lei nº 5.452/1943</p>
+        <span class="leg-source">Fonte: Senado Federal · 3ª edição</span>
       </div>
     </div>
-    <p style="font-size:0.75rem;color:var(--muted);margin-top:1.5rem;font-family:'JetBrains Mono',monospace;letter-spacing:0.05em">⚠ El sistema indexa legislación federal/nacional. La normativa regional (comunidades autónomas, estados, municipios) puede diferir.</p>
-  </section>
-</div>
+    <p style="font-size:0.72rem;color:var(--muted);margin-top:1.5rem;font-family:'JetBrains Mono',monospace">⚠ O sistema indexa legislação federal. Legislação estadual e municipal pode variar. Leis especiais e regulamentações setoriais podem não estar incluídas.</p>
+  </div>
+</section>
 
-<!-- CÓMO FUNCIONA -->
-<div class="how-section">
-  <section class="container">
-    <span class="section-tag">// tecnología RAG</span>
-    <h2 class="section-title">Cómo funciona<br><em>el sistema</em></h2>
-    <p class="section-sub">TuAbogaBot usa tecnología RAG (Retrieval-Augmented Generation) sobre legislación oficial para garantizar respuestas ancladas en textos legales reales, no en suposiciones.</p>
-    <div class="pipeline-steps reveal">
-      <div class="pipe-step">
-        <span class="pipe-num">01</span>
-        <span class="pipe-icon">📥</span>
-        <h4>Ingesta legal</h4>
-        <p>Descarga automática de códigos y leyes desde fuentes oficiales (BOE, DOF, Senado BR...)</p>
+<!-- CALCULADORAS -->
+<div class="calc-section" id="calculadoras">
+  <div class="container">
+    <span class="section-tag">// calculadoras trabalhistas</span>
+    <h2 class="section-title">Números concretos<br><em>para sua situação.</em></h2>
+    <p class="section-sub">Estimativas orientativas baseadas na CLT. Sempre verifique com um advogado trabalhista antes de tomar decisões.</p>
+    <div class="calc-grid">
+
+      <!-- CALC RESCISÃO CLT -->
+      <div class="calc-card reveal">
+        <div class="calc-title">💼 Rescisão sem Justa Causa (CLT)</div>
+        <div class="calc-sub">// estimativa orientativa · verificar com advogado</div>
+        <div class="calc-row">
+          <label class="calc-label">Tempo de serviço (meses)</label>
+          <input class="calc-input" id="clt-meses" type="number" min="1" placeholder="ex: 24">
+        </div>
+        <div class="calc-row">
+          <label class="calc-label">Salário bruto (R$)</label>
+          <input class="calc-input" id="clt-salario" type="number" min="0" placeholder="ex: 3000">
+        </div>
+        <div class="calc-row">
+          <label class="calc-label">Tem aviso prévio trabalhado?</label>
+          <select class="calc-select" id="clt-aviso">
+            <option value="nao">Não (indenizado)</option>
+            <option value="sim">Sim (trabalhado)</option>
+          </select>
+        </div>
+        <button class="calc-btn" onclick="calcCLT()">Calcular rescisão</button>
+        <div class="calc-result" id="clt-result">
+          <div class="calc-result-num" id="clt-total">—</div>
+          <div class="calc-result-label">Estimativa total rescisão</div>
+          <div class="calc-result-detail" id="clt-detail"></div>
+          <div class="calc-warn">⚠ Estimativa baseada na CLT geral. O valor real depende de benefícios, horas extras, banco de horas e particularidades do contrato. Consulte um advogado trabalhista ou o sindicato da categoria.</div>
+        </div>
       </div>
-      <div class="pipe-step">
-        <span class="pipe-num">02</span>
-        <span class="pipe-icon">✂️</span>
-        <h4>Segmentación</h4>
-        <p>Divide los textos respetando la estructura de artículos para mayor precisión jurídica</p>
+
+      <!-- CALC PRAZO PRESCRICIONAL -->
+      <div class="calc-card reveal">
+        <div class="calc-title">⏱️ Prazo Prescricional Trabalhista</div>
+        <div class="calc-sub">// art. 11 CLT · verificar com advogado</div>
+        <div class="calc-row">
+          <label class="calc-label">Data do término do contrato</label>
+          <input class="calc-input" id="pres-data" type="date">
+        </div>
+        <div class="calc-row">
+          <label class="calc-label">Tipo de reclamação</label>
+          <select class="calc-select" id="pres-tipo">
+            <option value="trabalhista">Verbas trabalhistas (2 anos após rescisão)</option>
+            <option value="fgts">FGTS não depositado (30 anos)</option>
+            <option value="assedio">Danos morais / assédio (3 anos)</option>
+          </select>
+        </div>
+        <button class="calc-btn" onclick="calcPrescricao()">Verificar prazo</button>
+        <div class="calc-result" id="pres-result">
+          <div class="calc-result-num" id="pres-dias" style="font-size:1.4rem"></div>
+          <div class="calc-result-label" id="pres-label"></div>
+          <div class="calc-result-detail" id="pres-detail"></div>
+          <div class="calc-warn">⚠ Os prazos podem ser interrompidos ou suspensos. Consulte imediatamente um advogado trabalhista se o prazo estiver próximo do vencimento.</div>
+        </div>
       </div>
-      <div class="pipe-step">
-        <span class="pipe-num">03</span>
-        <span class="pipe-icon">🔍</span>
-        <h4>Vectorización</h4>
-        <p>Convierte el texto legal en vectores semánticos. Búsqueda en milisegundos entre 500K+ fragmentos</p>
-      </div>
-      <div class="pipe-step">
-        <span class="pipe-num">04</span>
-        <span class="pipe-icon">🧠</span>
-        <h4>IA + Contexto</h4>
-        <p>Claude recibe los fragmentos legales relevantes y genera una respuesta estructurada y precisa</p>
-      </div>
-      <div class="pipe-step">
-        <span class="pipe-num">05</span>
-        <span class="pipe-icon">📋</span>
-        <h4>Respuesta clara</h4>
-        <p>Intro + puntos clave + plazos + recursos disponibles + profesional recomendado</p>
-      </div>
+
     </div>
-    <p style="font-size:0.75rem;color:var(--muted);margin-top:1.5rem;text-align:center;font-family:'JetBrains Mono',monospace;letter-spacing:0.05em">Impulsado por Claude (Anthropic) · ChromaDB · Legislación oficial de 11 países</p>
-  </section>
+  </div>
 </div>
 
-<!-- PLANES -->
-<div class="planes-section" id="planes">
-  <section class="container">
-    <span class="section-tag">// acceso y planes</span>
-    <h2 class="section-title">Empieza gratis.<br><em>Escala cuando necesites.</em></h2>
-    <p class="section-sub">5 consultas diarias sin registro. Más cuando lo necesites.</p>
-    <div class="planes-grid">
-      <div class="plan-card reveal">
-        <div class="plan-header">
-          <div class="plan-name">Free</div>
-          <div class="plan-price">0<sup>€</sup><span>/mes</span></div>
-          <div class="plan-desc">Para explorar y resolver dudas puntuales</div>
-        </div>
-        <ul class="plan-features">
-          <li><span class="check">✓</span> 5 consultas por día</li>
-          <li><span class="check">✓</span> 1 país disponible</li>
-          <li><span class="check">✓</span> Áreas principales</li>
-          <li><span class="check">✓</span> Respuesta estándar</li>
-          <li><span class="cross">—</span> Sin historial</li>
-          <li><span class="cross">—</span> Sin exportación PDF</li>
-        </ul>
-        <div class="plan-cta">
-          <a href="#consulta" class="plan-btn secondary">Empezar gratis →</a>
-        </div>
-      </div>
-      <div class="plan-card reveal">
-        <div class="plan-header">
-          <div class="plan-name">Básico</div>
-          <div class="plan-price">9<sup>€</sup><span>/mes</span></div>
-          <div class="plan-desc">Para consultas frecuentes y seguimiento</div>
-        </div>
-        <ul class="plan-features">
-          <li><span class="check">✓</span> 30 consultas por día</li>
-          <li><span class="check">✓</span> Todos los países</li>
-          <li><span class="check">✓</span> Todas las áreas</li>
-          <li><span class="check">✓</span> Descarga PDF de respuesta</li>
-          <li><span class="check">✓</span> Historial de consultas</li>
-          <li><span class="cross">—</span> Sin generación de documentos</li>
-        </ul>
-        <div class="plan-cta">
-          <a href="#consulta" class="plan-btn primary">Próximamente</a>
-        </div>
-      </div>
-      <div class="plan-card featured reveal">
-        <div class="plan-badge">★ MÁS POPULAR</div>
-        <div class="plan-header">
-          <div class="plan-name">Pro</div>
-          <div class="plan-price">29<sup>€</sup><span>/mes</span></div>
-          <div class="plan-desc">Para uso intensivo y profesional</div>
-        </div>
-        <ul class="plan-features">
-          <li><span class="check">✓</span> Consultas ilimitadas</li>
-          <li><span class="check">✓</span> Todos los países</li>
-          <li><span class="check">✓</span> Generación de documentos</li>
-          <li><span class="check">✓</span> Historial completo</li>
-          <li><span class="check">✓</span> Exportación PDF</li>
-          <li><span class="check">✓</span> Soporte por email</li>
-        </ul>
-        <div class="plan-cta">
-          <a href="#consulta" class="plan-btn gold">Próximamente</a>
-        </div>
-      </div>
-      <div class="plan-card reveal">
-        <div class="plan-header">
-          <div class="plan-name">Despachos</div>
-          <div class="plan-price">149<sup>€</sup><span>/mes</span></div>
-          <div class="plan-desc">Para bufetes y colegios de abogados</div>
-        </div>
-        <ul class="plan-features">
-          <li><span class="check">✓</span> Multi-usuario</li>
-          <li><span class="check">✓</span> API privada</li>
-          <li><span class="check">✓</span> Base de conocimiento personalizable</li>
-          <li><span class="check">✓</span> Sin rate limit</li>
-          <li><span class="check">✓</span> SLA 99.9%</li>
-          <li><span class="check">✓</span> Soporte prioritario</li>
-        </ul>
-        <div class="plan-cta">
-          <a href="mailto:hola@tuabogabot.io" class="plan-btn primary">Contactar →</a>
-        </div>
-      </div>
-    </div>
-  </section>
-</div>
-
-<!-- DISCLAIMER COMPLETO -->
-<div class="disclaimer-section" id="disclaimer">
+<!-- AVISO LEGAL COMPLETO -->
+<div class="disclaimer-section" id="aviso">
   <section class="container">
     <span class="section-tag" style="color:#8b4000">// aviso legal completo</span>
-    <h2 class="section-title" style="color:#5a3800">Lee esto antes<br><em style="color:var(--rojo)">de tomar decisiones.</em></h2>
-    <p class="section-sub" style="color:#7a5000">Es importante que entiendas exactamente qué es y qué no es TuAbogaBot antes de usar la información proporcionada.</p>
+    <h2 class="section-title" style="color:#5a3800">Leia isto antes<br><em style="color:var(--rojo)">de tomar decisões.</em></h2>
+    <p class="section-sub" style="color:#7a5000">É importante que você entenda exatamente o que é e o que não é o TuAbogaBot antes de usar as informações fornecidas.</p>
     <div class="disclaimer-cards">
       <div class="disclaimer-card">
-        <h4>01 · Información, no asesoramiento</h4>
-        <p>TuAbogaBot proporciona información jurídica de carácter general y orientativo. Las respuestas NO constituyen asesoramiento legal profesional y NO crean relación abogado-cliente de ningún tipo.</p>
+        <h4>01 · Informação, não aconselhamento</h4>
+        <p>TuAbogaBot fornece informação jurídica de caráter geral e orientativo. As respostas NÃO constituem aconselhamento jurídico profissional e NÃO criam relação advogado-cliente.</p>
       </div>
       <div class="disclaimer-card">
-        <h4>02 · No sustituye al profesional</h4>
-        <p>Ninguna respuesta reemplaza la consulta con un abogado colegiado en tu jurisdicción. Para cualquier decisión con consecuencias legales, patrimoniales o personales, consulta siempre a un profesional habilitado.</p>
+        <h4>02 · Não substitui o profissional</h4>
+        <p>Nenhuma resposta substitui a consulta com advogado inscrito na OAB. Para qualquer decisão com consequências jurídicas ou patrimoniais, consulte sempre um profissional habilitado.</p>
       </div>
       <div class="disclaimer-card">
-        <h4>03 · Posible desactualización</h4>
-        <p>La legislación cambia constantemente. La información indexada puede no reflejar las últimas reformas legislativas. Verifica siempre la normativa actualizada en fuentes oficiales (BOE, Diario Oficial, etc.).</p>
+        <h4>03 · Possível desatualização</h4>
+        <p>A legislação muda constantemente. As informações indexadas podem não refletir as últimas alterações legislativas. Verifique sempre nas fontes oficiais (Diário Oficial, Planalto, Senado).</p>
       </div>
       <div class="disclaimer-card">
-        <h4>04 · Limitación de responsabilidad</h4>
-        <p>El operador de TuAbogaBot no asume responsabilidad alguna por daños directos o indirectos derivados del uso de la información proporcionada. El uso del servicio implica la aceptación plena de estos términos.</p>
+        <h4>04 · Limitação de responsabilidade</h4>
+        <p>O operador do TuAbogaBot não assume qualquer responsabilidade por danos decorrentes do uso das informações. O uso do serviço implica aceitação plena destes termos.</p>
       </div>
       <div class="disclaimer-card">
-        <h4>05 · Variabilidad jurisdiccional</h4>
-        <p>El derecho varía sustancialmente entre países, comunidades autónomas, estados y municipios. Una respuesta válida para España puede no ser aplicable en México u otro país. Verifica siempre con un profesional local.</p>
+        <h4>05 · Legislação federal apenas</h4>
+        <p>O sistema indexa legislação federal. Leis estaduais, municipais e regulamentações setoriais específicas podem diferir substancialmente. Verifique sempre com profissional local.</p>
       </div>
       <div class="disclaimer-card">
         <h4>06 · Avisos por área específica</h4>
-        <p><strong>Penal:</strong> Si estás detenido o imputado, contacta inmediatamente a un abogado penalista. <strong>Laboral:</strong> Los plazos para reclamar son muy cortos (20 días hábiles en España). <strong>Familia:</strong> Asuntos de custodia requieren valoración individualizada.</p>
+        <p><strong>Penal:</strong> Se preso ou indiciado, contate imediatamente advogado. <strong>Trabalhista:</strong> O prazo para reclamar na Justiça do Trabalho é de 2 anos após a rescisão. <strong>Família:</strong> Guarda e alimentos requerem avaliação individualizada.</p>
       </div>
     </div>
     <div class="disclaimer-urgente">
-      <span class="icon">🚨</span>
+      <span style="font-size:1.5rem;flex-shrink:0">🚨</span>
       <div>
-        <h4>URGENCIAS LEGALES — No uses TuAbogaBot</h4>
-        <p>Si estás detenido, imputado, en juicio inminente o enfrentas una situación de emergencia legal, contacta INMEDIATAMENTE al Colegio de Abogados de tu ciudad para solicitar un abogado de guardia. TuAbogaBot NO es un servicio de urgencias y no puede sustituir la asistencia letrada en situaciones de urgencia.</p>
+        <h4>URGÊNCIAS JURÍDICAS — Não use o TuAbogaBot</h4>
+        <p>Se você está preso, indiciado, em julgamento iminente ou enfrenta emergência jurídica, contate IMEDIATAMENTE a OAB da sua cidade ou o Defensor Público. O TuAbogaBot NÃO é serviço de urgência e não pode substituir assistência jurídica em situações de emergência.</p>
       </div>
     </div>
   </section>
@@ -941,48 +559,40 @@ footer{background:#060e1c;color:rgba(255,255,255,0.38);padding:3.5rem 2rem}
 <!-- FAQ -->
 <div class="faq-section">
   <section class="container">
-    <span class="section-tag">// preguntas frecuentes</span>
-    <h2 class="section-title">Lo que más<br><em>nos preguntan</em></h2>
+    <span class="section-tag">// perguntas frequentes</span>
+    <h2 class="section-title">O que mais<br><em>nos perguntam</em></h2>
     <div class="faq-list">
       <details class="faq-item">
-        <summary class="faq-q">¿TuAbogaBot puede representarme en un juicio?</summary>
-        <div class="faq-a">No. TuAbogaBot proporciona únicamente información jurídica orientativa. Para representación legal, contratación de abogado o cualquier acto procesal necesitas un profesional habilitado y colegiado en tu jurisdicción.</div>
+        <summary class="faq-q">O TuAbogaBot pode me representar em juízo?</summary>
+        <div class="faq-a">Não. O TuAbogaBot fornece apenas informação jurídica orientativa. Para representação legal e qualquer ato processual, você precisa de advogado inscrito na OAB.</div>
       </details>
       <details class="faq-item">
-        <summary class="faq-q">¿De dónde viene la información jurídica?</summary>
-        <div class="faq-a">De fuentes gubernamentales oficiales: BOE (España), DOF (México), Infoleg (Argentina), BCN (Chile), SPIJ (Perú), Senado Federal (Brasil) y equivalentes para los 11 países. El sistema indexa los códigos penales, civiles, laborales y constituciones vigentes mediante tecnología RAG.</div>
+        <summary class="faq-q">De onde vêm as informações jurídicas?</summary>
+        <div class="faq-a">Das fontes oficiais: Senado Federal do Brasil (Código Penal, Código Civil, CLT e Constituição Federal). O sistema usa tecnologia RAG para buscar trechos relevantes da legislação oficial antes de responder.</div>
       </details>
       <details class="faq-item">
-        <summary class="faq-q">¿Cuántas consultas puedo hacer gratis?</summary>
-        <div class="faq-a">5 consultas gratuitas por día, sin registro ni tarjeta de crédito. El contador se reinicia cada 24 horas. Para consultas ilimitadas o uso profesional, consulta nuestros planes de pago (próximamente).</div>
+        <summary class="faq-q">Quantas consultas posso fazer gratuitamente?</summary>
+        <div class="faq-a">5 consultas gratuitas por dia, sem cadastro nem cartão de crédito. O contador é reiniciado a cada 24 horas.</div>
       </details>
       <details class="faq-item">
-        <summary class="faq-q">¿La información está actualizada?</summary>
-        <div class="faq-a">El sistema se actualiza periódicamente con los textos legales consolidados vigentes. Sin embargo, la legislación puede cambiar en cualquier momento. Siempre verifica con las fuentes oficiales o un profesional ante cualquier decisión importante.</div>
+        <summary class="faq-q">Também existe versão em espanhol?</summary>
+        <div class="faq-a">Sim. O TuAbogaBot cobre Espanha e 10 países da América Latina na versão em espanhol, acessível em tuabogabot.io. A legislação de cada país é tratada separadamente.</div>
       </details>
       <details class="faq-item">
-        <summary class="faq-q">¿Mis consultas son confidenciales?</summary>
-        <div class="faq-a">Las consultas se almacenan de forma anonimizada únicamente para mejorar el servicio. No compartimos datos personales con terceros. No es necesario registrarse para usar el servicio gratuito.</div>
-      </details>
-      <details class="faq-item">
-        <summary class="faq-q">¿Por qué hay un aviso legal tan prominente?</summary>
-        <div class="faq-a">Porque la ley importa y las consecuencias de una mala decisión legal pueden ser muy graves. Queremos que uses TuAbogaBot como lo que es: una herramienta de información y orientación, no como sustituto de un abogado. Esa transparencia es parte de nuestros valores.</div>
-      </details>
-      <details class="faq-item">
-        <summary class="faq-q">¿Tiene versión en portugués para Brasil?</summary>
-        <div class="faq-a">Sí. TuAbogaBot tiene una versión completa en portugués brasileño accesible desde el selector de idioma en la navegación (🇧🇷 PT-BR). Cubre legislación federal brasileña: Código Penal, Código Civil, CLT y Constitución Federal.</div>
+        <summary class="faq-q">Cobre legislação estadual ou municipal?</summary>
+        <div class="faq-a">Não. O sistema indexa apenas legislação federal. Leis estaduais (como o TJSP ou legislação do Rio de Janeiro) e municipais podem variar. Consulte sempre profissional local para questões que envolvam normas regionais.</div>
       </details>
     </div>
   </section>
 </div>
 
-<!-- CTA FINAL -->
+<!-- CTA -->
 <div class="cta-section">
   <div class="container">
-    <h2>Empieza ahora.<br><em>Es gratis.</em></h2>
-    <p>Tu primera consulta no cuesta nada. Sin tarjeta de crédito, sin registro obligatorio. Solo escribe tu duda y recibe información jurídica orientativa en segundos.</p>
-    <a href="#consulta" class="btn-primary" style="font-size:1rem;padding:1rem 2.5rem">Hacer mi primera consulta →</a>
-    <div class="cta-disclaimer">⚠ Información jurídica orientativa · NO asesoramiento legal profesional · NO relación abogado-cliente · Consulta siempre a un abogado colegiado para decisiones con consecuencias legales</div>
+    <h2>Comece agora.<br><em>É gratuito.</em></h2>
+    <p>Sua primeira consulta não custa nada. Sem cadastro, sem cartão de crédito. Escreva sua dúvida e receba informação jurídica orientativa em segundos.</p>
+    <a href="#consulta" class="btn-primary" style="font-size:1rem;padding:1rem 2.5rem">Fazer minha primeira consulta →</a>
+    <p style="margin-top:1.5rem;font-family:'JetBrains Mono',monospace;font-size:0.6rem;color:rgba(255,255,255,0.2)">⚠ Informação jurídica orientativa · NÃO aconselhamento jurídico profissional · NÃO relação advogado-cliente · Consulte sempre advogado inscrito na OAB</p>
   </div>
 </div>
 
@@ -990,154 +600,102 @@ footer{background:#060e1c;color:rgba(255,255,255,0.38);padding:3.5rem 2rem}
 <footer>
   <div class="footer-inner">
     <div class="footer-brand">
-      <span class="footer-logo">Tu<span>Aboga</span>Bot</span>
-      <p>El primer asistente de información jurídica con IA en español y portugués para España y 10 países latinoamericanos + Brasil. Impulsado por IA, anclado en legislación oficial.</p>
+      <span class="footer-logo">Tu<span>Aboga</span>Bot 🇧🇷</span>
+      <p>Assistente de informação jurídica com IA para o Brasil. Baseado em legislação federal oficial. Disponível também em espanhol para Espanha e 10 países da América Latina.</p>
       <div class="footer-lang">
-        <a href="index.html" class="active-lang">🇪🇸 Español</a>
-        <a href="pt/index.html">🇧🇷 Português BR</a>
+        <a href="index.html" class="active-lang">🇧🇷 Português BR</a>
+        <a href="../index.html">🇪🇸 Español</a>
       </div>
     </div>
     <div class="footer-col">
-      <h4>Producto</h4>
+      <h4>Produto</h4>
       <ul>
-        <li><a href="#consulta">Consultar gratis</a></li>
-        <li><a href="#herramientas">Herramientas</a></li>
-        <li><a href="#areas">Áreas legales</a></li>
-        <li><a href="#paises">Países</a></li>
-        <li><a href="#planes">Planes y precios</a></li>
+        <li><a href="#consulta">Consultar grátis</a></li>
+        <li><a href="#areas">Áreas jurídicas</a></li>
+        <li><a href="#legislacao">Legislação</a></li>
+        <li><a href="#calculadoras">Calculadoras</a></li>
       </ul>
     </div>
     <div class="footer-col">
       <h4>Legal</h4>
       <ul>
-        <li><a href="#disclaimer">Aviso legal completo</a></li>
-        <li><a href="#">Política de privacidad</a></li>
-        <li><a href="#">Términos de uso</a></li>
-        <li><a href="#">Cookies</a></li>
+        <li><a href="#aviso">Aviso legal completo</a></li>
+        <li><a href="#">Política de privacidade</a></li>
+        <li><a href="#">Termos de uso</a></li>
       </ul>
     </div>
     <div class="footer-col">
-      <h4>Contacto</h4>
+      <h4>Contato</h4>
       <ul>
         <li><a href="mailto:hola@tuabogabot.io">hola@tuabogabot.io</a></li>
-        <li><a href="#">API para despachos</a></li>
-        <li><a href="#">Afiliados legales</a></li>
         <li><a href="https://tuabogabot.io">tuabogabot.io</a></li>
         <li><a href="https://tuabogabot.com">tuabogabot.com</a></li>
       </ul>
     </div>
   </div>
   <div class="footer-bottom">
-    <div class="footer-bottom-top">
-      <span class="footer-copy">© 2026 TuAbogaBot · tuabogabot.io · tuabogabot.com</span>
-      <span class="footer-copy">Impulsado por Claude (Anthropic) · RAG sobre legislación oficial</span>
+    <div style="display:flex;justify-content:space-between;flex-wrap:wrap;gap:1rem;margin-bottom:1rem">
+      <span class="footer-copy">© 2026 TuAbogaBot · tuabogabot.io/pt/ · Brasil</span>
+      <span class="footer-copy">Powered by Claude (Anthropic) · RAG sobre legislação oficial</span>
     </div>
-    <p class="footer-disclaimer-mini">⚠ TuAbogaBot proporciona información jurídica orientativa de carácter general, NO asesoramiento legal profesional. Las respuestas no crean relación abogado-cliente y no sustituyen la consulta con un abogado colegiado habilitado en la jurisdicción correspondiente. La información puede estar desactualizada. El operador no asume responsabilidad por decisiones tomadas basándose en la información proporcionada. Para urgencias legales, contacta al Colegio de Abogados de tu ciudad.</p>
+    <p class="footer-disclaimer-mini">⚠ TuAbogaBot fornece informação jurídica orientativa de caráter geral, NÃO aconselhamento jurídico profissional. As respostas não criam relação advogado-cliente e não substituem a consulta com advogado inscrito na OAB. A informação pode estar desatualizada. O operador não assume responsabilidade por decisões tomadas com base nas informações fornecidas. Para urgências jurídicas, contate a OAB da sua cidade.</p>
   </div>
 </footer>
 
-<button id="btt" onclick="window.scrollTo({top:0,behavior:'smooth'})" aria-label="Volver arriba">↑</button>
+<button id="btt" onclick="window.scrollTo({top:0,behavior:'smooth'})" aria-label="Voltar ao topo">↑</button>
 
 <script>
-// ─── CONFIG ───────────────────────────────────────────────────────────────────
 const PROXY_URL = 'http://141.147.32.72:8080/api/v1/consulta';
 const MAX_DAILY = 5;
-const STORAGE_KEY = 'tab_uses';
-const STORAGE_DATE = 'tab_date';
 
-// ─── DISCLAIMER MODAL ────────────────────────────────────────────────────────
 function acceptDisclaimer() {
-  sessionStorage.setItem('disclaimer_ok', '1');
+  sessionStorage.setItem('disclaimer_ok_pt', '1');
   document.getElementById('disclaimerModal').style.display = 'none';
 }
 window.addEventListener('load', function() {
-  if (sessionStorage.getItem('disclaimer_ok')) {
+  if (sessionStorage.getItem('disclaimer_ok_pt')) {
     document.getElementById('disclaimerModal').style.display = 'none';
   }
 });
 
-// ─── PROGRESS BAR ────────────────────────────────────────────────────────────
 window.addEventListener('scroll', function() {
   var d = document.documentElement;
   var p = (d.scrollTop || document.body.scrollTop) / (d.scrollHeight - d.clientHeight) * 100;
   document.getElementById('pgbar').style.width = p + '%';
   var btt = document.getElementById('btt');
-  if (window.scrollY > 400) btt.classList.add('show');
-  else btt.classList.remove('show');
+  if (window.scrollY > 400) btt.classList.add('show'); else btt.classList.remove('show');
 }, {passive: true});
 
-// ─── MOBILE MENU ─────────────────────────────────────────────────────────────
 function toggleMenu() {
   var h = document.getElementById('hamburger');
   var m = document.getElementById('mobileMenu');
-  h.classList.toggle('open');
-  m.classList.toggle('open');
+  h.classList.toggle('open'); m.classList.toggle('open');
 }
-document.querySelectorAll('.mobile-menu a').forEach(function(a) {
-  a.addEventListener('click', function() {
-    document.getElementById('hamburger').classList.remove('open');
-    document.getElementById('mobileMenu').classList.remove('open');
-  });
-});
 
-// ─── REVEAL ON SCROLL ────────────────────────────────────────────────────────
 var revealObs = new IntersectionObserver(function(entries) {
   entries.forEach(function(e, i) {
-    if (e.isIntersecting) {
-      setTimeout(function() { e.target.classList.add('visible'); }, i * 80);
-      revealObs.unobserve(e.target);
-    }
+    if (e.isIntersecting) { setTimeout(function() { e.target.classList.add('visible'); }, i * 80); revealObs.unobserve(e.target); }
   });
 }, {threshold: 0.06});
 document.querySelectorAll('.reveal').forEach(function(el) { revealObs.observe(el); });
 
-// ─── COUNTRY SELECTOR ────────────────────────────────────────────────────────
-var currentCountry = 'ES';
-var countryNames = {
-  ES:'España', MX:'México', CO:'Colombia', AR:'Argentina', CL:'Chile',
-  PE:'Perú', VE:'Venezuela', EC:'Ecuador', BO:'Bolivia', UY:'Uruguay', BR:'Brasil'
-};
-function setCountry(btn, code) {
-  document.querySelectorAll('.country-btn').forEach(function(b) { b.classList.remove('active'); });
-  btn.classList.add('active');
-  currentCountry = code;
-}
-
-// ─── DAILY COUNTER ───────────────────────────────────────────────────────────
 function getUses() {
   var today = new Date().toDateString();
-  if (localStorage.getItem(STORAGE_DATE) !== today) {
-    localStorage.setItem(STORAGE_DATE, today);
-    localStorage.setItem(STORAGE_KEY, '0');
-  }
-  return parseInt(localStorage.getItem(STORAGE_KEY) || '0');
-}
-function incrementUses() {
-  var uses = getUses() + 1;
-  localStorage.setItem(STORAGE_KEY, uses);
-  return uses;
+  if (localStorage.getItem('tab_date_pt') !== today) { localStorage.setItem('tab_date_pt', today); localStorage.setItem('tab_uses_pt', '0'); }
+  return parseInt(localStorage.getItem('tab_uses_pt') || '0');
 }
 function updateCounter() {
-  var uses = getUses();
-  var remaining = Math.max(0, MAX_DAILY - uses);
+  var remaining = Math.max(0, MAX_DAILY - getUses());
   var pct = (remaining / MAX_DAILY) * 100;
   var txt = document.getElementById('counterText');
   var fill = document.getElementById('counterFill');
-  if (txt) txt.textContent = remaining > 0
-    ? remaining + ' consulta' + (remaining !== 1 ? 's' : '') + ' gratuita' + (remaining !== 1 ? 's' : '') + ' disponible' + (remaining !== 1 ? 's' : '') + ' hoy'
-    : 'Límite diario alcanzado · Vuelve mañana';
+  if (txt) txt.textContent = remaining > 0 ? remaining + ' consulta' + (remaining !== 1 ? 's' : '') + ' gratuita' + (remaining !== 1 ? 's' : '') + ' disponível' + (remaining !== 1 ? 'em' : '') + ' hoje' : 'Limite diário atingido · Volte amanhã';
   if (fill) fill.style.width = pct + '%';
 }
 updateCounter();
 
-// ─── CHAT ────────────────────────────────────────────────────────────────────
 var isLoading = false;
-var chatHistory = [];
-
-function sendQuick(text) {
-  document.getElementById('chatInput').value = text;
-  sendMsg();
-}
+function sendQuick(t) { document.getElementById('chatInput').value = t; sendMsg(); }
 
 function sendMsg() {
   if (isLoading) return;
@@ -1145,219 +703,117 @@ function sendMsg() {
   var body = document.getElementById('chatBody');
   var text = input.value.trim();
   if (!text) return;
-
-  var uses = getUses();
-  if (uses >= MAX_DAILY) {
-    appendError('Has alcanzado el límite de ' + MAX_DAILY + ' consultas gratuitas hoy. Vuelve mañana o consulta nuestros planes.');
-    return;
-  }
-
-  input.value = '';
-  input.style.height = 'auto';
-
-  // User message
+  if (getUses() >= MAX_DAILY) { appendError('Você atingiu o limite de ' + MAX_DAILY + ' consultas gratuitas hoje. Volte amanhã.'); return; }
+  input.value = ''; input.style.height = 'auto';
   var userDiv = document.createElement('div');
   userDiv.className = 'chat-msg user';
-  userDiv.innerHTML = '<div class="msg-av">Tú</div><div class="msg-bubble">' + escapeHtml(text) + '</div>';
+  userDiv.innerHTML = '<div class="msg-av">Você</div><div class="msg-bubble">' + escapeHtml(text) + '</div>';
   body.appendChild(userDiv);
-
-  // Typing
-  var typingId = 'tp_' + Date.now();
+  var tid = 'tp_' + Date.now();
   var typingDiv = document.createElement('div');
-  typingDiv.className = 'chat-msg bot';
-  typingDiv.id = typingId;
+  typingDiv.className = 'chat-msg bot'; typingDiv.id = tid;
   typingDiv.innerHTML = '<div class="msg-av">TB</div><div class="msg-bubble"><div class="typing-dots"><span></span><span></span><span></span></div></div>';
-  body.appendChild(typingDiv);
-  body.scrollTop = body.scrollHeight;
-
+  body.appendChild(typingDiv); body.scrollTop = body.scrollHeight;
   isLoading = true;
-  incrementUses();
-  updateCounter();
-
-  // Hide quick buttons after first message
-  var qb = document.getElementById('quickBtns');
-  if (qb) qb.style.display = 'none';
-
-  chatHistory.push({role: 'user', content: text});
-
-  fetch(PROXY_URL, {
-    method: 'POST',
-    headers: {'Content-Type': 'application/json'},
-    body: JSON.stringify({pregunta: text, pais: currentCountry, session_id: getSessionId()})
-  })
+  var uses = getUses() + 1; localStorage.setItem('tab_uses_pt', uses); updateCounter();
+  document.getElementById('quickBtns').style.display = 'none';
+  fetch(PROXY_URL, { method:'POST', headers:{'Content-Type':'application/json'}, body: JSON.stringify({pregunta: text, pais:'BR', session_id: getSessionId(), lang:'pt-BR'}) })
   .then(function(r) {
-    var el = document.getElementById(typingId);
-    if (el) el.remove();
-    if (!r.ok) {
-      var msg = 'Error de conexión con el servidor.';
-      if (r.status === 429) msg = 'Demasiadas consultas. Espera un momento.';
-      if (r.status === 403) msg = 'Acceso denegado. Recarga la página.';
-      throw new Error(msg);
-    }
+    var el = document.getElementById(tid); if (el) el.remove();
+    if (!r.ok) { var m = 'Erro de conexão.'; if (r.status === 429) m = 'Muitas consultas. Aguarde.'; throw new Error(m); }
     return r.json();
   })
   .then(function(data) {
     var reply = data.respuesta || data.reply || '';
-    if (!reply) throw new Error('Respuesta vacía. Inténtalo de nuevo.');
-    chatHistory.push({role: 'assistant', content: reply});
-    appendBotMsg(reply, data.area, data.pais, data.fuentes);
+    if (!reply) throw new Error('Resposta vazia. Tente novamente.');
+    appendBotMsg(reply, data.area, data.fuentes);
   })
-  .catch(function(err) {
-    var el = document.getElementById(typingId);
-    if (el) el.remove();
-    appendError(err.message);
-  })
-  .finally(function() {
-    isLoading = false;
-    body.scrollTop = body.scrollHeight;
-  });
+  .catch(function(err) { var el = document.getElementById(tid); if (el) el.remove(); appendError(err.message); })
+  .finally(function() { isLoading = false; body.scrollTop = body.scrollHeight; });
 }
 
-function appendBotMsg(text, area, pais, fuentes) {
+function appendBotMsg(text, area, fuentes) {
   var body = document.getElementById('chatBody');
-  var div = document.createElement('div');
-  div.className = 'chat-msg bot';
+  var div = document.createElement('div'); div.className = 'chat-msg bot';
   var areaWarn = '';
-  if (area === 'penal') areaWarn = '🚨 PENAL: Si está detenido o imputado, contacte INMEDIATAMENTE a un abogado penalista.';
-  else if (area === 'laboral') areaWarn = '⏰ LABORAL: Los plazos para reclamar son cortos (20 días hábiles en España). Actúe con urgencia.';
-  else if (area === 'familia') areaWarn = '👨‍👩‍👧 FAMILIA: Asuntos de custodia y menores requieren valoración individualizada por profesional.';
-  else if (area === 'inmobiliario') areaWarn = '🏠 INMOBILIARIO: Antes de firmar cualquier contrato, consulte con abogado o notario.';
+  if (area === 'penal') areaWarn = '🚨 PENAL: Se preso ou indiciado, contate imediatamente advogado ou Defensoria Pública.';
+  else if (area === 'laboral') areaWarn = '⏰ TRABALHISTA: Prazo de 2 anos após rescisão para reclamar na Justiça do Trabalho.';
   var fuentesHtml = '';
-  if (fuentes && fuentes.length) {
-    fuentesHtml = '<div style="font-family:\'JetBrains Mono\',monospace;font-size:0.62rem;color:var(--muted);margin-top:0.5rem">📖 Fuentes: ' + fuentes.join(', ') + '</div>';
-  }
-  div.innerHTML = '<div class="msg-av">TB</div><div><div class="msg-bubble">' +
-    formatText(text) + fuentesHtml +
-    '<div class="msg-disclaimer">⚠ Información orientativa basada en legislación de ' + (countryNames[pais || currentCountry] || currentCountry) + '. NO asesoramiento legal. Consulte a un abogado colegiado.' + (areaWarn ? '<br>' + areaWarn : '') + '</div>' +
-    '</div>' +
-    '<div style="display:flex;gap:0.5rem;margin-top:0.4rem">' +
-    '<button onclick="copyText(this)" data-text="' + escapeAttr(text) + '" style="font-size:0.7rem;padding:0.2rem 0.6rem;border:1px solid var(--crema2);background:transparent;color:var(--muted);cursor:pointer;font-family:\'DM Sans\',sans-serif;transition:all 0.15s" onmouseover="this.style.borderColor=\'var(--azul3)\'" onmouseout="this.style.borderColor=\'var(--crema2)\'">Copiar</button>' +
-    '</div></div>';
+  if (fuentes && fuentes.length) fuentesHtml = '<div style="font-family:\'JetBrains Mono\',monospace;font-size:0.62rem;color:var(--muted);margin-top:0.5rem">📖 Fontes: ' + fuentes.join(', ') + '</div>';
+  div.innerHTML = '<div class="msg-av">TB</div><div><div class="msg-bubble">' + formatText(text) + fuentesHtml +
+    '<div class="msg-disclaimer">⚠ Informação orientativa baseada na legislação federal brasileira. NÃO aconselhamento jurídico. Consulte advogado inscrito na OAB.' + (areaWarn ? '<br>' + areaWarn : '') + '</div></div>' +
+    '<div style="display:flex;gap:0.5rem;margin-top:0.4rem"><button onclick="copyText(this)" data-text="' + escapeAttr(text) + '" style="font-size:0.7rem;padding:0.2rem 0.6rem;border:1px solid var(--crema2);background:transparent;color:var(--muted);cursor:pointer;font-family:\'DM Sans\',sans-serif">Copiar</button></div></div>';
   body.appendChild(div);
 }
-
 function appendError(msg) {
   var body = document.getElementById('chatBody');
-  var div = document.createElement('div');
-  div.className = 'chat-msg bot';
+  var div = document.createElement('div'); div.className = 'chat-msg bot';
   div.innerHTML = '<div class="msg-av">TB</div><div class="msg-bubble" style="background:var(--warn-bg);color:var(--rojo);border:1px solid rgba(139,26,26,0.2)">⚠ ' + escapeHtml(msg) + '</div>';
   body.appendChild(div);
 }
-
 function formatText(t) {
-  return t
-    .replace(/&/g,'&amp;').replace(/</g,'&lt;').replace(/>/g,'&gt;')
-    .replace(/\*\*(.*?)\*\*/g,'<strong>$1</strong>')
-    .replace(/\*(.*?)\*/g,'<em>$1</em>')
-    .replace(/^### (.+)$/gm,'<h5 style="color:var(--azul);margin:8px 0 4px;font-size:0.82rem">$1</h5>')
-    .replace(/^## (.+)$/gm,'<h4 style="color:var(--azul);margin:10px 0 5px">$1</h4>')
+  return t.replace(/&/g,'&amp;').replace(/</g,'&lt;').replace(/>/g,'&gt;')
+    .replace(/\*\*(.*?)\*\*/g,'<strong>$1</strong>').replace(/\*(.*?)\*/g,'<em>$1</em>')
     .replace(/^- (.+)$/gm,'<li style="margin-left:1rem;margin-bottom:3px">$1</li>')
-    .replace(/\n\n/g,'</p><p style="margin-bottom:8px">')
-    .replace(/\n/g,'<br>');
+    .replace(/\n\n/g,'</p><p style="margin-bottom:8px">').replace(/\n/g,'<br>');
 }
 function escapeHtml(s) { return s.replace(/&/g,'&amp;').replace(/</g,'&lt;').replace(/>/g,'&gt;'); }
 function escapeAttr(s) { return s.replace(/"/g,'&quot;').replace(/'/g,'&#39;'); }
 function getSessionId() {
-  var k = 'tab_sid';
-  var id = localStorage.getItem(k);
-  if (!id) { id = 'sess_' + Math.random().toString(36).substr(2,9) + '_' + Date.now(); localStorage.setItem(k,id); }
+  var k = 'tab_sid_pt'; var id = localStorage.getItem(k);
+  if (!id) { id = 'sess_pt_' + Math.random().toString(36).substr(2,9); localStorage.setItem(k,id); }
   return id;
 }
 function copyText(btn) {
-  navigator.clipboard.writeText(btn.getAttribute('data-text')).then(function() {
-    btn.textContent = '✓ Copiado';
-    setTimeout(function() { btn.textContent = 'Copiar'; }, 2000);
-  });
+  navigator.clipboard.writeText(btn.getAttribute('data-text')).then(function() { btn.textContent = '✓ Copiado'; setTimeout(function() { btn.textContent = 'Copiar'; }, 2000); });
 }
-
-// Auto-resize textarea
 document.getElementById('chatInput').addEventListener('input', function() {
-  this.style.height = 'auto';
-  this.style.height = Math.min(this.scrollHeight, 120) + 'px';
+  this.style.height = 'auto'; this.style.height = Math.min(this.scrollHeight, 120) + 'px';
 });
 
-// ─── CALCULADORA DESPIDO ────────────────────────────────────────────────────
-function calcDespido() {
-  var pais = document.getElementById('dep-pais').value;
-  var tipo = document.getElementById('dep-tipo').value;
-  var años = parseFloat(document.getElementById('dep-años').value) || 0;
-  var salario = parseFloat(document.getElementById('dep-salario').value) || 0;
-  if (!años || !salario) { alert('Introduce los años trabajados y el salario mensual'); return; }
-  var salarioDiario = salario * 12 / 365;
-  var indemnizacion = 0;
-  var detalle = '';
-  var configs = {
-    ES: {imp: 33, obj: 20, proc: 0, max: 24},
-    MX: {imp: 90, obj: 90, proc: 0, max: 0},
-    AR: {imp: 30, obj: 30, proc: 0, max: 0},
-    CO: {imp: 30, obj: 20, proc: 0, max: 0},
-    CL: {imp: 30, obj: 20, proc: 0, max: 0},
-    PE: {imp: 15, obj: 15, proc: 0, max: 0}
-  };
-  var cfg = configs[pais] || configs.ES;
-  var diasBase = tipo === 'improcedente' ? cfg.imp : (tipo === 'objetivo' ? cfg.obj : 0);
-  if (tipo === 'procedente') {
-    indemnizacion = 0;
-    detalle = 'El despido procedente no genera derecho a indemnización. Solo corresponde el finiquito (vacaciones no disfrutadas + partes proporcionales).';
-  } else {
-    var meses = cfg.max > 0 ? Math.min(años * diasBase * salarioDiario, cfg.max * salario) : años * diasBase * salarioDiario;
-    indemnizacion = Math.round(meses);
-    var formula = diasBase + ' días × ' + años + ' años × ' + salarioDiario.toFixed(2) + '€/día';
-    if (cfg.max > 0) formula += ' (máx. ' + cfg.max + ' mensualidades)';
-    detalle = 'Fórmula: ' + formula + '. Recuerda que el salario para el cálculo incluye prorratas de pagas extras.';
-  }
-  document.getElementById('dep-total').textContent = tipo !== 'procedente' ? indemnizacion.toLocaleString('es-ES') + ' €' : '0 €';
-  document.getElementById('dep-detail').textContent = detalle;
-  document.getElementById('dep-result').classList.add('show');
+// ─── CALCULADORA CLT ─────────────────────────────────────────────────────────
+function calcCLT() {
+  var meses = parseFloat(document.getElementById('clt-meses').value) || 0;
+  var salario = parseFloat(document.getElementById('clt-salario').value) || 0;
+  var aviso = document.getElementById('clt-aviso').value;
+  if (!meses || !salario) { alert('Preencha os meses trabalhados e o salário'); return; }
+  var anos = meses / 12;
+  var saldoSalario = salario / 30;
+  var feriasVencidas = salario;
+  var feriasProporcionais = (salario / 12) * (meses % 12);
+  var decimoTerceiro = (salario / 12) * (meses % 12 === 0 ? 12 : meses % 12);
+  var multa40FGTS = salario * 0.08 * meses * 0.40;
+  var avisoIndenizado = aviso === 'nao' ? salario + (Math.min(Math.floor(anos * 3), 60) * (salario / 30)) : 0;
+  var total = Math.round(feriasVencidas + feriasProporcionais + decimoTerceiro + multa40FGTS + avisoIndenizado);
+  document.getElementById('clt-total').textContent = 'R$ ' + total.toLocaleString('pt-BR', {minimumFractionDigits:2});
+  document.getElementById('clt-detail').innerHTML =
+    'Aviso prévio' + (aviso === 'nao' ? ' indenizado' : ' trabalhado') + ': R$ ' + Math.round(avisoIndenizado).toLocaleString('pt-BR') + '<br>' +
+    'Férias proporcionais + 1/3: R$ ' + Math.round(feriasProporcionais * 1.333).toLocaleString('pt-BR') + '<br>' +
+    '13º proporcional: R$ ' + Math.round(decimoTerceiro).toLocaleString('pt-BR') + '<br>' +
+    'Multa 40% FGTS (estimada): R$ ' + Math.round(multa40FGTS).toLocaleString('pt-BR');
+  document.getElementById('clt-result').classList.add('show');
 }
 
-// ─── CALCULADORA PRESCRIPCIÓN ──────────────────────────────────────────────
-function calcPrescripcion() {
-  var pais = document.getElementById('pres-pais').value;
+function calcPrescricao() {
+  var dataStr = document.getElementById('pres-data').value;
   var tipo = document.getElementById('pres-tipo').value;
-  var fechaStr = document.getElementById('pres-fecha').value;
-  if (!fechaStr) { alert('Selecciona una fecha'); return; }
-  var fecha = new Date(fechaStr);
-  var hoy = new Date();
-  var plazos = {
-    ES: {deuda_civil: 5, laboral: 0.055, consumo: 3, daños: 1, penal: 1},
-    MX: {deuda_civil: 10, laboral: 0.164, consumo: 2, daños: 2, penal: 3},
-    AR: {deuda_civil: 5, laboral: 2, consumo: 3, daños: 3, penal: 2},
-    CO: {deuda_civil: 10, laboral: 3, consumo: 1, daños: 3, penal: 5}
-  };
-  var cfg = plazos[pais] || plazos.ES;
-  var años = cfg[tipo] || 5;
-  var vencimiento = new Date(fecha);
-  vencimiento.setFullYear(vencimiento.getFullYear() + Math.floor(años));
-  if (años % 1 !== 0) {
-    vencimiento.setDate(vencimiento.getDate() + Math.round((años % 1) * 365));
-  }
-  var diffMs = vencimiento - hoy;
-  var diffDias = Math.ceil(diffMs / (1000 * 60 * 60 * 24));
-  var vencido = diffDias < 0;
+  if (!dataStr) { alert('Selecione uma data'); return; }
+  var data = new Date(dataStr);
+  var hoj = new Date();
+  var prazos = {trabalhista: 2, fgts: 30, assedio: 3};
+  var anos = prazos[tipo];
+  var venc = new Date(data); venc.setFullYear(venc.getFullYear() + anos);
+  var diff = Math.ceil((venc - hoj) / (1000 * 60 * 60 * 24));
   var resDiv = document.getElementById('pres-result');
-  var diasEl = document.getElementById('pres-dias');
-  var labelEl = document.getElementById('pres-label');
-  var detailEl = document.getElementById('pres-detail');
-  if (vencido) {
-    diasEl.textContent = '⚠ PLAZO VENCIDO';
-    diasEl.style.color = 'var(--rojo)';
-    labelEl.textContent = 'hace ' + Math.abs(diffDias) + ' días';
-    detailEl.textContent = 'El plazo de prescripción venció el ' + vencimiento.toLocaleDateString('es-ES') + '. En principio ya no puedes reclamar por vía ordinaria. Consulta urgentemente con un abogado si el asunto es importante.';
-  } else {
-    diasEl.textContent = diffDias + ' días';
-    diasEl.style.color = diffDias < 30 ? '#d4830a' : 'var(--azul)';
-    labelEl.textContent = 'quedan hasta ' + vencimiento.toLocaleDateString('es-ES');
-    detailEl.textContent = 'Plazo: ' + años + ' año' + (años !== 1 ? 's' : '') + ' en ' + pais + ' para ' + tipo.replace(/_/g, ' ') + '.';
-  }
+  document.getElementById('pres-dias').textContent = diff < 0 ? '⚠ PRAZO VENCIDO' : diff + ' dias restantes';
+  document.getElementById('pres-dias').style.color = diff < 0 ? 'var(--rojo)' : diff < 60 ? '#d4830a' : 'var(--azul)';
+  document.getElementById('pres-label').textContent = diff < 0 ? 'venceu em ' + venc.toLocaleDateString('pt-BR') : 'até ' + venc.toLocaleDateString('pt-BR');
+  document.getElementById('pres-detail').textContent = 'Prazo: ' + anos + ' ano' + (anos !== 1 ? 's' : '') + ' · Art. ' + (tipo === 'trabalhista' ? '11 CLT' : tipo === 'fgts' ? '23 Lei 8.036/90' : '206 CC');
   resDiv.classList.add('show');
 }
 
-// ─── SERVICE WORKER ──────────────────────────────────────────────────────────
 if ('serviceWorker' in navigator) {
-  window.addEventListener('load', function() {
-    navigator.serviceWorker.register('/cache-worker.js').catch(function(){});
-  });
+  window.addEventListener('load', function() { navigator.serviceWorker.register('/cache-worker.js').catch(function(){}); });
 }
 </script>
 </body>
