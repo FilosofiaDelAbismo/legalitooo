@@ -1605,17 +1605,16 @@ async function sendMsg(){
   var typing=addTyping();
   var systemPrompt='Eres TuAbogaBot, un asistente de información jurídica orientativa. Legislación cubierta: '+selectedCountry+' ('+countryNames[selectedCountry]+'). IMPORTANTE: Siempre recuerda que proporcionas información orientativa de carácter general, NO asesoramiento legal. Nunca crees relación abogado-cliente. Sugiere consultar a un abogado colegiado para decisiones importantes. Sé claro, estructurado y en español. Cita artículos de ley cuando sea relevante.';
   try{
-    var res=await fetch('https://api.anthropic.com/v1/messages',{
+    var res=await fetch('https://api.tuabogabot.io/api/v1/consulta',{
       method:'POST',
       headers:{'Content-Type':'application/json'},
       body:JSON.stringify({
-        model:'claude-sonnet-4-20250514',max_tokens:1000,
-        system:systemPrompt,
-        messages:[{role:'user',content:q+'\n\n[País: '+selectedCountry+' - '+countryNames[selectedCountry]+']'}]
+    pregunta:q,
+    pais:selectedCountry
       })
     });
     var data=await res.json();
-    var text=data.content&&data.content[0]?data.content[0].text:'Lo siento, no pude procesar tu consulta. Inténtalo de nuevo.';
+    var text=data.respuesta||'Lo siento, no pude procesar tu consulta. Inténtalo de nuevo.';
     if(typing)typing.remove();
     addMsg('bot','<p>'+formatMd(text)+'</p>',true);
   }catch(e){
