@@ -1181,9 +1181,9 @@ async function sendMsg(){
   var typing=addTyping();
   var sys='Você é o TuAbogaBot, um assistente de informação jurídica orientativa em português brasileiro. País selecionado: '+selectedCountry+' ('+countryNames[selectedCountry]+'). IMPORTANTE: Forneça informação orientativa de caráter geral, NÃO assessoria jurídica. Nunca crie relação advogado-cliente. Sugira consultar advogado habilitado na OAB para decisões importantes. Seja claro, estruturado e em português brasileiro. Cite artigos de lei quando relevante.';
   try{
-    var res=await fetch('https://api.anthropic.com/v1/messages',{method:'POST',headers:{'Content-Type':'application/json'},body:JSON.stringify({model:'claude-sonnet-4-20250514',max_tokens:1000,system:sys,messages:[{role:'user',content:q+'\n\n[País: '+selectedCountry+' - '+countryNames[selectedCountry]+']'}]})});
+   var res=await fetch('https://api.digiprompts.io/api/chat',{method:'POST',headers:{'Content-Type':'application/json'},body:JSON.stringify({system:sys,messages:[{role:'user',content:q+'\n\n[País: '+selectedCountry+' - '+countryNames[selectedCountry]+']'}]})});
     var data=await res.json();
-    var text=data.content&&data.content[0]?data.content[0].text:'Desculpe, não consegui processar sua consulta. Tente novamente.';
+    var text=data.reply||'Desculpe, não consegui processar sua consulta. Tente novamente.';
     if(typing)typing.remove();
     addMsg('bot','<p>'+formatMd(text)+'</p>',true);
   }catch(e){
