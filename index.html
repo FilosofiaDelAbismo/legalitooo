@@ -1721,43 +1721,5 @@ function calcPrescripcion(){
   document.getElementById('pres-result').classList.add('show');
 }
 </script>
-  <!-- ════ POPUP DISCLAIMER ════ -->
-<div id="disclaimer-popup" style="position:fixed;inset:0;z-index:99999;display:flex;align-items:center;justify-content:center;background:rgba(10,22,40,0.92);backdrop-filter:blur(6px);padding:1.5rem">
-  <div style="background:#fff;max-width:560px;width:100%;border-top:4px solid #d4830a;box-shadow:0 24px 80px rgba(10,22,40,0.4);max-height:90vh;overflow-y:auto">
-    <div style="background:#fdf4e7;border-bottom:1px solid #f0d090;padding:1.2rem 1.5rem;display:flex;align-items:center;gap:0.8rem">
-      <span style="font-size:1.5rem">⚠️</span>
-      <div>
-        <div style="font-family:'DM Mono',monospace;font-size:0.6rem;letter-spacing:0.15em;color:#d4830a;text-transform:uppercase;font-weight:700">Aviso legal importante</div>
-        <div style="font-family:'DM Mono',monospace;font-size:0.55rem;color:#7a4800;margin-top:2px">Léelo antes de continuar</div>
-      </div>
-    </div>
-    <div style="padding:1.8rem 1.5rem">
-      <h2 style="font-family:'Fraunces',serif;font-size:1.4rem;font-weight:300;color:#1a1a2e;margin-bottom:1rem;line-height:1.2">TuAbogaBot proporciona <em style="color:#8b1a1a;font-style:italic">información orientativa</em>, no asesoramiento legal.</h2>
-      <p style="font-size:0.84rem;color:#444;line-height:1.75;margin-bottom:0.8rem">Al usar este servicio confirmas que entiendes que:</p>
-      <ul style="font-size:0.82rem;color:#333;line-height:1.8;padding-left:1.2rem;margin-bottom:1.2rem">
-        <li>Las respuestas son <strong>información general orientativa</strong>, no asesoramiento jurídico profesional.</li>
-        <li>No se crea ninguna <strong>relación abogado-cliente</strong>.</li>
-        <li>Las respuestas se generan mediante <strong>tecnología RAG sobre legislación oficial</strong> (BOE, DOF, Infoleg, Senado...), aunque los textos legales pueden haber sido modificados tras la última actualización del sistema.</li>
-        <li>Para decisiones con consecuencias legales, consulta siempre a un <strong>abogado colegiado habilitado</strong> en tu jurisdicción.</li>
-        <li>TuAbogaBot <strong>no se responsabiliza</strong> de las decisiones tomadas basándose en la información proporcionada.</li>
-      </ul>
-      <div style="background:rgba(139,26,26,0.06);border-left:3px solid #8b1a1a;padding:0.9rem 1rem;margin-bottom:1.5rem">
-        <p style="font-size:0.78rem;color:#5a1a1a;line-height:1.65;margin:0"><strong>En caso de urgencia legal</strong> — detención, desahucio inmediato, plazo judicial inminente — contacta directamente con un abogado o el turno de oficio de tu localidad.</p>
-      </div>
-      <button onclick="document.getElementById('disclaimer-popup').style.display='none';localStorage.setItem('tab_disclaimer_accepted','1')" style="width:100%;background:#009c3b;color:#fff;border:none;padding:1rem;font-family:'DM Sans',sans-serif;font-size:0.92rem;font-weight:600;cursor:pointer;transition:background 0.2s" onmouseover="this.style.background='#00c44a'" onmouseout="this.style.background='#009c3b'">
-        He leído y entendido el aviso — Continuar →
-      </button>
-      <p style="font-family:'DM Mono',monospace;font-size:0.55rem;color:#aaa;text-align:center;margin-top:0.8rem;line-height:1.5">Este aviso se muestra una vez por sesión · TuAbogaBot no es un despacho de abogados</p>
-    </div>
-  </div>
-</div>
-<script>
-(function(){
-  if(localStorage.getItem('tab_disclaimer_accepted')==='1'){
-    var p=document.getElementById('disclaimer-popup');
-    if(p)p.style.display='none';
-  }
-})();
-</script>
 </body>
 </html>
