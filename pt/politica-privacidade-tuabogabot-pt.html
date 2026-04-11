@@ -1,0 +1,320 @@
+<!DOCTYPE html>
+<html lang="pt-BR">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Política de Privacidade e Cookies — TuAbogaBot</title>
+<style>
+  @import url('https://fonts.googleapis.com/css2?family=DM+Sans:wght@300;400;500;600&family=DM+Mono:wght@400;500&display=swap');
+  :root {
+    --accent: #8b5cf6;
+    --accent2: #7c3aed;
+    --bg: #0f0f1a;
+    --surface: rgba(255,255,255,0.04);
+    --border: rgba(255,255,255,0.08);
+    --text: #e2e8f0;
+    --muted: #94a3b8;
+  }
+  *, *::before, *::after { box-sizing: border-box; margin: 0; padding: 0; }
+  body {
+    font-family: 'DM Sans', sans-serif;
+    background: var(--bg);
+    color: var(--text);
+    line-height: 1.7;
+    min-height: 100vh;
+  }
+  .hero {
+    padding: 80px 24px 60px;
+    text-align: center;
+    border-bottom: 1px solid var(--border);
+    position: relative;
+    overflow: hidden;
+  }
+  .hero::before {
+    content: '';
+    position: absolute;
+    top: -100px; left: 50%; transform: translateX(-50%);
+    width: 600px; height: 300px;
+    background: radial-gradient(ellipse, #8b5cf622 0%, transparent 70%);
+    pointer-events: none;
+  }
+  .badge {
+    display: inline-block;
+    font-family: 'DM Mono', monospace;
+    font-size: 11px;
+    letter-spacing: 2px;
+    text-transform: uppercase;
+    color: var(--accent);
+    border: 1px solid #8b5cf644;
+    padding: 4px 12px;
+    border-radius: 20px;
+    margin-bottom: 20px;
+  }
+  h1 {
+    font-size: clamp(28px, 5vw, 48px);
+    font-weight: 600;
+    letter-spacing: -0.02em;
+    margin-bottom: 12px;
+  }
+  .subtitle { color: var(--muted); font-size: 16px; max-width: 480px; margin: 0 auto; }
+  .container { max-width: 760px; margin: 0 auto; padding: 60px 24px 100px; }
+  .section { margin-bottom: 48px; }
+  h2 {
+    font-size: 20px;
+    font-weight: 600;
+    color: var(--accent);
+    margin-bottom: 16px;
+    display: flex;
+    align-items: center;
+    gap: 10px;
+  }
+  h2::before {
+    content: '';
+    display: block;
+    width: 4px; height: 20px;
+    background: var(--accent);
+    border-radius: 2px;
+    flex-shrink: 0;
+  }
+  p { color: var(--muted); margin-bottom: 12px; font-size: 15px; }
+  .table-wrap {
+    overflow-x: auto;
+    border-radius: 12px;
+    border: 1px solid var(--border);
+    margin-top: 16px;
+  }
+  table { width: 100%; border-collapse: collapse; font-size: 14px; }
+  thead tr { background: var(--surface); }
+  th {
+    padding: 12px 16px;
+    text-align: left;
+    font-weight: 500;
+    color: var(--text);
+    font-family: 'DM Mono', monospace;
+    font-size: 12px;
+    letter-spacing: 0.5px;
+    border-bottom: 1px solid var(--border);
+  }
+  td {
+    padding: 12px 16px;
+    color: var(--muted);
+    border-bottom: 1px solid var(--border);
+    vertical-align: top;
+  }
+  tr:last-child td { border-bottom: none; }
+  .tag {
+    display: inline-block;
+    font-family: 'DM Mono', monospace;
+    font-size: 11px;
+    padding: 2px 8px;
+    border-radius: 4px;
+    background: #8b5cf618;
+    color: var(--accent);
+    border: 1px solid #8b5cf633;
+  }
+  .tag.green { background: #10b98118; color: #10b981; border-color: #10b98133; }
+  .tag.red { background: #ef444418; color: #ef4444; border-color: #ef444433; }
+  .tag.yellow { background: #f59e0b18; color: #f59e0b; border-color: #f59e0b33; }
+  .card {
+    background: var(--surface);
+    border: 1px solid var(--border);
+    border-radius: 12px;
+    padding: 20px 24px;
+    margin-top: 16px;
+  }
+  .card p { margin-bottom: 0; }
+  .law-badge {
+    display: inline-flex;
+    align-items: center;
+    gap: 6px;
+    font-family: 'DM Mono', monospace;
+    font-size: 11px;
+    padding: 4px 10px;
+    border-radius: 6px;
+    margin-right: 8px;
+    margin-bottom: 12px;
+  }
+  .law-badge.rgpd { background: #3b82f618; color: #3b82f6; border: 1px solid #3b82f633; }
+  .law-badge.lgpd { background: #10b98118; color: #10b981; border: 1px solid #10b98133; }
+  a { color: var(--accent); text-decoration: none; }
+  a:hover { text-decoration: underline; }
+  .footer {
+    text-align: center;
+    padding: 32px 24px;
+    border-top: 1px solid var(--border);
+    color: var(--muted);
+    font-size: 13px;
+  }
+  .updated {
+    font-family: 'DM Mono', monospace;
+    font-size: 12px;
+    color: var(--muted);
+    margin-top: 8px;
+  }
+</style>
+</head>
+<body>
+
+<div class="hero">
+  <div class="badge">Legal &amp; Privacidade</div>
+  <h1>Política de Privacidade e Cookies</h1>
+  <p class="subtitle">TuAbogaBot &mdash; tuabogabot.io</p>
+  <p class="updated">Última atualização: abril de 2026</p>
+</div>
+
+<div class="container">
+
+  <div class="section">
+    <h2>Âmbito e legislação aplicável</h2>
+    <p>Esta política aplica-se a todos os utilizadores do serviço TuAbogaBot, independentemente da sua localização. Cumprimos as seguintes normativas:</p>
+    <span class="law-badge rgpd">🇪🇺 RGPD — Utilizadores europeus</span>
+    <span class="law-badge lgpd">🇧🇷 LGPD — Utilizadores brasileiros</span>
+    <p>TuAbogaBot é um assistente jurídico virtual com inteligência artificial, operado a partir de Espanha. O serviço tem caráter meramente informativo e <strong>não substitui o aconselhamento de um advogado qualificado</strong>.</p>
+  </div>
+
+  <div class="section">
+    <h2>Dados que recolhemos</h2>
+    <div class="table-wrap">
+      <table>
+        <thead>
+          <tr>
+            <th>Dado</th>
+            <th>Finalidade</th>
+            <th>Base legal</th>
+            <th>Retenção</th>
+          </tr>
+        </thead>
+        <tbody>
+          <tr>
+            <td>Mensagens do chat</td>
+            <td>Fornecer respostas do assistente jurídico</td>
+            <td>Execução do serviço</td>
+            <td>Duração da sessão</td>
+          </tr>
+          <tr>
+            <td>Dados anónimos de navegação</td>
+            <td>Estatísticas de uso (Plausible Analytics)</td>
+            <td>Interesse legítimo</td>
+            <td>13 meses</td>
+          </tr>
+          <tr>
+            <td>Cookies de sessão</td>
+            <td>Manter o contexto da conversa</td>
+            <td>Consentimento</td>
+            <td>Fim da sessão</td>
+          </tr>
+        </tbody>
+      </table>
+    </div>
+    <p style="margin-top:16px">Não recolhemos nem armazenamos dados sensíveis de caráter jurídico de forma permanente. As conversas não são utilizadas para treinar modelos de IA sem consentimento explícito.</p>
+  </div>
+
+  <div class="section">
+    <h2>Cookies que utilizamos</h2>
+    <div class="table-wrap">
+      <table>
+        <thead>
+          <tr>
+            <th>Serviço</th>
+            <th>Tipo</th>
+            <th>Finalidade</th>
+            <th>Cookies</th>
+            <th>Consentimento</th>
+          </tr>
+        </thead>
+        <tbody>
+          <tr>
+            <td><strong>Plausible Analytics</strong></td>
+            <td><span class="tag">Analítica</span></td>
+            <td>Estatísticas anónimas de visitas. Não recolhe dados pessoais.</td>
+            <td>Nenhum</td>
+            <td><span class="tag green">Não necessário</span></td>
+          </tr>
+          <tr>
+            <td><strong>Chatbot TuAbogaBot</strong><br><small>digiprompts.io</small></td>
+            <td><span class="tag">Funcional</span></td>
+            <td>Assistente jurídico virtual. Pode usar cookies de sessão para manter o contexto.</td>
+            <td>Sessão (temporário)</td>
+            <td><span class="tag red">Necessário</span></td>
+          </tr>
+        </tbody>
+      </table>
+    </div>
+  </div>
+
+  <div class="section">
+    <h2>Os seus direitos</h2>
+    <p>Conforme o <strong>RGPD</strong> (utilizadores europeus) e a <strong>LGPD</strong> (utilizadores brasileiros), tem os seguintes direitos sobre os seus dados:</p>
+    <div class="table-wrap">
+      <table>
+        <thead>
+          <tr>
+            <th>Direito</th>
+            <th>RGPD 🇪🇺</th>
+            <th>LGPD 🇧🇷</th>
+          </tr>
+        </thead>
+        <tbody>
+          <tr>
+            <td>Acesso aos dados</td>
+            <td><span class="tag green">✓</span></td>
+            <td><span class="tag green">✓</span></td>
+          </tr>
+          <tr>
+            <td>Retificação</td>
+            <td><span class="tag green">✓</span></td>
+            <td><span class="tag green">✓</span></td>
+          </tr>
+          <tr>
+            <td>Eliminação (direito ao esquecimento)</td>
+            <td><span class="tag green">✓</span></td>
+            <td><span class="tag green">✓</span></td>
+          </tr>
+          <tr>
+            <td>Portabilidade</td>
+            <td><span class="tag green">✓</span></td>
+            <td><span class="tag green">✓</span></td>
+          </tr>
+          <tr>
+            <td>Oposição ao tratamento</td>
+            <td><span class="tag green">✓</span></td>
+            <td><span class="tag green">✓</span></td>
+          </tr>
+          <tr>
+            <td>Retirar consentimento</td>
+            <td><span class="tag green">✓</span></td>
+            <td><span class="tag green">✓</span></td>
+          </tr>
+        </tbody>
+      </table>
+    </div>
+    <div class="card" style="margin-top:16px">
+      <p>📧 Para exercer os seus direitos: <a href="mailto:privacidade@tuabogabot.io">privacidade@tuabogabot.io</a></p>
+    </div>
+  </div>
+
+  <div class="section">
+    <h2>Transferências internacionais de dados</h2>
+    <p>O serviço opera a partir de Espanha (União Europeia). Os dados anónimos de analítica são processados pela Plausible Analytics em servidores dentro da UE. Não realizamos transferências de dados pessoais para países terceiros sem as garantias adequadas.</p>
+    <p>Para utilizadores brasileiros: o tratamento dos seus dados cumpre os princípios da LGPD, incluindo finalidade, adequação, necessidade, livre acesso, qualidade dos dados, transparência, segurança e não discriminação.</p>
+  </div>
+
+  <div class="section">
+    <h2>Gestão do consentimento</h2>
+    <p>Ao aceder pela primeira vez a tuabogabot.io, será apresentado um painel de gestão de cookies onde poderá aceitar, rejeitar ou personalizar os serviços ativados. Pode alterar as suas preferências a qualquer momento clicando em <em>"Preferências de cookies"</em> no rodapé da página.</p>
+  </div>
+
+  <div class="section">
+    <h2>Alterações a esta política</h2>
+    <p>Podemos atualizar esta política ocasionalmente para refletir alterações nos serviços que utilizamos ou na legislação aplicável. A data da última atualização aparece no topo desta página.</p>
+  </div>
+
+</div>
+
+<div class="footer">
+  <p>&copy; 2026 TuAbogaBot &mdash; <a href="/">tuabogabot.io</a></p>
+  <p style="margin-top:8px"><a href="../politica-cookies.html">Política de Cookies (ES)</a></p>
+</div>
+
+</body>
+</html>
