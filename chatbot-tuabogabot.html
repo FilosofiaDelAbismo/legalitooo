@@ -1,0 +1,889 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Chat Jurídico IA Gratis — TuAbogaBot</title>
+<meta name="description" content="Consulta jurídica gratuita con IA. Derecho laboral, civil, penal, familia. España y Latinoamérica. Sin registro, sin límites.">
+<meta name="robots" content="index, follow">
+<link rel="canonical" href="https://tuabogabot.io/chatbot.html">
+<meta property="og:title" content="Chat Jurídico IA — TuAbogaBot">
+<meta property="og:description" content="Asistente jurídico IA gratuito. Consultas legales orientativas para España y 10 países LATAM. Sin registro.">
+<meta property="og:type" content="website">
+<meta property="og:url" content="https://tuabogabot.io/chatbot.html">
+<meta name="twitter:card" content="summary_large_image">
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link rel="preload" as="style"
+  href="https://fonts.googleapis.com/css2?family=Fraunces:ital,opsz,wght@0,9..144,300;0,9..144,400;0,9..144,700;0,9..144,900;1,9..144,300;1,9..144,700&family=DM+Sans:wght@300;400;500;600&family=DM+Mono:wght@400;500&display=swap"
+  onload="this.onload=null;this.rel='stylesheet'">
+<noscript><link href="https://fonts.googleapis.com/css2?family=Fraunces:ital,opsz,wght@0,9..144,300;0,9..144,400;0,9..144,700;0,9..144,900;1,9..144,300;1,9..144,700&family=DM+Sans:wght@300;400;500;600&family=DM+Mono:wght@400;500&display=swap" rel="stylesheet"></noscript>
+<style>
+/* ══════════════════════════════════════════════
+   VARIABLES — PALETA TUABOGABOT
+══════════════════════════════════════════════ */
+:root{
+  /* Fondos */
+  --bg:  #07101e;
+  --bg2: #0a1628;
+  --bg3: #0f1f3d;
+  --bg4: #1a3260;
+  /* Borde */
+  --border:  #132040;
+  --border2: #1e3260;
+  /* Acento dorado */
+  --oro:    #c9a84c;
+  --oro2:   #e8c97a;
+  --oro-bg: rgba(201,168,76,0.07);
+  --oro-bd: rgba(201,168,76,0.22);
+  --oro-glow: 0 0 28px rgba(201,168,76,0.25);
+  /* Texto */
+  --text:  #e8e2d5;
+  --text2: #7a8fa8;
+  --text3: #3a5070;
+  /* Semántico */
+  --verde: #1a7a4a;
+  --rojo:  #8b1a1a;
+  --warn-bg: #fdf4e7;
+  --warn-bd: #d4830a;
+  /* Tipografía */
+  --display:"Fraunces",Georgia,serif;
+  --body:"DM Sans",system-ui,sans-serif;
+  --mono:"DM Mono",monospace;
+}
+
+*,*::before,*::after{box-sizing:border-box;margin:0;padding:0}
+html,body{height:100%;font-family:var(--body);background:var(--bg);color:var(--text);overflow:hidden}
+
+/* Grain overlay */
+body::after{
+  content:'';position:fixed;inset:0;pointer-events:none;z-index:0;opacity:.025;
+  background-image:url("data:image/svg+xml,%3Csvg viewBox='0 0 512 512' xmlns='http://www.w3.org/2000/svg'%3E%3Cfilter id='n'%3E%3CfeTurbulence type='fractalNoise' baseFrequency='.75' numOctaves='4' stitchTiles='stitch'/%3E%3C/filter%3E%3Crect width='100%25' height='100%25' filter='url(%23n)'/%3E%3C/svg%3E");
+  background-size:256px
+}
+
+/* ── NAVBAR ── */
+nav{
+  position:relative;z-index:10;
+  background:rgba(7,16,30,0.97);backdrop-filter:blur(20px);
+  border-bottom:1px solid var(--oro-bd);
+  padding:0 24px;height:60px;
+  display:flex;align-items:center;justify-content:space-between;flex-shrink:0
+}
+.nav-logo{
+  font-family:var(--display);font-size:1.35rem;font-weight:700;
+  color:var(--text);text-decoration:none;letter-spacing:-0.02em;display:flex;align-items:center;gap:6px
+}
+.nav-logo em{color:var(--oro);font-style:italic}
+.nav-links{display:flex;gap:4px;list-style:none}
+.nav-links a{
+  font-family:var(--mono);font-size:10px;font-weight:500;letter-spacing:1px;
+  text-transform:uppercase;color:var(--text2);text-decoration:none;
+  padding:6px 12px;border-radius:4px;transition:all 0.2s
+}
+.nav-links a:hover,.nav-links a.active{color:var(--oro);background:var(--oro-bg)}
+.nav-badge{
+  font-family:var(--mono);font-size:9px;font-weight:700;letter-spacing:1px;
+  text-transform:uppercase;color:var(--verde);
+  background:rgba(26,122,74,0.08);border:1px solid rgba(26,122,74,0.25);
+  padding:4px 12px;border-radius:100px;display:flex;align-items:center;gap:6px
+}
+.nav-badge::before{
+  content:'';width:5px;height:5px;border-radius:50%;
+  background:#2ecc71;box-shadow:0 0 0 2px rgba(46,204,113,0.2);
+  animation:pulse 2s infinite
+}
+@keyframes pulse{0%,100%{opacity:1;transform:scale(1)}50%{opacity:.4;transform:scale(1.6)}}
+
+/* ── HAMBURGER (mobile) ── */
+.hamburger{display:none;flex-direction:column;gap:5px;cursor:pointer;padding:8px;border:none;background:transparent}
+.hamburger span{width:22px;height:2px;background:var(--text2);border-radius:2px;transition:all .3s;display:block}
+.mobile-menu-chat{
+  display:none;position:fixed;top:60px;left:0;right:0;
+  background:rgba(7,16,30,0.99);backdrop-filter:blur(20px);
+  border-bottom:1px solid var(--oro-bd);z-index:199;
+  padding:16px 20px;flex-direction:column;gap:4px
+}
+.mobile-menu-chat.open{display:flex}
+.mobile-menu-chat a{
+  font-family:var(--mono);font-size:11px;font-weight:500;letter-spacing:1px;
+  text-transform:uppercase;color:var(--text2);text-decoration:none;
+  padding:12px 16px;border-radius:6px;transition:all 0.2s
+}
+.mobile-menu-chat a:hover{color:var(--oro);background:var(--oro-bg)}
+@media(max-width:768px){.hamburger{display:flex}.nav-links{display:none}}
+
+/* ══════════════════════════════════════════════
+   APP LAYOUT
+══════════════════════════════════════════════ */
+.app{display:flex;height:calc(100vh - 60px);position:relative;z-index:1}
+
+/* ── SIDEBAR ── */
+.sidebar{
+  width:270px;flex-shrink:0;
+  background:var(--bg2);
+  border-right:1px solid var(--border);
+  display:flex;flex-direction:column;overflow:hidden
+}
+.sidebar-head{padding:20px 16px 14px;border-bottom:1px solid var(--border)}
+.sidebar-title{
+  font-family:var(--mono);font-size:9px;font-weight:700;
+  letter-spacing:2px;text-transform:uppercase;color:var(--text3);margin-bottom:12px
+}
+.new-chat-btn{
+  width:100%;padding:10px 14px;
+  background:var(--oro-bg);border:1px solid var(--oro-bd);
+  color:var(--oro);font-family:var(--mono);font-size:10px;font-weight:700;
+  letter-spacing:1px;text-transform:uppercase;cursor:pointer;
+  transition:all 0.2s;display:flex;align-items:center;gap:8px;
+  border-radius:4px
+}
+.new-chat-btn:hover{background:var(--oro);color:var(--bg);box-shadow:var(--oro-glow)}
+
+/* Country selector in sidebar */
+.sidebar-country{padding:14px 16px;border-bottom:1px solid var(--border)}
+.sidebar-country-label{
+  font-family:var(--mono);font-size:9px;font-weight:700;letter-spacing:2px;
+  text-transform:uppercase;color:var(--text3);margin-bottom:8px;display:block
+}
+.country-grid{display:grid;grid-template-columns:repeat(4,1fr);gap:4px}
+.sb-country-btn{
+  font-family:var(--mono);font-size:9px;letter-spacing:0.05em;
+  padding:5px 2px;border:1px solid var(--border2);
+  background:transparent;color:var(--text3);cursor:pointer;
+  transition:all 0.15s;text-align:center;border-radius:3px
+}
+.sb-country-btn.active,.sb-country-btn:hover{
+  background:var(--bg3);border-color:var(--oro-bd);color:var(--oro)
+}
+
+/* Prompts section */
+.prompts-section{flex:1;overflow-y:auto;padding:14px 16px}
+.prompts-section::-webkit-scrollbar{width:3px}
+.prompts-section::-webkit-scrollbar-thumb{background:var(--border2);border-radius:2px}
+.prompt-group-title{
+  font-family:var(--mono);font-size:9px;font-weight:700;letter-spacing:2px;
+  text-transform:uppercase;color:var(--text3);
+  margin-bottom:6px;margin-top:14px;padding-left:2px
+}
+.prompt-group-title:first-child{margin-top:0}
+.quick-prompt{
+  width:100%;text-align:left;padding:8px 10px;border-radius:4px;
+  border:1px solid transparent;background:transparent;
+  color:var(--text2);font-family:var(--body);font-size:12px;
+  cursor:pointer;transition:all 0.15s;line-height:1.4;
+  display:flex;align-items:flex-start;gap:8px
+}
+.quick-prompt:hover{background:var(--bg3);border-color:var(--border);color:var(--text)}
+.quick-prompt .qp-icon{font-size:13px;flex-shrink:0;margin-top:1px}
+
+/* Sidebar footer */
+.sidebar-footer{padding:12px 16px;border-top:1px solid var(--border)}
+.nl-mini{
+  display:flex;align-items:center;gap:10px;padding:10px 12px;
+  background:linear-gradient(135deg,var(--oro-bg),rgba(26,50,96,0.3));
+  border:1px solid var(--border2);border-radius:6px;text-decoration:none;
+  transition:all 0.2s
+}
+.nl-mini:hover{border-color:var(--oro-bd)}
+.nl-mini-ico{font-size:16px}
+.nl-mini-text{flex:1}
+.nl-mini-name{font-size:12px;font-weight:600;color:var(--text)}
+.nl-mini-sub{font-size:10px;color:var(--text3)}
+.nl-mini-arr{font-size:12px;color:var(--oro)}
+
+/* ══════════════════════════════════════════════
+   CHAT AREA
+══════════════════════════════════════════════ */
+.chat-area{flex:1;display:flex;flex-direction:column;min-width:0}
+
+/* Messages */
+.messages{flex:1;overflow-y:auto;padding:24px;display:flex;flex-direction:column;gap:18px}
+.messages::-webkit-scrollbar{width:3px}
+.messages::-webkit-scrollbar-thumb{background:var(--border2);border-radius:2px}
+
+/* Welcome screen */
+.welcome{
+  display:flex;flex-direction:column;align-items:center;
+  justify-content:center;height:100%;text-align:center;padding:40px 20px
+}
+.welcome-seal{
+  width:72px;height:72px;border-radius:50%;
+  background:linear-gradient(135deg,var(--bg3),var(--bg4));
+  border:1px solid var(--oro-bd);
+  display:flex;align-items:center;justify-content:center;
+  font-family:var(--display);font-size:1.5rem;font-weight:700;color:var(--oro);
+  margin-bottom:22px;box-shadow:var(--oro-glow)
+}
+.welcome h2{
+  font-family:var(--display);font-size:2rem;font-weight:300;
+  letter-spacing:-0.03em;color:var(--text);margin-bottom:8px;line-height:1.1
+}
+.welcome h2 em{font-style:italic;color:var(--oro)}
+.welcome p{font-size:14px;color:var(--text2);max-width:460px;line-height:1.75;margin-bottom:10px}
+.welcome-disclaimer{
+  background:rgba(212,131,10,0.07);border:1px solid rgba(212,131,10,0.2);
+  color:rgba(232,194,122,0.7);font-family:var(--mono);font-size:9px;
+  letter-spacing:0.04em;padding:6px 14px;margin-bottom:28px;
+  max-width:460px;line-height:1.5;text-align:center
+}
+.welcome-chips{display:flex;flex-wrap:wrap;gap:7px;justify-content:center;max-width:580px}
+.chip{
+  padding:7px 13px;background:var(--bg3);
+  border:1px solid var(--border2);
+  font-size:11px;color:var(--text2);cursor:pointer;transition:all 0.2s;
+  font-family:var(--mono);letter-spacing:0.3px;border-radius:3px
+}
+.chip:hover{border-color:var(--oro-bd);color:var(--oro);background:var(--oro-bg)}
+
+/* Messages */
+.msg{display:flex;gap:12px;max-width:820px}
+.msg.user{flex-direction:row-reverse;align-self:flex-end}
+.msg-avatar{
+  width:32px;height:32px;flex-shrink:0;
+  display:flex;align-items:center;justify-content:center;
+  font-family:var(--display);font-size:11px;font-weight:700;border-radius:3px
+}
+.msg.assistant .msg-avatar{
+  background:linear-gradient(135deg,var(--bg3),var(--bg4));
+  border:1px solid var(--oro-bd);color:var(--oro)
+}
+.msg.user .msg-avatar{background:var(--bg3);border:1px solid var(--border2);color:var(--text2);font-family:var(--mono);font-size:9px}
+.msg-content{flex:1}
+.msg-name{
+  font-family:var(--mono);font-size:9px;font-weight:700;letter-spacing:1px;
+  text-transform:uppercase;color:var(--text3);margin-bottom:5px
+}
+.msg.user .msg-name{text-align:right}
+.msg-bubble{padding:13px 16px;font-size:13.5px;line-height:1.7;border-radius:4px}
+.msg.assistant .msg-bubble{
+  background:var(--bg2);border:1px solid var(--border);color:var(--text)
+}
+.msg.user .msg-bubble{
+  background:linear-gradient(135deg,rgba(201,168,76,0.08),rgba(26,50,96,0.5));
+  border:1px solid var(--oro-bd);color:var(--text)
+}
+.msg-bubble p{margin-bottom:9px}
+.msg-bubble p:last-child{margin-bottom:0}
+.msg-bubble strong{color:var(--oro2)}
+.msg-bubble em{color:rgba(232,194,122,0.7);font-style:italic}
+.msg-bubble ul,.msg-bubble ol{padding-left:20px;margin-bottom:9px}
+.msg-bubble li{margin-bottom:4px}
+.msg-bubble code{font-family:var(--mono);font-size:11px;background:var(--bg3);padding:2px 6px;color:var(--oro)}
+.msg-bubble h4,.msg-bubble h3,.msg-bubble h2{color:var(--oro2);margin:10px 0 5px}
+/* Legal disclaimer on bot messages */
+.msg-legal-note{
+  font-family:var(--mono);font-size:9px;color:rgba(212,131,10,0.6);
+  background:rgba(212,131,10,0.05);border-left:2px solid rgba(212,131,10,0.25);
+  padding:5px 9px;margin-top:8px;line-height:1.45
+}
+/* Copy button */
+.msg-actions{display:flex;gap:6px;margin-top:7px}
+.msg-action-btn{
+  padding:4px 10px;background:transparent;border:1px solid var(--border);
+  color:var(--text3);font-size:10px;cursor:pointer;transition:all 0.15s;
+  font-family:var(--mono);border-radius:3px
+}
+.msg-action-btn:hover{border-color:var(--oro-bd);color:var(--oro)}
+
+/* Typing */
+.typing-indicator{
+  display:flex;gap:4px;padding:13px 16px;
+  background:var(--bg2);border:1px solid var(--border);
+  border-radius:4px;width:fit-content
+}
+.typing-dot{
+  width:6px;height:6px;border-radius:50%;
+  background:var(--oro);opacity:0.35;animation:typing 1.2s infinite
+}
+.typing-dot:nth-child(2){animation-delay:0.2s}
+.typing-dot:nth-child(3){animation-delay:0.4s}
+@keyframes typing{0%,60%,100%{opacity:0.35;transform:translateY(0)}30%{opacity:1;transform:translateY(-4px)}}
+
+/* Error */
+.error-bubble{
+  padding:11px 14px;background:rgba(139,26,26,0.08);
+  border:1px solid rgba(139,26,26,0.22);
+  font-size:13px;color:#c06060;border-radius:4px
+}
+
+/* ══════════════════════════════════════════════
+   INPUT AREA
+══════════════════════════════════════════════ */
+.input-area{
+  border-top:1px solid var(--oro-bd);padding:14px 24px;
+  background:rgba(7,16,30,0.98)
+}
+.input-wrap{max-width:820px;margin:0 auto}
+/* Context chips (law areas) */
+.context-chips{display:flex;gap:5px;flex-wrap:wrap;margin-bottom:10px}
+.ctx-chip{
+  padding:4px 10px;background:var(--bg3);border:1px solid var(--border2);
+  font-size:10px;color:var(--text2);cursor:pointer;transition:all 0.15s;
+  font-family:var(--mono);border-radius:3px
+}
+.ctx-chip:hover,.ctx-chip.active{border-color:var(--oro-bd);color:var(--oro);background:var(--oro-bg)}
+.input-row{display:flex;gap:10px;align-items:flex-end}
+.input-box{
+  flex:1;background:var(--bg2);border:1.5px solid var(--border2);
+  border-radius:4px;padding:11px 15px;font-family:var(--body);
+  font-size:13.5px;color:var(--text);resize:none;outline:none;
+  min-height:46px;max-height:150px;transition:border-color 0.2s;line-height:1.5
+}
+.input-box:focus{border-color:var(--oro-bd);box-shadow:0 0 0 3px rgba(201,168,76,0.05)}
+.input-box::placeholder{color:var(--text3)}
+.send-btn{
+  width:44px;height:44px;background:var(--oro);border:none;
+  color:var(--bg);cursor:pointer;display:flex;align-items:center;
+  justify-content:center;font-size:17px;transition:all 0.2s;
+  flex-shrink:0;border-radius:4px;font-weight:700
+}
+.send-btn:hover{background:var(--oro2);transform:translateY(-1px);box-shadow:var(--oro-glow)}
+.send-btn:disabled{opacity:0.35;cursor:not-allowed;transform:none;box-shadow:none}
+.input-meta{
+  display:flex;justify-content:space-between;align-items:center;
+  margin-top:7px;font-family:var(--mono);font-size:9px;
+  font-weight:500;letter-spacing:0.8px;text-transform:uppercase;color:var(--text3)
+}
+.input-meta a{color:var(--text3);text-decoration:none;transition:color 0.2s}
+.input-meta a:hover{color:var(--oro)}
+/* Counter */
+.counter-wrap{display:flex;align-items:center;gap:8px}
+.counter-bar{width:60px;height:2px;background:var(--border2);border-radius:1px;overflow:hidden}
+.counter-fill{height:100%;background:var(--oro);border-radius:1px;transition:width 0.4s ease}
+
+/* ══════════════════════════════════════════════
+   MOBILE SIDEBAR HIDDEN
+══════════════════════════════════════════════ */
+@media(max-width:768px){
+  .sidebar{display:none}
+  .messages{padding:14px}
+  .input-area{padding:10px 14px}
+}
+
+/* ── Disclaimer popup (igual que tuabogabot) ── */
+#disclaimer-popup{
+  position:fixed;inset:0;z-index:99999;
+  display:flex;align-items:center;justify-content:center;
+  background:rgba(7,16,30,0.95);backdrop-filter:blur(8px);padding:1.5rem
+}
+</style>
+</head>
+<body>
+
+<!-- ════ NAV ════ -->
+<nav>
+  <a class="nav-logo" href="index.html">Tu<em>Aboga</em>Bot</a>
+  <ul class="nav-links">
+    <li><a href="index.html">Inicio</a></li>
+    <li><a href="index.html#herramientas">Herramientas</a></li>
+    <li><a href="blog.html">Blog legal</a></li>
+    <li><a href="index.html#paises">Países</a></li>
+    <li><a href="chatbot.html" class="active">Chat IA</a></li>
+  </ul>
+  <div class="nav-badge">⚖️ IA activa · Gratis</div>
+  <button class="hamburger" onclick="document.getElementById('mobileMenuChat').classList.toggle('open')">
+    <span></span><span></span><span></span>
+  </button>
+</nav>
+
+<div class="mobile-menu-chat" id="mobileMenuChat">
+  <a href="index.html">Inicio</a>
+  <a href="index.html#herramientas">Herramientas legales</a>
+  <a href="blog.html">Blog jurídico</a>
+  <a href="index.html#paises">Países</a>
+  <a href="chatbot.html">Chat IA</a>
+</div>
+
+<!-- ════ APP ════ -->
+<div class="app">
+
+  <!-- ── SIDEBAR ── -->
+  <aside class="sidebar">
+    <div class="sidebar-head">
+      <div class="sidebar-title">Consulta</div>
+      <button class="new-chat-btn" onclick="newChat()"><span>✦</span> Nueva consulta</button>
+    </div>
+
+    <!-- Selector de país en sidebar -->
+    <div class="sidebar-country">
+      <span class="sidebar-country-label">País</span>
+      <div class="country-grid" id="sidebarCountries">
+        <button class="sb-country-btn active" onclick="setCountrySidebar(this,'ES')">🇪🇸 ES</button>
+        <button class="sb-country-btn" onclick="setCountrySidebar(this,'MX')">🇲🇽 MX</button>
+        <button class="sb-country-btn" onclick="setCountrySidebar(this,'CO')">🇨🇴 CO</button>
+        <button class="sb-country-btn" onclick="setCountrySidebar(this,'AR')">🇦🇷 AR</button>
+        <button class="sb-country-btn" onclick="setCountrySidebar(this,'CL')">🇨🇱 CL</button>
+        <button class="sb-country-btn" onclick="setCountrySidebar(this,'PE')">🇵🇪 PE</button>
+        <button class="sb-country-btn" onclick="setCountrySidebar(this,'VE')">🇻🇪 VE</button>
+        <button class="sb-country-btn" onclick="setCountrySidebar(this,'EC')">🇪🇨 EC</button>
+        <button class="sb-country-btn" onclick="setCountrySidebar(this,'BO')">🇧🇴 BO</button>
+        <button class="sb-country-btn" onclick="setCountrySidebar(this,'UY')">🇺🇾 UY</button>
+        <button class="sb-country-btn" onclick="setCountrySidebar(this,'BR')">🇧🇷 BR</button>
+      </div>
+    </div>
+
+    <!-- Prompts rápidos -->
+    <div class="prompts-section">
+      <div class="prompt-group-title">Laboral</div>
+      <button class="quick-prompt" onclick="sendQuick(this.dataset.prompt)"
+        data-prompt="¿Cuánto cobro si me despiden con 5 años de antigüedad y un salario de 1.800€? Explica el cálculo paso a paso.">
+        <span class="qp-icon">⚖️</span> Indemnización por despido
+      </button>
+      <button class="quick-prompt" onclick="sendQuick(this.dataset.prompt)"
+        data-prompt="¿Cuánto tiempo tengo para impugnar un despido? ¿Qué pasos debo seguir?">
+        <span class="qp-icon">⏱️</span> Plazo para impugnar despido
+      </button>
+      <button class="quick-prompt" onclick="sendQuick(this.dataset.prompt)"
+        data-prompt="Me han dado de baja médica. ¿Cuáles son mis derechos laborales y cuánto cobra la empresa?">
+        <span class="qp-icon">🏥</span> Baja médica y derechos
+      </button>
+      <button class="quick-prompt" onclick="sendQuick(this.dataset.prompt)"
+        data-prompt="Llevo 3 meses sin cobrar el salario. ¿Qué acciones legales puedo tomar?">
+        <span class="qp-icon">💶</span> Impago de salarios
+      </button>
+
+      <div class="prompt-group-title">Civil &amp; Familia</div>
+      <button class="quick-prompt" onclick="sendQuick(this.dataset.prompt)"
+        data-prompt="¿Cómo puedo reclamar la devolución de la fianza del alquiler? El arrendador se niega a devolvérmela.">
+        <span class="qp-icon">🏠</span> Reclamar fianza alquiler
+      </button>
+      <button class="quick-prompt" onclick="sendQuick(this.dataset.prompt)"
+        data-prompt="¿Cuándo prescribe una deuda de préstamo personal? ¿Puede el banco seguir reclamándome después de años?">
+        <span class="qp-icon">📋</span> Prescripción de deudas
+      </button>
+      <button class="quick-prompt" onclick="sendQuick(this.dataset.prompt)"
+        data-prompt="Voy a divorciarme. ¿Cuáles son las diferencias entre divorcio de mutuo acuerdo y contencioso?">
+        <span class="qp-icon">👨‍👩‍👧</span> Divorcio: tipos y proceso
+      </button>
+      <button class="quick-prompt" onclick="sendQuick(this.dataset.prompt)"
+        data-prompt="Mi padre ha fallecido sin testamento. ¿Cómo funciona la herencia intestada y cuáles son mis derechos?">
+        <span class="qp-icon">📜</span> Herencia sin testamento
+      </button>
+
+      <div class="prompt-group-title">Penal &amp; Consumo</div>
+      <button class="quick-prompt" onclick="sendQuick(this.dataset.prompt)"
+        data-prompt="Me van a detener o me han detenido. ¿Cuáles son mis derechos como detenido?">
+        <span class="qp-icon">🔒</span> Derechos al ser detenido
+      </button>
+      <button class="quick-prompt" onclick="sendQuick(this.dataset.prompt)"
+        data-prompt="Quiero poner una denuncia por estafa. ¿Cómo se hace, qué necesito y cuáles son los plazos?">
+        <span class="qp-icon">⚠️</span> Denuncia por estafa
+      </button>
+      <button class="quick-prompt" onclick="sendQuick(this.dataset.prompt)"
+        data-prompt="Una aerolínea me ha cancelado el vuelo. ¿Cuáles son mis derechos y a cuánta compensación tengo derecho?">
+        <span class="qp-icon">✈️</span> Vuelo cancelado: compensación
+      </button>
+      <button class="quick-prompt" onclick="sendQuick(this.dataset.prompt)"
+        data-prompt="Necesito generar una carta de reclamación formal para enviar a una empresa por un producto defectuoso.">
+        <span class="qp-icon">📧</span> Carta de reclamación
+      </button>
+
+      <div class="prompt-group-title">Administrativo</div>
+      <button class="quick-prompt" onclick="sendQuick(this.dataset.prompt)"
+        data-prompt="Me han puesto una multa de tráfico. ¿Cómo puedo recurrirla y cuáles son los plazos?">
+        <span class="qp-icon">🚗</span> Recurrir multa de tráfico
+      </button>
+      <button class="quick-prompt" onclick="sendQuick(this.dataset.prompt)"
+        data-prompt="Tengo una deuda con Hacienda. ¿Qué opciones tengo: aplazamiento, prescripción, recursos?">
+        <span class="qp-icon">🏛️</span> Deuda con Hacienda
+      </button>
+    </div>
+
+    <div class="sidebar-footer">
+      <a class="nl-mini" href="suscripcion.html" target="_blank">
+        <div class="nl-mini-ico">⚖️</div>
+        <div class="nl-mini-text">
+          <div class="nl-mini-name">Newsletter jurídica</div>
+          <div class="nl-mini-sub">Novedades legales cada semana</div>
+        </div>
+        <div class="nl-mini-arr">→</div>
+      </a>
+    </div>
+  </aside>
+
+  <!-- ── CHAT AREA ── -->
+  <main class="chat-area">
+    <div class="messages" id="messages">
+      <div class="welcome" id="welcome-screen">
+        <div class="welcome-seal">TB</div>
+        <h2>Tu<em>Aboga</em>Bot <br>Asistente Jurídico</h2>
+        <p>Consultas jurídicas orientativas gratuitas. Derecho laboral, civil, penal, familia, consumo y más. España y 10 países latinoamericanos.</p>
+        <div class="welcome-disclaimer">
+          ⚠ AVISO — Información orientativa de carácter general, NO asesoramiento legal profesional. Consulta siempre a un abogado colegiado para decisiones con consecuencias jurídicas.
+        </div>
+        <div class="welcome-chips">
+          <div class="chip" onclick="sendQuick('¿Cuánto cobro si me despiden con 3 años de antigüedad?')">⚖️ Indemnización despido</div>
+          <div class="chip" onclick="sendQuick('¿Cómo reclamo la fianza del alquiler?')">🏠 Fianza alquiler</div>
+          <div class="chip" onclick="sendQuick('¿Cuáles son mis derechos si me detienen?')">🔒 Derechos al detenido</div>
+          <div class="chip" onclick="sendQuick('¿Cuándo prescribe una deuda personal?')">📋 Prescripción deudas</div>
+          <div class="chip" onclick="sendQuick('Vuelo cancelado: ¿qué compensación tengo derecho?')">✈️ Vuelo cancelado</div>
+          <div class="chip" onclick="sendQuick('Quiero divorciarme, ¿qué tipos hay y cómo funciona?')">👨‍👩‍👧 Proceso de divorcio</div>
+          <div class="chip" onclick="sendQuick('Mi padre falleció sin testamento, ¿cómo funciona la herencia?')">📜 Herencia intestada</div>
+          <div class="chip" onclick="sendQuick('Necesito una carta de reclamación formal por producto defectuoso')">📧 Carta de reclamación</div>
+        </div>
+      </div>
+    </div>
+
+    <!-- INPUT -->
+    <div class="input-area">
+      <div class="input-wrap">
+        <div class="context-chips" id="context-chips">
+          <div class="ctx-chip active" data-ctx="laboral" onclick="toggleCtx(this)">⚖️ Laboral</div>
+          <div class="ctx-chip" data-ctx="civil" onclick="toggleCtx(this)">📜 Civil</div>
+          <div class="ctx-chip" data-ctx="penal" onclick="toggleCtx(this)">🔒 Penal</div>
+          <div class="ctx-chip" data-ctx="familia" onclick="toggleCtx(this)">👨‍👩‍👧 Familia</div>
+          <div class="ctx-chip" data-ctx="consumo" onclick="toggleCtx(this)">🛒 Consumo</div>
+          <div class="ctx-chip" data-ctx="administrativo" onclick="toggleCtx(this)">🏛️ Administrativo</div>
+          <div class="ctx-chip" data-ctx="inmobiliario" onclick="toggleCtx(this)">🏠 Inmobiliario</div>
+        </div>
+        <div class="input-row">
+          <textarea class="input-box" id="user-input"
+            placeholder="Escribe tu consulta jurídica… despido, herencia, deuda, contrato..."
+            rows="1"
+            onkeydown="handleKey(event)"
+            oninput="autoResize(this)"></textarea>
+          <button class="send-btn" id="send-btn" onclick="sendMessage()" title="Enviar">→</button>
+        </div>
+        <div class="input-meta">
+          <span>Enter para enviar · Shift+Enter nueva línea</span>
+          <div class="counter-wrap">
+            <span id="counterText">5 consultas gratuitas</span>
+            <div class="counter-bar"><div class="counter-fill" id="counterFill" style="width:100%"></div></div>
+          </div>
+        </div>
+      </div>
+    </div>
+  </main>
+</div>
+
+<!-- ════ DISCLAIMER POPUP ════ -->
+<div id="disclaimer-popup">
+  <div style="background:#0a1628;max-width:540px;width:100%;border-top:3px solid #d4830a;box-shadow:0 24px 80px rgba(0,0,0,0.6);max-height:90vh;overflow-y:auto">
+    <div style="background:rgba(212,131,10,0.1);border-bottom:1px solid rgba(212,131,10,0.2);padding:1.1rem 1.5rem;display:flex;align-items:center;gap:0.8rem">
+      <span style="font-size:1.4rem">⚠️</span>
+      <div>
+        <div style="font-family:'DM Mono',monospace;font-size:0.58rem;letter-spacing:0.15em;color:#d4830a;text-transform:uppercase;font-weight:700">Aviso legal importante</div>
+        <div style="font-family:'DM Mono',monospace;font-size:0.55rem;color:rgba(232,194,122,0.5);margin-top:2px">Léelo antes de continuar</div>
+      </div>
+    </div>
+    <div style="padding:1.7rem 1.5rem">
+      <h2 style="font-family:'Fraunces',serif;font-size:1.35rem;font-weight:300;color:#e8e2d5;margin-bottom:1rem;line-height:1.2">TuAbogaBot proporciona <em style="color:#c9a84c;font-style:italic">información orientativa</em>, no asesoramiento legal.</h2>
+      <ul style="font-size:0.81rem;color:rgba(232,226,213,0.7);line-height:1.8;padding-left:1.2rem;margin-bottom:1.2rem">
+        <li>Las respuestas son <strong style="color:#e8c97a">información general orientativa</strong>, no asesoramiento jurídico profesional.</li>
+        <li>No se crea ninguna <strong style="color:#e8c97a">relación abogado-cliente</strong>.</li>
+        <li>Para decisiones con consecuencias legales, consulta siempre a un <strong style="color:#e8c97a">abogado colegiado habilitado</strong> en tu jurisdicción.</li>
+        <li>TuAbogaBot <strong style="color:#e8c97a">no se responsabiliza</strong> de las decisiones tomadas basándose en la información proporcionada.</li>
+      </ul>
+      <div style="background:rgba(139,26,26,0.12);border-left:2px solid #8b1a1a;padding:0.8rem 1rem;margin-bottom:1.4rem">
+        <p style="font-size:0.77rem;color:#c08080;line-height:1.6;margin:0"><strong>En caso de urgencia legal</strong> — detención, desahucio inmediato, plazo judicial inminente — contacta directamente con un abogado o el turno de oficio de tu localidad.</p>
+      </div>
+      <button
+        onclick="document.getElementById('disclaimer-popup').style.display='none';localStorage.setItem('tab_disclaimer_accepted','1')"
+        style="width:100%;background:#1a7a4a;color:#fff;border:none;padding:0.95rem;font-family:'DM Sans',sans-serif;font-size:0.9rem;font-weight:600;cursor:pointer;transition:background 0.2s"
+        onmouseover="this.style.background='#1fa85e'" onmouseout="this.style.background='#1a7a4a'">
+        He leído y entendido el aviso — Continuar →
+      </button>
+      <p style="font-family:'DM Mono',monospace;font-size:0.53rem;color:rgba(255,255,255,0.2);text-align:center;margin-top:0.8rem;line-height:1.5">Este aviso se muestra una vez por sesión · TuAbogaBot no es un despacho de abogados</p>
+    </div>
+  </div>
+</div>
+
+<script>
+/* ══════════════════════════════════
+   DISCLAIMER — mostrar una vez por sesión
+══════════════════════════════════ */
+(function(){
+  if(localStorage.getItem('tab_disclaimer_accepted')==='1'){
+    var p=document.getElementById('disclaimer-popup');
+    if(p)p.style.display='none';
+  }
+})();
+
+/* ══════════════════════════════════
+   CONFIG
+══════════════════════════════════ */
+var MAX_QUERIES = 5;
+var queryCount  = 0;
+
+var COUNTRY_NAMES = {
+  ES:'España',MX:'México',CO:'Colombia',AR:'Argentina',
+  CL:'Chile',PE:'Perú',VE:'Venezuela',EC:'Ecuador',
+  BO:'Bolivia',UY:'Uruguay',BR:'Brasil'
+};
+
+var AREA_SYSTEMS = {
+  laboral:       'Eres TuAbogaBot, asistente de información jurídica orientativa especializado en DERECHO LABORAL. Cubre: despidos (procedente, improcedente, objetivo), indemnizaciones, finiquitos, bajas médicas, ERTE, nóminas, contratos, horas extra, vacaciones. Legislación del país seleccionado.',
+  civil:         'Eres TuAbogaBot, asistente de información jurídica orientativa especializado en DERECHO CIVIL. Cubre: contratos, deudas, prescripción, arrendamientos, alquileres, fianzas, daños y perjuicios. Legislación del país seleccionado.',
+  penal:         'Eres TuAbogaBot, asistente de información jurídica orientativa especializado en DERECHO PENAL. Cubre: derechos del detenido, delitos comunes, denuncias, plazos penales, procedimiento. SIEMPRE recomienda abogado para situaciones penales urgentes. Legislación del país seleccionado.',
+  familia:       'Eres TuAbogaBot, asistente de información jurídica orientativa especializado en DERECHO DE FAMILIA. Cubre: divorcios, separaciones, custodia, pensiones alimenticias, herencias, testamentos, tutelas. Legislación del país seleccionado.',
+  consumo:       'Eres TuAbogaBot, asistente de información jurídica orientativa especializado en DERECHO DEL CONSUMIDOR. Cubre: garantías, devoluciones, vuelos cancelados, cláusulas abusivas, reclamaciones a empresas, OMIC. Legislación del país seleccionado.',
+  administrativo:'Eres TuAbogaBot, asistente de información jurídica orientativa especializado en DERECHO ADMINISTRATIVO. Cubre: multas, recursos administrativos, deuda tributaria, procedimientos con Hacienda, licencias, sanciones. Legislación del país seleccionado.',
+  inmobiliario:  'Eres TuAbogaBot, asistente de información jurídica orientativa especializado en DERECHO INMOBILIARIO. Cubre: contratos de alquiler, compraventa, hipotecas, comunidades de vecinos, desahucios, reformas. Legislación del país seleccionado.'
+};
+
+var DISCLAIMER_SUFFIX = '\n\n---\n⚠ *Información orientativa · No asesoramiento legal · Consulta a un abogado colegiado para decisiones con consecuencias jurídicas.*';
+
+var chatHistory   = [];
+var activeContext = 'laboral';
+var selectedCountry = 'ES';
+var isProcessing  = false;
+
+/* ══════════════════════════════════
+   COUNTRY SELECTION
+══════════════════════════════════ */
+function setCountrySidebar(btn, code){
+  document.querySelectorAll('.sb-country-btn').forEach(function(b){b.classList.remove('active')});
+  btn.classList.add('active');
+  selectedCountry = code;
+}
+
+/* ══════════════════════════════════
+   CONTEXT CHIPS
+══════════════════════════════════ */
+function toggleCtx(el){
+  document.querySelectorAll('.ctx-chip').forEach(function(c){c.classList.remove('active')});
+  el.classList.add('active');
+  activeContext = el.dataset.ctx;
+}
+
+/* ══════════════════════════════════
+   UI HELPERS
+══════════════════════════════════ */
+function autoResize(el){
+  el.style.height='auto';
+  el.style.height=Math.min(el.scrollHeight,150)+'px';
+}
+function handleKey(e){
+  if(e.key==='Enter'&&!e.shiftKey){e.preventDefault();sendMessage()}
+}
+
+function updateCounter(){
+  var rem = MAX_QUERIES - queryCount;
+  var el  = document.getElementById('counterText');
+  var fill= document.getElementById('counterFill');
+  if(el) el.textContent = rem > 0 ? rem+' consultas gratuitas' : 'Límite alcanzado';
+  if(fill) fill.style.width = Math.max(0,(rem/MAX_QUERIES)*100)+'%';
+}
+
+function newChat(){
+  chatHistory = [];
+  queryCount  = 0;
+  updateCounter();
+  var msgs = document.getElementById('messages');
+  msgs.innerHTML = getWelcomeHTML();
+  attachChipEvents();
+}
+
+function getWelcomeHTML(){
+  return '<div class="welcome" id="welcome-screen">' +
+    '<div class="welcome-seal">TB</div>' +
+    '<h2>Tu<em>Aboga</em>Bot <br>Asistente Jurídico</h2>' +
+    '<p>Consultas jurídicas orientativas gratuitas. España y 10 países latinoamericanos.</p>' +
+    '<div class="welcome-disclaimer">⚠ Información orientativa de carácter general, NO asesoramiento legal profesional.</div>' +
+    '<div class="welcome-chips">' +
+    '<div class="chip" data-prompt="¿Cuánto cobro si me despiden con 3 años de antigüedad?">⚖️ Indemnización despido</div>' +
+    '<div class="chip" data-prompt="¿Cómo reclamo la fianza del alquiler?">🏠 Fianza alquiler</div>' +
+    '<div class="chip" data-prompt="¿Cuáles son mis derechos si me detienen?">🔒 Derechos al detenido</div>' +
+    '<div class="chip" data-prompt="¿Cuándo prescribe una deuda personal?">📋 Prescripción deudas</div>' +
+    '<div class="chip" data-prompt="Vuelo cancelado: ¿qué compensación me corresponde?">✈️ Vuelo cancelado</div>' +
+    '<div class="chip" data-prompt="Quiero divorciarme, ¿qué tipos hay y cómo funciona?">👨‍👩‍👧 Proceso de divorcio</div>' +
+    '</div></div>';
+}
+
+function attachChipEvents(){
+  document.querySelectorAll('.chip[data-prompt]').forEach(function(c){
+    c.addEventListener('click',function(){
+      document.getElementById('user-input').value=this.dataset.prompt;
+      sendMessage();
+    });
+  });
+}
+
+/* ══════════════════════════════════
+   MESSAGES
+══════════════════════════════════ */
+function appendMessage(role, text){
+  var msgs = document.getElementById('messages');
+  var wrapper = document.createElement('div');
+  wrapper.className = 'msg '+role;
+
+  var avatar = document.createElement('div');
+  avatar.className = 'msg-avatar';
+  avatar.textContent = role==='user' ? 'Tú' : 'TB';
+
+  var content = document.createElement('div');
+  content.className = 'msg-content';
+
+  var name = document.createElement('div');
+  name.className = 'msg-name';
+  name.textContent = role==='user' ? 'Tú' : 'TuAbogaBot';
+
+  var bubble = document.createElement('div');
+  bubble.className = 'msg-bubble';
+  bubble.innerHTML = formatText(text.replace(/&/g,'&amp;').replace(/</g,'&lt;').replace(/>/g,'&gt;'));
+
+  // Legal note for bot messages
+  if(role==='assistant'){
+    var note = document.createElement('div');
+    note.className = 'msg-legal-note';
+    note.textContent = '⚠ Información orientativa · No asesoramiento legal · No relación abogado-cliente';
+    bubble.appendChild(note);
+  }
+
+  content.appendChild(name);
+  content.appendChild(bubble);
+
+  if(role==='assistant'){
+    var actions = document.createElement('div');
+    actions.className = 'msg-actions';
+    var copyBtn = document.createElement('button');
+    copyBtn.className = 'msg-action-btn';
+    copyBtn.textContent = 'Copiar';
+    var capturedText = text;
+    copyBtn.addEventListener('click',function(){
+      navigator.clipboard.writeText(capturedText).then(function(){
+        copyBtn.textContent='✓ Copiado';
+        setTimeout(function(){copyBtn.textContent='Copiar'},2000);
+      });
+    });
+    actions.appendChild(copyBtn);
+    content.appendChild(actions);
+  }
+
+  wrapper.appendChild(avatar);
+  wrapper.appendChild(content);
+  msgs.appendChild(wrapper);
+  msgs.scrollTop = msgs.scrollHeight;
+}
+
+function appendTyping(){
+  var msgs = document.getElementById('messages');
+  var id = 'typing_'+Date.now();
+  var div = document.createElement('div');
+  div.className = 'msg assistant';
+  div.id = id;
+  div.innerHTML = '<div class="msg-avatar">TB</div><div class="msg-content"><div class="msg-name">TuAbogaBot</div><div class="typing-indicator"><div class="typing-dot"></div><div class="typing-dot"></div><div class="typing-dot"></div></div></div>';
+  msgs.appendChild(div);
+  msgs.scrollTop = msgs.scrollHeight;
+  return id;
+}
+
+function removeTyping(id){
+  var el = document.getElementById(id);
+  if(el) el.remove();
+}
+
+function appendError(msg){
+  var msgs = document.getElementById('messages');
+  var div = document.createElement('div');
+  div.className = 'msg assistant';
+  div.innerHTML = '<div class="msg-avatar">TB</div><div class="msg-content"><div class="msg-name">TuAbogaBot</div><div class="error-bubble">⚠️ '+(msg||'Error de conexión. Inténtalo de nuevo.')+'</div></div>';
+  msgs.appendChild(div);
+  msgs.scrollTop = msgs.scrollHeight;
+}
+
+function formatText(t){
+  t = t.replace(/\*\*([^*]+)\*\*/g,'<strong>$1</strong>');
+  t = t.replace(/\*([^*\n]+)\*/g,'<em>$1</em>');
+  t = t.replace(/^### (.+)$/gm,'<h4 style="color:var(--oro2);margin:10px 0 5px;font-size:13px;font-family:var(--display);font-weight:400">$1</h4>');
+  t = t.replace(/^## (.+)$/gm,'<h3 style="color:var(--oro2);margin:12px 0 6px;font-family:var(--display);font-weight:300">$1</h3>');
+  t = t.replace(/^# (.+)$/gm,'<h2 style="color:var(--oro2);margin:12px 0 8px;font-family:var(--display);font-weight:300">$1</h2>');
+  t = t.replace(/^---$/gm,'<hr style="border:none;border-top:1px solid var(--border2);margin:10px 0">');
+  t = t.replace(/^- (.+)$/gm,'<li style="margin-bottom:3px">$1</li>');
+  t = t.replace(/\n\n/g,'</p><p style="margin-bottom:8px">');
+  t = t.replace(/\n/g,'<br>');
+  return '<p style="margin-bottom:8px">'+t+'</p>';
+}
+
+/* ══════════════════════════════════
+   SEND MESSAGE — Anthropic API
+══════════════════════════════════ */
+function sendQuick(prompt){
+  document.getElementById('user-input').value = prompt;
+  sendMessage();
+}
+
+function sendMessage(){
+  if(isProcessing) return;
+
+  if(queryCount >= MAX_QUERIES){
+    appendError('Has alcanzado el límite de '+MAX_QUERIES+' consultas gratuitas por hoy. Regresa mañana o accede a un plan de pago.');
+    return;
+  }
+
+  var input = document.getElementById('user-input');
+  var userText = input.value.trim();
+  if(!userText) return;
+
+  var welcome = document.getElementById('welcome-screen');
+  if(welcome) welcome.remove();
+
+  appendMessage('user', userText);
+  input.value='';
+  input.style.height='auto';
+
+  chatHistory.push({role:'user', content: userText+'\n\n[País: '+selectedCountry+' - '+COUNTRY_NAMES[selectedCountry]+']'});
+  queryCount++;
+  updateCounter();
+
+  isProcessing = true;
+  var btn = document.getElementById('send-btn');
+  btn.disabled = true;
+  btn.textContent = '⏳';
+
+  var typingId = appendTyping();
+
+  var systemPrompt = (AREA_SYSTEMS[activeContext] || AREA_SYSTEMS.laboral) +
+    ' Legislación cubierta para '+COUNTRY_NAMES[selectedCountry]+'. ' +
+    'IMPORTANTE: Siempre aclara que proporcionas información orientativa, no asesoramiento legal. '+
+    'No crees relación abogado-cliente. Sugiere consultar a un abogado colegiado para decisiones importantes. '+
+    'Sé claro, estructurado y en español. Cita artículos de ley cuando sea relevante. Usa markdown para estructurar.';
+
+  fetch('https://api.anthropic.com/v1/messages', {
+    method:'POST',
+    headers:{'Content-Type':'application/json'},
+    body:JSON.stringify({
+      model:'claude-sonnet-4-20250514',
+      max_tokens:1000,
+      system: systemPrompt,
+      messages: chatHistory
+    })
+  })
+  .then(function(response){
+    removeTyping(typingId);
+    if(!response.ok){
+      var errorMsg='Error de conexión con el servidor.';
+      if(response.status===429) errorMsg='Límite de uso alcanzado. Vuelve en unos minutos.';
+      if(response.status===529) errorMsg='Servicio ocupado. Inténtalo en unos segundos.';
+      if(response.status===403) errorMsg='Acceso denegado. Recarga la página.';
+      throw new Error(errorMsg);
+    }
+    return response.json();
+  })
+  .then(function(data){
+    var replyText = '';
+    if(data.content && data.content.length > 0){
+      replyText = data.content[0].text || '';
+    }
+    if(!replyText) throw new Error('Respuesta vacía. Inténtalo de nuevo.');
+    chatHistory.push({role:'assistant', content:replyText});
+    appendMessage('assistant', replyText);
+  })
+  .catch(function(error){
+    removeTyping(typingId);
+    appendError(error.message);
+  })
+  .finally(function(){
+    isProcessing = false;
+    btn.disabled = false;
+    btn.textContent = '→';
+  });
+}
+
+window.addEventListener('load', function(){
+  attachChipEvents();
+});
+</script>
+</body>
+</html>
