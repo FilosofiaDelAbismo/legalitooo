@@ -748,7 +748,7 @@ footer{background:#04090f;color:rgba(255,255,255,0.35);padding:4rem 2rem}
   </div>
   <div class="hero-stats" aria-label="Estadísticas del servicio">
     <div class="hero-stat"><span class="n">11</span><span class="l">países cubiertos</span></div>
-    <div class="hero-stat"><span class="n">3</span><span class="l">áreas del derecho</span></div>
+    <div class="hero-stat"><span class="n">8</span><span class="l">áreas del derecho</span></div>
     <div class="hero-stat"><span class="n">500M+</span><span class="l">hispanohablantes</span></div>
     <div class="hero-stat"><span class="n">24/7</span><span class="l">disponibilidad</span></div>
     <div class="hero-stat"><span class="n">0€</span><span class="l">para empezar</span></div>
@@ -1040,12 +1040,6 @@ footer{background:#04090f;color:rgba(255,255,255,0.35);padding:4rem 2rem}
         <div class="area-keywords"><span class="area-kw">herencia</span><span class="area-kw">contrato</span><span class="area-kw">deuda</span><span class="area-kw">daños</span></div>
         <span class="area-cta">Consultar sobre civil →</span>
       </div>
-      <!-- BEGIN AADS AD UNIT 2433993 -->
-      <div id="aads-wrapper" style="display:none;background:var(--blanco);padding:0;overflow:hidden;align-items:center;justify-content:center;">
-        <iframe data-aa='2433993' src='//acceptable.a-ads.com/2433993/?size=Adaptive'
-          style='border:0;padding:0;width:70%;height:auto;overflow:hidden;display:block;margin:auto'></iframe>
-      </div>
-      <!-- END AADS AD UNIT 2433993 -->
     </div>
   </section>
 </div>
@@ -1709,7 +1703,7 @@ function calcPrescripcion(){
       <div style="background:rgba(139,26,26,0.06);border-left:3px solid #8b1a1a;padding:0.9rem 1rem;margin-bottom:1.5rem">
         <p style="font-size:0.78rem;color:#5a1a1a;line-height:1.65;margin:0"><strong>En caso de urgencia legal</strong> — detención, desahucio inmediato, plazo judicial inminente — contacta directamente con un abogado o el turno de oficio de tu localidad.</p>
       </div>
-      <button onclick="document.getElementById('disclaimer-popup').style.display='none';localStorage.setItem('tab_disclaimer_accepted','1');var b=document.getElementById('aads-wrapper');if(b)b.style.display='flex';" style="width:100%;background:#009c3b;color:#fff;border:none;padding:1rem;font-family:'DM Sans',sans-serif;font-size:0.92rem;font-weight:600;cursor:pointer;transition:background 0.2s" onmouseover="this.style.background='#00c44a'" onmouseout="this.style.background='#009c3b'">
+      <button onclick="document.getElementById('disclaimer-popup').style.display='none';localStorage.setItem('tab_disclaimer_accepted','1')" style="width:100%;background:#009c3b;color:#fff;border:none;padding:1rem;font-family:'DM Sans',sans-serif;font-size:0.92rem;font-weight:600;cursor:pointer;transition:background 0.2s" onmouseover="this.style.background='#00c44a'" onmouseout="this.style.background='#009c3b'">
         He leído y entendido el aviso — Continuar →
       </button>
       <p style="font-family:'DM Mono',monospace;font-size:0.55rem;color:#aaa;text-align:center;margin-top:0.8rem;line-height:1.5">Este aviso se muestra una vez por sesión · TuAbogaBot no es un despacho de abogados</p>
@@ -1721,8 +1715,6 @@ function calcPrescripcion(){
   if(localStorage.getItem('tab_disclaimer_accepted')==='1'){
     var p=document.getElementById('disclaimer-popup');
     if(p)p.style.display='none';
-    var b=document.getElementById('aads-wrapper');
-    if(b)b.style.display='flex';
   }
 })();
 </script>
