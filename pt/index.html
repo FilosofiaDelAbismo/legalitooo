@@ -1301,6 +1301,7 @@ var DAY_KEY='tab_count_'+new Date().toISOString().slice(0,10);
 var queryCount=parseInt(localStorage.getItem(DAY_KEY)||'0',10);
 var selectedCountry='BR';
 var countryNames={BR:'Brasil',ES:'Espanha',MX:'México',CO:'Colômbia',AR:'Argentina',CL:'Chile',PE:'Peru',VE:'Venezuela',EC:'Equador',BO:'Bolívia',UY:'Uruguai'};
+function getSessionId(){var k='tab_sid',id=localStorage.getItem(k);if(!id){id='sess_'+Math.random().toString(36).substr(2,9)+'_'+Date.now();localStorage.setItem(k,id)}return id}
 
 function setCountry(btn,code){
   document.querySelectorAll('.country-btn').forEach(function(b){b.classList.remove('active')});
@@ -1343,10 +1344,12 @@ async function sendMsg(){
   var typing=addTyping();
   var sys='Você é o TuAbogaBot, um assistente de informação jurídica orientativa em português brasileiro. País selecionado: '+selectedCountry+' ('+countryNames[selectedCountry]+'). IMPORTANTE: Forneça informação orientativa de caráter geral, NÃO assessoria jurídica. Nunca crie relação advogado-cliente. Sugira consultar advogado habilitado na OAB para decisões importantes. Seja claro, estruturado e em português brasileiro. Cite artigos de lei quando relevante.';
   try{
-    var res=await fetch('https://api.digiprompts.io/api/chat',{method:'POST',headers:{'Content-Type':'application/json'},body:JSON.stringify({system:sys,messages:[{role:'user',content:q+'\n\n[País: '+selectedCountry+' - '+countryNames[selectedCountry]+']'}]})});
+    var res=await fetch('https://api.tuabogabot.io/api/v1/consulta',{method:'POST',headers:{'Content-Type':'application/json'},body:JSON.stringify({pregunta:q,pais:selectedCountry,session_id:getSessionId()})});
     var data=await res.json();
-    var text=data.reply||'Desculpe, não consegui processar sua consulta. Tente novamente.';
     if(typing)typing.remove();
+    if(!res.ok){addMsg('bot','<p>'+formatMd((data&&(data.mensaje||data.error))||'Desculpe, não consegui processar sua consulta. Tente novamente.')+'</p>',false);return}
+    var text=data.respuesta||'Desculpe, não consegui processar sua consulta. Tente novamente.';
+    if(data.fuentes&&data.fuentes.length){text+='\n\n**Fontes citadas:** '+data.fuentes.join(', ');}
     addMsg('bot','<p>'+formatMd(text)+'</p>',true);
   }catch(e){
     if(typing)typing.remove();

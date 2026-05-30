@@ -1730,17 +1730,23 @@ async function sendMsg(){
   var typing=addTyping();
   var systemPrompt='Eres TuAbogaBot, un asistente de información jurídica orientativa. Legislación cubierta: '+selectedCountry+' ('+countryNames[selectedCountry]+'). IMPORTANTE: Siempre recuerda que proporcionas información orientativa de carácter general, NO asesoramiento legal. Nunca crees relación abogado-cliente. Sugiere consultar a un abogado colegiado para decisiones importantes. Sé claro, estructurado y en español. Cita artículos de ley cuando sea relevante.';
   try{
-    var res=await fetch('https://api.digiprompts.io/api/chat',{
+    var res=await fetch('https://api.tuabogabot.io/api/v1/consulta',{
       method:'POST',
       headers:{'Content-Type':'application/json'},
       body:JSON.stringify({
-        system:systemPrompt,
-        messages:[{role:'user',content:q+'\n\n[País: '+selectedCountry+' - '+countryNames[selectedCountry]+']'}]
+        pregunta:q,
+        pais:selectedCountry,
+        session_id:getSessionId()
       })
     });
     var data=await res.json();
-    var text=data.reply||'Lo siento, no pude procesar tu consulta. Inténtalo de nuevo.';
     if(typing)typing.remove();
+    if(!res.ok){
+      addMsg('bot','<p>'+formatMd((data&&(data.mensaje||data.error))||'Lo siento, no pude procesar tu consulta. Inténtalo de nuevo.')+'</p>',false);
+      return;
+    }
+    var text=data.respuesta||'Lo siento, no pude procesar tu consulta. Inténtalo de nuevo.';
+    if(data.fuentes&&data.fuentes.length){text+='\n\n**Fuentes citadas:** '+data.fuentes.join(', ');}
     addMsg('bot','<p>'+formatMd(text)+'</p>',true);
   }catch(e){
     if(typing)typing.remove();
