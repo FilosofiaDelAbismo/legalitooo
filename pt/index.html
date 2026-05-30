@@ -12,6 +12,10 @@
 <meta charset="UTF-8">
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
 <title>TuAbogaBot Brasil — Assistente Jurídico com IA · Brasil e América Latina</title>
+<link rel="icon" type="image/svg+xml" href="/favicon.svg">
+<link rel="icon" type="image/png" sizes="32x32" href="/favicon-32x32.png">
+<link rel="icon" type="image/png" sizes="16x16" href="/favicon-16x16.png">
+<link rel="apple-touch-icon" sizes="180x180" href="/apple-touch-icon.png">
 <meta name="description" content="Informação jurídica orientativa gratuita com IA para Brasil, México, Colômbia, Argentina e mais 7 países. Chatbot jurídico 24/7. Sem cadastro. Calculadoras legais gratuitas.">
 <meta name="keywords" content="assistente juridico IA, consulta juridica gratis brasil, chatbot advogado, calculadora rescisão, prescrição divida, direito trabalhista CLT, advogado online gratis, informação legal brasil">
 <meta name="author" content="TuAbogaBot">
@@ -1136,22 +1140,6 @@ footer{background:#04090f;color:rgba(255,255,255,0.35);padding:4rem 2rem}
         </ul>
         <div class="plan-cta"><a href="#consulta" class="plan-btn verde">Em breve</a></div>
       </div>
-      <div class="plan-card reveal">
-        <div class="plan-header">
-          <div class="plan-name">Escritórios</div>
-          <div class="plan-price">799<sup>R$</sup><span>/mês</span></div>
-          <div class="plan-desc">Para escritórios e OAB</div>
-        </div>
-        <ul class="plan-features">
-          <li><span class="check">✓</span>Multi-usuário</li>
-          <li><span class="check">✓</span>API privada</li>
-          <li><span class="check">✓</span>Base de conhecimento customizável</li>
-          <li><span class="check">✓</span>Sem rate limit</li>
-          <li><span class="check">✓</span>SLA 99.9%</li>
-          <li><span class="check">✓</span>Suporte prioritário</li>
-        </ul>
-        <div class="plan-cta"><a href="mailto:ola@tuabogabot.io" class="plan-btn primary">Contatar →</a></div>
-      </div>
     </div>
   </section>
 </div>
@@ -1308,7 +1296,9 @@ function toggleMenu(){
 var ro=new IntersectionObserver(function(entries){entries.forEach(function(e){if(e.isIntersecting){e.target.classList.add('visible');ro.unobserve(e.target)}})},{threshold:0.1,rootMargin:'0px 0px -40px 0px'});
 document.querySelectorAll('.reveal').forEach(function(el){ro.observe(el)});
 
-var MAX_Q=5,queryCount=0;
+var MAX_Q=5;
+var DAY_KEY='tab_count_'+new Date().toISOString().slice(0,10);
+var queryCount=parseInt(localStorage.getItem(DAY_KEY)||'0',10);
 var selectedCountry='BR';
 var countryNames={BR:'Brasil',ES:'Espanha',MX:'México',CO:'Colômbia',AR:'Argentina',CL:'Chile',PE:'Peru',VE:'Venezuela',EC:'Equador',BO:'Bolívia',UY:'Uruguai'};
 
@@ -1322,6 +1312,7 @@ function updateCounter(){
   if(el)el.textContent=(rem>0?rem+' consultas gratuitas disponíveis hoje':'Limite diário atingido · Volte amanhã');
   if(fill)fill.style.width=Math.max(0,(rem/MAX_Q)*100)+'%';
 }
+updateCounter();
 function addMsg(role,html,disc){
   var body=document.getElementById('chatBody');if(!body)return;
   var div=document.createElement('div');div.className='chat-msg '+role;
@@ -1348,7 +1339,7 @@ async function sendMsg(){
   var q=input.value.trim();if(!q)return;
   if(queryCount>=MAX_Q){addMsg('bot','<p>Você atingiu o limite de <strong>5 consultas gratuitas</strong> por hoje. Volte amanhã ou acesse um plano pago.</p>',false);return}
   input.value='';input.style.height='auto';
-  addMsg('user',q,false);queryCount++;updateCounter();
+  addMsg('user',q,false);queryCount++;localStorage.setItem(DAY_KEY,queryCount);updateCounter();
   var typing=addTyping();
   var sys='Você é o TuAbogaBot, um assistente de informação jurídica orientativa em português brasileiro. País selecionado: '+selectedCountry+' ('+countryNames[selectedCountry]+'). IMPORTANTE: Forneça informação orientativa de caráter geral, NÃO assessoria jurídica. Nunca crie relação advogado-cliente. Sugira consultar advogado habilitado na OAB para decisões importantes. Seja claro, estruturado e em português brasileiro. Cite artigos de lei quando relevante.';
   try{

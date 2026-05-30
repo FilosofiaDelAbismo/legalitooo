@@ -11,6 +11,10 @@
 <meta charset="UTF-8">
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
 <title>TuAbogaBot — Asistente Jurídico con IA · España y Latinoamérica</title>
+<link rel="icon" type="image/svg+xml" href="/favicon.svg">
+<link rel="icon" type="image/png" sizes="32x32" href="/favicon-32x32.png">
+<link rel="icon" type="image/png" sizes="16x16" href="/favicon-16x16.png">
+<link rel="apple-touch-icon" sizes="180x180" href="/apple-touch-icon.png">
 <meta name="description" content="Información jurídica orientativa gratuita con IA para España, México, Colombia, Argentina, Chile, Perú y 5 países más. Chatbot legal 24/7. Sin registro. Calculadoras legales gratis.">
 <meta name="keywords" content="asistente legal IA, consulta jurídica gratis, chatbot abogado, calculadora despido, prescripción deuda, derecho laboral España, abogado online gratis, información legal latinoamerica">
 <meta name="author" content="TuAbogaBot">
@@ -1449,22 +1453,6 @@ footer{background:#04090f;color:rgba(255,255,255,0.35);padding:4rem 2rem}
         </ul>
         <div class="plan-cta"><a href="#consulta" class="plan-btn gold">Próximamente</a></div>
       </div>
-      <div class="plan-card reveal">
-        <div class="plan-header">
-          <div class="plan-name">Despachos</div>
-          <div class="plan-price">149<sup>€</sup><span>/mes</span></div>
-          <div class="plan-desc">Para bufetes y colegios de abogados</div>
-        </div>
-        <ul class="plan-features">
-          <li><span class="check">✓</span>Multi-usuario</li>
-          <li><span class="check">✓</span>API privada</li>
-          <li><span class="check">✓</span>Base de conocimiento personalizable</li>
-          <li><span class="check">✓</span>Sin rate limit</li>
-          <li><span class="check">✓</span>SLA 99.9%</li>
-          <li><span class="check">✓</span>Soporte prioritario</li>
-        </ul>
-        <div class="plan-cta"><a href="/cdn-cgi/l/email-protection#553d3a393415212034373a3234373a217b3c3a" class="plan-btn primary">Contactar →</a></div>
-      </div>
     </div>
   </section>
 </div>
@@ -1555,7 +1543,7 @@ footer{background:#04090f;color:rgba(255,255,255,0.35);padding:4rem 2rem}
         <details class="faq-item" itemscope itemtype="https://schema.org/Question">
           <summary class="faq-q" itemprop="name">¿Puedo usar TuAbogaBot como abogado?</summary>
           <div class="faq-a" itemscope itemtype="https://schema.org/Answer" itemprop="acceptedAnswer">
-            <p itemprop="text">Los abogados pueden usar el plan Despachos para investigación legal, primer contacto con clientes o referencia rápida de legislación comparada. Sin embargo, la información proporcionada sigue siendo orientativa y el profesional debe verificar y complementar con su propio análisis jurídico.</p>
+            <p itemprop="text">Los abogados pueden usar TuAbogaBot para investigación legal, primer contacto con clientes o referencia rápida de legislación comparada. Sin embargo, la información proporcionada sigue siendo orientativa y el profesional debe verificar y complementar con su propio análisis jurídico.</p>
           </div>
         </details>
       </div>
@@ -1648,7 +1636,8 @@ document.querySelectorAll('.reveal').forEach(function(el){ro.observe(el)});
 
 // ─── COUNTER ───
 var MAX_QUERIES=5;
-var queryCount=0;
+var DAY_KEY='tab_count_'+new Date().toISOString().slice(0,10);
+var queryCount=parseInt(localStorage.getItem(DAY_KEY)||'0',10);
 function updateCounter(){
   var rem=MAX_QUERIES-queryCount;
   var el=document.getElementById('counterText');
@@ -1656,6 +1645,7 @@ function updateCounter(){
   if(el)el.textContent=(rem>0?rem+' consultas gratuitas disponibles hoy':'Límite diario alcanzado · Regresa mañana');
   if(fill)fill.style.width=Math.max(0,(rem/MAX_QUERIES)*100)+'%';
 }
+updateCounter();
 
 // ─── COUNTRY SELECTION ───
 var selectedCountry='ES';
@@ -1736,7 +1726,7 @@ async function sendMsg(){
   }
   input.value='';input.style.height='auto';
   addMsg('user',q,false);
-  queryCount++;updateCounter();
+  queryCount++;localStorage.setItem(DAY_KEY,queryCount);updateCounter();
   var typing=addTyping();
   var systemPrompt='Eres TuAbogaBot, un asistente de información jurídica orientativa. Legislación cubierta: '+selectedCountry+' ('+countryNames[selectedCountry]+'). IMPORTANTE: Siempre recuerda que proporcionas información orientativa de carácter general, NO asesoramiento legal. Nunca crees relación abogado-cliente. Sugiere consultar a un abogado colegiado para decisiones importantes. Sé claro, estructurado y en español. Cita artículos de ley cuando sea relevante.';
   try{
