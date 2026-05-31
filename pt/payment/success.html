@@ -1,0 +1,92 @@
+<!DOCTYPE html>
+<html lang="pt-BR">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Pagamento recebido — TuAbogaBot</title>
+<meta name="robots" content="noindex,nofollow">
+<style>
+:root{
+  --bg:#0e0f12; --card:#1a1d23; --text:#e8eaee; --muted:#9aa1ad;
+  --accent:#4cb780; --accent-2:#3ca070; --border:#2a2e36;
+}
+*{box-sizing:border-box}
+body{margin:0;min-height:100vh;background:var(--bg);color:var(--text);
+  font-family:-apple-system,BlinkMacSystemFont,"Segoe UI",Roboto,sans-serif;
+  display:flex;align-items:center;justify-content:center;padding:24px}
+.card{max-width:560px;width:100%;background:var(--card);border:1px solid var(--border);
+  border-radius:12px;padding:40px 32px;text-align:center;box-shadow:0 8px 24px rgba(0,0,0,.3)}
+.icon{width:72px;height:72px;margin:0 auto 24px;border-radius:50%;background:var(--accent);
+  display:flex;align-items:center;justify-content:center;font-size:36px;color:#fff}
+h1{margin:0 0 12px;font-size:28px;font-weight:600}
+p{color:var(--muted);line-height:1.6;margin:0 0 16px}
+.step{background:rgba(76,183,128,.08);border:1px solid rgba(76,183,128,.25);
+  border-radius:8px;padding:16px;margin:16px 0;text-align:left}
+.step strong{color:var(--text);display:block;margin-bottom:6px}
+.form-row{margin:16px 0;text-align:left}
+.form-row label{display:block;font-size:13px;color:var(--muted);margin-bottom:6px}
+input[type=email]{width:100%;padding:12px 14px;background:#0e0f12;border:1px solid var(--border);
+  border-radius:8px;color:var(--text);font-size:15px;font-family:inherit}
+input[type=email]:focus{outline:none;border-color:var(--accent)}
+.btn{display:inline-block;margin:8px 4px 0;padding:12px 28px;background:var(--accent);
+  color:#fff;text-decoration:none;border-radius:8px;font-weight:500;border:none;
+  cursor:pointer;font-size:15px;font-family:inherit;transition:background .2s}
+.btn:hover{background:var(--accent-2)}
+.btn-secondary{background:transparent;border:1px solid var(--border);color:var(--text)}
+.btn-secondary:hover{background:var(--border)}
+.session{font-size:11px;color:var(--muted);margin-top:24px;word-break:break-all;opacity:.7}
+.status{margin:14px 0;padding:12px;border-radius:6px;display:none;font-size:14px}
+.status.ok{background:rgba(76,183,128,.12);border:1px solid rgba(76,183,128,.3);color:#9be0bb;display:block}
+.status.warn{background:rgba(200,160,77,.12);border:1px solid rgba(200,160,77,.3);color:#dcc294;display:block}
+.status.err{background:rgba(200,77,77,.12);border:1px solid rgba(200,77,77,.3);color:#e0a0a0;display:block}
+.footer{margin-top:28px;font-size:12px;color:var(--muted)}
+.footer a{color:var(--accent);text-decoration:none}
+</style>
+</head>
+<body>
+<div class="card">
+  <div class="icon">✓</div>
+  <h1>Pagamento recebido</h1>
+  <p>Sua assinatura do plano <strong style="color:var(--text)">Básico</strong> foi processada com sucesso.</p>
+  <div class="step">
+    <strong>Ative sua conta no chat</strong>
+    Para que o site te reconheça como assinante nas próximas consultas, informe abaixo o mesmo email com o qual pagou. Vamos guardá-lo neste navegador.
+  </div>
+  <div class="form-row">
+    <label for="email">Email do pagamento</label>
+    <input type="email" id="email" placeholder="seu-email@exemplo.com" autocomplete="email">
+  </div>
+  <div id="status" class="status"></div>
+  <button class="btn" id="activarBtn" onclick="activar()">Ativar minha conta →</button>
+  <a href="https://tuabogabot.io/pt/" class="btn btn-secondary">Voltar ao chat</a>
+  <div class="session" id="sessionInfo"></div>
+  <div class="footer">Alguma coisa não bate? Escreva-nos para <a href="mailto:soporte@tuabogabot.io">soporte@tuabogabot.io</a>.</div>
+</div>
+<script>
+(function(){
+  var params=new URLSearchParams(location.search);
+  var sessionId=params.get('session_id')||'';
+  if(sessionId){document.getElementById('sessionInfo').textContent='Referência: '+sessionId.substring(0,30)+'…';}
+})();
+function setStatus(kind,msg){var el=document.getElementById('status');el.className='status '+kind;el.textContent=msg;}
+async function activar(){
+  var em=(document.getElementById('email').value||'').trim().toLowerCase();
+  if(!em||!/^[^@\s]+@[^@\s]+\.[^@\s]+$/.test(em)){setStatus('err','Informe um email válido.');return;}
+  setStatus('warn','Verificando com o Stripe…');
+  try{
+    var r=await fetch('https://api.tuabogabot.io/api/v1/subscription?email='+encodeURIComponent(em),{method:'GET'});
+    var d=await r.json();
+    if(d && d.activa){
+      try{localStorage.setItem('tab_subscriber_email',em);}catch(e){}
+      setStatus('ok','Conta ativada. Plano '+(d.plan||'básico')+' · você já tem consultas ampliadas. Clique em "Voltar ao chat" acima.');
+      document.getElementById('activarBtn').textContent='✓ Conta ativada';
+      document.getElementById('activarBtn').disabled=true;
+    }else{
+      setStatus('warn','Não encontramos assinatura ativa para este email. Se você acaba de pagar, aguarde 30 segundos e tente novamente — o Stripe nos notifica quase instantaneamente. Se persistir, escreva-nos.');
+    }
+  }catch(e){setStatus('err','Erro de conexão: '+(e.message||e));}
+}
+try{var saved=localStorage.getItem('tab_subscriber_email')||'';if(saved){document.getElementById('email').value=saved;}}catch(e){}
+</script>
+</body>
+</html>
