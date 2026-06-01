@@ -1325,28 +1325,40 @@ window.currentPlan='free';
 function updateCounter(){
   var plan=window.currentPlan||'free';
   var el=document.getElementById('counterText'),fill=document.getElementById('counterFill');
-  if(plan==='basico'){
-    if(el)el.textContent='Plano Básico · 30 consultas/dia';
-    if(fill)fill.style.width='100%';
-    return;
-  }
+  var q=window.quotaInfo;
   if(plan==='pro'){
     if(el)el.textContent='Plano Pro · consultas ilimitadas';
     if(fill)fill.style.width='100%';
     return;
   }
-  var rem=MAX_Q-queryCount;
-  if(el)el.textContent=(rem>0?rem+' consultas gratuitas disponíveis hoje':'Limite diário atingido · Volte amanhã');
-  if(fill)fill.style.width=Math.max(0,(rem/MAX_Q)*100)+'%';
+  if(plan==='basico'){
+    if(q&&q.remaining!=null){
+      if(el)el.textContent='Plano Básico · '+q.remaining+' de '+q.limit+' hoje';
+      if(fill)fill.style.width=Math.max(0,(q.remaining/q.limit)*100)+'%';
+    }else{
+      if(el)el.textContent='Plano Básico · 30 consultas/dia';
+      if(fill)fill.style.width='100%';
+    }
+    return;
+  }
+  if(q&&q.remaining!=null){
+    if(el)el.textContent=(q.remaining>0?q.remaining+' de '+q.limit+' consultas hoje':'Limite diário atingido · Volte amanhã');
+    if(fill)fill.style.width=Math.max(0,(q.remaining/q.limit)*100)+'%';
+  }else{
+    var rem=MAX_Q-queryCount;
+    if(el)el.textContent=(rem>0?rem+' consultas gratuitas disponíveis hoje':'Limite diário atingido · Volte amanhã');
+    if(fill)fill.style.width=Math.max(0,(rem/MAX_Q)*100)+'%';
+  }
 }
 async function refreshPlanFromServer(){
   var em=(localStorage.getItem('tab_subscriber_email')||'').trim().toLowerCase();
-  if(!em){window.currentPlan='free';updateCounter();return;}
   try{
-    var r=await fetch('https://api.tuabogabot.io/api/v1/subscription?email='+encodeURIComponent(em));
+    var url='https://api.tuabogabot.io/api/v1/quota'+(em?('?email='+encodeURIComponent(em)):'');
+    var r=await fetch(url);
     var d=await r.json();
-    window.currentPlan=(d && d.activa)?(d.plan||'basico'):'free';
-  }catch(e){window.currentPlan='free';}
+    window.currentPlan=d.plan||'free';
+    window.quotaInfo={limit:d.limit,remaining:d.remaining,used:d.used};
+  }catch(e){if(!em)window.currentPlan='free';window.quotaInfo=null;}
   updateCounter();
 }
 updateCounter();
@@ -1425,6 +1437,7 @@ async function sendMsg(){
     var text=data.respuesta||'Desculpe, não consegui processar sua consulta. Tente novamente.';
     if(data.fuentes&&data.fuentes.length){text+='\n\n**Fontes citadas:** '+data.fuentes.join(', ');}
     addMsg('bot','<p>'+formatMd(text)+'</p>',true);
+    refreshPlanFromServer();
   }catch(e){
     if(typing)typing.remove();
     addMsg('bot','<p>Ocorreu um erro ao processar sua consulta. Tente novamente em alguns instantes.</p>',false);
