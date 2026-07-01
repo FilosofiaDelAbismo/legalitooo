@@ -32,7 +32,7 @@ var klaroConfig = {
         },
         {
             name: 'digiprompts-chat',
-            title: 'Chatbot TuAbogaBot',
+            title: 'Chatbot Legalito',
             description: 'Asistente legal virtual. Puede usar cookies de sesión. / Assistente jurídico virtual. Pode usar cookies de sessão.',
             purposes: ['functional'],
             default: false,
